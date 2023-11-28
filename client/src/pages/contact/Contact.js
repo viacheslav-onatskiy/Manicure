@@ -1,8 +1,11 @@
-const Contact = () => {
+import { PageHeading } from '../../components/common/styles';
 
+const Contact = () => {
   return (
-    <div>Contact</div>
-  )
-}
+    <>
+      <PageHeading>Contact</PageHeading>
+    </>
+  );
+};
 
 export default Contact;

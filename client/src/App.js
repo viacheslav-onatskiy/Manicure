@@ -13,7 +13,7 @@ import Reviews from './pages/reviews/index.js';
 import Register from './pages/auth/Register.jsx';
 import Login from './pages/auth/Login.jsx';
 import NotFound from './pages/NotFound.js';
-import Portfolio from './pages/portfolio/Portfolio.js';
+import Portfolio from './pages/portfolio/Portfolio.jsx';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -33,7 +33,7 @@ const App = () => {
             <Route exact path="register" element={<Register />} />
             <Route exact path="login" element={<Login />} />
             <Route exact path="about" element={<About />} />
-            <Route exact path="/portfolio" component={<Portfolio />} />
+            <Route exact path="portfolio" element={<Portfolio />} />
             {/* <PrivateRoute exact path="/portfolio" component={<Portfolio />} /> */}
 
             <Route path="contact" element={<Contact />} />

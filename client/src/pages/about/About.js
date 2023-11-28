@@ -1,8 +1,12 @@
-const About = () => {
+import { PageHeading } from '../../components/common/styles';
 
+const About = () => {
   return (
-    <div>About</div>
-  )
-}
+    <>
+      <PageHeading>About</PageHeading>
+      <div>About</div>
+    </>
+  );
+};
 
 export default About;

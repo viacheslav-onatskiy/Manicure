@@ -1,9 +1,27 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ModalCloseButton, ModalMain, ModalWrapper } from './styles';
+import {
+  ModalCloseButton,
+  ModalMain,
+  ModalWrapper,
+  NextButton,
+  PrevButton
+} from './styles';
+import { useSwipe } from '../../helpers/useSwipe';
 
-const Modal = ({ isOpen = false, modalId, hasCloseBtn = true, onClose, children }) => {
+const Modal = ({
+  isOpen = false,
+  modalId,
+  hasCloseBtn = true,
+  onClose,
+  showPrev = null,
+  showNext = null,
+  children
+}) => {
   const [isModalOpen, setModalOpen] = useState(isOpen);
   const modalRef = useRef(null);
+  const leftButtonRef = useRef(null);
+  const rightButtonRef = useRef(null);
+  const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
 
   const handleCloseModal = useCallback(() => {
     if (onClose) {
@@ -21,13 +39,16 @@ const Modal = ({ isOpen = false, modalId, hasCloseBtn = true, onClose, children 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
+        if (leftButtonRef.current === e.target || rightButtonRef.current === e.target) {
+          return;
+        }
         onClose();
       }
     };
     document.addEventListener('click', checkIfClickedOutside, true);
 
     return () => {
-      document.removeEventListener('click', checkIfClickedOutside);
+      document.removeEventListener('click', checkIfClickedOutside, true);
     };
   }, [onClose]);
 
@@ -44,12 +65,54 @@ const Modal = ({ isOpen = false, modalId, hasCloseBtn = true, onClose, children 
   }, [handleCloseModal]);
 
   useEffect(() => {
+    const handleKeyRight = (e) => {
+      if (!showNext) return;
+      if (e.keyCode === 39) {
+        showNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyRight);
+
+    return () => window.removeEventListener('keydown', handleKeyRight);
+  }, [showNext]);
+
+  useEffect(() => {
+    const handleKeyLeft = (e) => {
+      if (!showPrev) return;
+      if (e.keyCode === 37) {
+        showPrev(e);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyLeft);
+
+    return () => window.removeEventListener('keydown', handleKeyLeft);
+  }, [showPrev]);
+
+  useEffect(() => {
     setModalOpen(isOpen);
   }, [isOpen]);
 
   return (
-    <ModalWrapper id={modalId} isShowModal={isModalOpen}>
-      <ModalMain ref={modalRef}>
+    <ModalWrapper
+      id={modalId}
+      isShowModal={isModalOpen}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {showPrev && (
+        <PrevButton onClick={showPrev} ref={leftButtonRef}>
+          ⭠
+        </PrevButton>
+      )}
+      {showNext && (
+        <NextButton onClick={showNext} ref={rightButtonRef}>
+          ⭢
+        </NextButton>
+      )}
+      <ModalMain className="modal-main-content" ref={modalRef}>
         {hasCloseBtn && (
           <ModalCloseButton
             className="modal-close-btn"

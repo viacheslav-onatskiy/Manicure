@@ -11,6 +11,14 @@ export const ModalWrapper = styled.div`
   backdrop-filter: blur(1px);
   display: ${({ isShowModal }) => (isShowModal ? 'block' : 'none')};
   z-index: 20;
+
+  &#lightbox-modal {
+    & .modal-main-content {
+      width: 40rem;
+      background: transparent;
+      padding: 0;
+    }
+  }
 `;
 
 export const ModalMain = styled.div`
@@ -19,7 +27,7 @@ export const ModalMain = styled.div`
   color: #3d19d9;
   width: 35rem;
   height: auto;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -28,6 +36,7 @@ export const ModalMain = styled.div`
   border-radius: 15px;
   position: relative;
   padding: 35px 25px;
+  max-height: 80vh;
 `;
 
 export const ModalCloseButton = styled(MyButton)`
@@ -37,4 +46,21 @@ export const ModalCloseButton = styled(MyButton)`
   font-size: 15px;
   line-height: 15px;
   padding: 10px;
+`;
+
+export const PrevButton = styled(MyButton)`
+  position: fixed;
+  left: 40px;
+  top: 100px;
+  font-size: 55px;
+  line-height: 15px;
+  padding: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 101;
+`;
+
+export const NextButton = styled(PrevButton)`
+  left: unset;
+  right: 40px;
 `;

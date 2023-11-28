@@ -92,8 +92,10 @@ const Reviews = () => {
 
   // Fetch All Reviews
   useEffect(() => {
-    getReviews();
-  }, [getReviews]);
+    if (!reviews.length) {
+      getReviews();
+    }
+  }, [getReviews, reviews.length]);
 
   return (
     <>
