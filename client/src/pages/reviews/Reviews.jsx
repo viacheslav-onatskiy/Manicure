@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Modal from '../../components/Modal/index.js';
-import { MyButton } from '../home/styles.js';
-import { PageHeading } from '../../components/common/styles.js';
+import { MyButton, PageHeading } from '../../components/common/styles.js';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
 import { useAuth, useReview } from '../../redux/hooks.js';

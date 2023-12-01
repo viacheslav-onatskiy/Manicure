@@ -1,5 +1,5 @@
 import formatDate from '../../../helpers/formatDate';
-import { MyButton } from '../../../pages/home/styles';
+import { MyButton } from '../../common/styles';
 import StarIcon from '../../StarRating/StarIcon';
 import PropTypes from 'prop-types';
 import {

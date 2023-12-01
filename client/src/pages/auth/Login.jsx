@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useAuth } from '../../redux/hooks';
 import { Link } from 'react-router-dom';
-import { MyButton } from '../home/styles';
+import { SectionHeader } from '../home/styles';
+import { MyButton, PageHeading } from '../../components/common/styles';
+import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
+import Input from '../../components/Input';
 
 const Login = () => {
   const { loginUser, isAuthenticated } = useAuth();
@@ -13,7 +16,11 @@ const Login = () => {
 
   const { email, password } = formData;
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((values) => ({ ...values, [name]: value }));
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -25,54 +32,56 @@ const Login = () => {
   }
 
   return (
-    <>
-      <h1>Sign in</h1>
-      <p>
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
+    <AuthWrapper>
+      <PageHeading>Contact</PageHeading>
 
-      <form>
-        <input
-          label="Email"
-          id="login-email"
-          type="email"
-          value={email}
-          name="email"
-          onChange={(e) => onChange(e)}
-          placeholder="Email Address"
-          required
-          autoComplete="off"
-        />
+      <AuthContainer className="container">
+        <SectionHeader>Sign Into Your Account</SectionHeader>
+        <AuthForm>
+          <Input
+            label="Email"
+            id="login-email"
+            type="email"
+            value={email}
+            name="email"
+            onChange={onChange}
+            placeholder="Email Address"
+            required
+            autoComplete="off"
+          />
 
-        <input
-          label="Password"
-          id="login-password"
-          type="password"
-          value={password}
-          name="password"
-          onChange={(e) => onChange(e)}
-          placeholder="Enter your password"
-          autoComplete="off"
-          minLength="6"
-        />
+          <Input
+            label="Password"
+            id="login-password"
+            type="password"
+            value={password}
+            name="password"
+            onChange={(e) => onChange(e)}
+            placeholder="Enter your password"
+            autoComplete="off"
+            minLength="6"
+          />
 
-        <MyButton
-          variant="primary"
-          text="Register"
-          onClick={(e) => onSubmit(e)}
-          color="white"
-          type="submit"
-          className={`float-right`}
-          id="user-login-button"
-        >
-          Login
-        </MyButton>
+          <AuthButton>
+            <MyButton
+              variant="primary"
+              text="Register"
+              onClick={(e) => onSubmit(e)}
+              color="white"
+              type="submit"
+              className="auth-button"
+              id="user-login-button"
+            >
+              Login
+            </MyButton>
+          </AuthButton>
 
-        <p>
-          Don't have an account? <Link to="/register">Sign Up</Link>
-        </p>
-      </form>
-    </>
+          <p className="auth-redirect-paragraph">
+            Don't have an account? <Link to="/register">Sign Up</Link>
+          </p>
+        </AuthForm>
+      </AuthContainer>
+    </AuthWrapper>
   );
 };
 

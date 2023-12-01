@@ -41,6 +41,10 @@ export const GlobalStyle = createGlobalStyle`
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
 
   #root, #__next {
     isolation: isolate;
@@ -59,4 +63,83 @@ export const PageHeading = styled.div`
     rgba(253, 77, 153, 1) 14%,
     rgba(62, 233, 242, 1) 80%
   );
+`;
+
+export const Heading1 = styled.h1`
+  font-size: 60px;
+  line-height: 1.2;
+  font-weight: 700;
+`;
+
+export const Heading2 = styled.h2`
+  font-size: 48px;
+  line-height: 1.45;
+`;
+
+export const Heading3 = styled.h3`
+  font-size: 32px;
+  line-height: 1.5;
+`;
+
+export const Heading4 = styled.h4`
+  font-size: 24px;
+  line-height: 1.25;
+`;
+
+export const Heading5 = styled.h5`
+  font-size: 18px;
+  line-height: 1.45;
+`;
+
+export const MyButton = styled.button`
+  border: 1px solid #fd4d99;
+  padding: 5px 25px;
+  border-radius: ${({ rounded }) => (rounded ? '30px' : '8px')};
+
+  color: ${({ color }) => color || 'white'};
+  font-size: ${({ fontSize }) => fontSize || '1.7em'};
+  ${'' /* line-height: ${({ fontSize }) => fontSize || '1.7em'}; */}
+  padding-top: 8px;
+  width: max-content;
+  background-color: ${({ bg }) => bg || 'transparent'};
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  transition: 200ms all ease-in-out;
+
+  &:hover {
+    background-color: #fd4d99;
+    color: white;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    background-color: #fc61a4;
+    box-shadow: 6px 6px 11px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  &.fill {
+    background-color: #fd4d99;
+    color: white;
+
+    &:hover {
+      color: var(--darker);
+    }
+  }
+
+  &.full-length {
+    width: 100%;
+  }
+
+  &.small {
+    font-size: 13px;
+    padding: 5px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+  &:enabled {
+    opacity: 1;
+  }
+  opacity: ${(props) => (!props.enabled ? 0.5 : 1)};
 `;

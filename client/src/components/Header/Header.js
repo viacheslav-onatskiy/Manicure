@@ -1,5 +1,5 @@
 import { useAuth } from '../../redux/hooks';
-import { MyButton } from '../../pages/home/styles';
+import { MyButton } from '../common/styles';
 import {
   HeaderUserName,
   NavButtons,

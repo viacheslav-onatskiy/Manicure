@@ -58,31 +58,6 @@ export const ImageButtonsWrapper = styled.div`
   gap: 15px;
 `;
 
-export const MyButton = styled.div`
-  border: 1px solid #fd4d99;
-  padding: 5px 25px;
-  border-radius: ${({ rounded }) => (rounded ? '30px' : '8px')};
-
-  color: ${({ color }) => color || 'white'};
-  font-size: ${({ fontSize }) => fontSize || '1.7em'};
-  ${'' /* line-height: ${({ fontSize }) => fontSize || '1.7em'}; */}
-  padding-top: 8px;
-  width: max-content;
-  background-color: ${({ bg }) => bg || ''};
-
-  &:hover {
-    background-color: #fd4d99;
-    color: white;
-    cursor: pointer;
-    box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.35);
-  }
-
-  &.small {
-    font-size: 13px;
-    padding: 5px;
-  }
-`;
-
 export const FirstImage = styled.img`
   margin-top: -585px;
   object-fit: cover;
@@ -147,7 +122,6 @@ export const SectionWrapper = styled.div`
   font-size: 30px;
 
   &.advantages {
-    background-color: white;
     color: #333333;
   }
 
@@ -173,21 +147,16 @@ export const AdvantageCartsWrapper = styled.div`
 export const AdvantageCart = styled.div`
   width: 25%;
   border: 2px solid;
-  border-color: linear-gradient(
-      150deg,
-      rgba(253, 77, 153, 1) 14%,
-      rgba(62, 233, 242, 1) 80%
-    )
-    80;
+  border-color: var(--dark);
   border-radius: 10px;
   padding: 15px;
+  background-color: white;
 
   &:hover {
     transform: scale(1.05);
   }
 
   & .advantage-icon {
-    ${'' /* transform: scale(4); */}
     width: 70px;
     height: 70px;
 

@@ -4,12 +4,11 @@ import {
   SectionHeading,
   ServiceImage,
   ServiceSection,
-  ServiceSectionContainer,
+  SectionContainer,
   ServiceSectionItem
 } from './styles';
-import { PageHeading } from '../common/styles';
+import { MyButton, PageHeading } from '../common/styles';
 import ManicureImg from '../../images/IMG_8937.jpeg';
-import { MyButton } from '../../pages/home/styles';
 import ServiceForm from './ServiceForm/ServiceForm';
 
 const Services = () => {
@@ -17,7 +16,7 @@ const Services = () => {
     <>
       <PageHeading>Services</PageHeading>
 
-      <ServiceSectionContainer>
+      <SectionContainer>
         <ServiceSection>
           <ServiceSectionItem>
             <ServiceImage primary imgSource={ManicureImg} />
@@ -36,9 +35,9 @@ const Services = () => {
             </SectionButtonContainer>
           </ServiceSectionItem>
         </ServiceSection>
-      </ServiceSectionContainer>
+      </SectionContainer>
 
-      <ServiceSectionContainer bgColor="#bef1f1" color="#001515">
+      <SectionContainer bgColor="#bef1f1" color="#001515">
         <ServiceSection>
           <ServiceSectionItem>
             <SectionHeading>Педикюр</SectionHeading>
@@ -59,26 +58,9 @@ const Services = () => {
             <ServiceImage primary imgSource={'red'} />
           </ServiceSectionItem>
         </ServiceSection>
-      </ServiceSectionContainer>
+      </SectionContainer>
 
-      <ServiceSectionContainer bgColor="#f1f2b4" color="#001515">
-        <ServiceSection>
-          <ServiceSectionItem>
-            <SectionHeading>Записаться ко мне</SectionHeading>
-            <SectionDescription>
-              Заполните форму. Я свяжусь с Вами в течение 24 часов.
-            </SectionDescription>
-            <SectionButtonContainer>
-              <MyButton color="#001515" rounded>
-                Записаться!
-              </MyButton>
-            </SectionButtonContainer>
-          </ServiceSectionItem>
-          <ServiceSectionItem>
-            <ServiceForm />
-          </ServiceSectionItem>
-        </ServiceSection>
-      </ServiceSectionContainer>
+      <ServiceForm />
     </>
   );
 };

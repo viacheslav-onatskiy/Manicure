@@ -1,11 +1,11 @@
 import Count from '../../components/Count/Count';
+import { MyButton } from '../../components/common/styles';
 import {
   FirstImageWrapper,
   ImageMiddleTextWrapper,
   ImageTextHeader,
   ImageTextDescription,
   ImageButtonsWrapper,
-  MyButton,
   ImageMiddleWrapper,
   AboutMeSectionWrapper,
   AboutMePictureWrapper,

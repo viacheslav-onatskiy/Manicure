@@ -1,5 +1,7 @@
-import { StyledAlert, StyledButton, StyledForm, StyledTextarea } from './styles';
+import { StyledAlert, StyledForm } from './styles';
 import StarRating from '../../StarRating';
+import Textarea from '../../Textarea';
+import { MyButton } from '../../common/styles';
 
 const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
   const { description, rating, isDescriptionInvalid } = formData;
@@ -10,11 +12,11 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
 
   return (
     <StyledForm onSubmit={leaveReview}>
-      <StyledTextarea
-        rows="4"
+      <Textarea
         value={description}
-        placeholder="Description"
         onChange={handleDescription}
+        rowsNumber="4"
+        placeholder="Description"
       />
       {isDescriptionInvalid && <StyledAlert>Please fill description.</StyledAlert>}
 
@@ -22,9 +24,10 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
         rating={rating}
         onSaveRating={(ratingValue) => setFormData({ ...formData, rating: ratingValue })}
       />
-      <StyledButton type="submit" disabled={!description}>
+
+      <MyButton type="submit" disabled={!description}>
         {modalType === 'Add' ? 'Leave review' : 'Update review'}
-      </StyledButton>
+      </MyButton>
     </StyledForm>
   );
 };

@@ -1,32 +1,23 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledForm = styled.form`
   padding: 20px;
   border-radius: 5px;
-`
+`;
 
 export const StyledLabel = styled.label`
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: ${props => props.invalid ? 'red' : 'black'};
-`
+  color: ${(props) => (props.invalid ? 'red' : 'black')};
+`;
 
 export const StyledInput = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-`
-
-export const StyledTextarea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: none;
-  rows: 4;
-`
+`;
 
 export const StyledButton = styled.button`
   background-color: #4caf50;
@@ -41,10 +32,10 @@ export const StyledButton = styled.button`
     opacity: 0.5;
   }
   &:enabled {
-    opacity: 1.0;
+    opacity: 1;
   }
-  opacity: ${props => !props.enabled ? 0.5 : 1};
-`
+  opacity: ${(props) => (!props.enabled ? 0.5 : 1)};
+`;
 
 export const StyledAlert = styled.div`
   padding: 10px;
@@ -52,4 +43,4 @@ export const StyledAlert = styled.div`
   color: white;
   margin-top: 10px;
   border-radius: 5px;
-`
+`;

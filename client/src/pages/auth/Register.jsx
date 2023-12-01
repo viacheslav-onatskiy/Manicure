@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useAuth } from '../../redux/hooks';
 import { toast } from 'react-toastify';
 import { Link, Navigate } from 'react-router-dom';
-import { MyButton } from '../home/styles';
+import { SectionHeader } from '../home/styles';
+import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
+import { MyButton, PageHeading } from '../../components/common/styles';
+import Input from '../../components/Input';
 
 const Register = () => {
   const { registerUser, isAuthenticated } = useAuth();
@@ -32,77 +35,80 @@ const Register = () => {
   }
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <p>
-        <i className="fas fa-user" /> Create Your Account
-      </p>
+    <AuthWrapper>
+      <PageHeading>Sign Up</PageHeading>
 
-      <form>
-        <input
-          label="Name"
-          id="register-name"
-          type="text"
-          value={name}
-          name="name"
-          onChange={(e) => onChange(e)}
-          placeholder="Enter your name"
-          autoComplete="off"
-        />
+      <AuthContainer className="container">
+        <SectionHeader>Create Your Account</SectionHeader>
 
-        <input
-          label="Email"
-          id="register-email"
-          type="email"
-          value={email}
-          name="email"
-          onChange={(e) => onChange(e)}
-          placeholder="Email Address"
-          required
-          autoComplete="off"
-        />
+        <AuthForm>
+          <Input
+            label="Name"
+            id="register-name"
+            type="text"
+            value={name}
+            name="name"
+            onChange={(e) => onChange(e)}
+            placeholder="Enter your name"
+            autoComplete="off"
+          />
 
-        <input
-          label="Password"
-          id="register-password"
-          type="password"
-          value={password}
-          name="password"
-          onChange={(e) => onChange(e)}
-          placeholder="Create a password"
-          autoComplete="off"
-          minLength="6"
-        />
+          <Input
+            label="Email"
+            id="register-email"
+            type="email"
+            value={email}
+            name="email"
+            onChange={(e) => onChange(e)}
+            placeholder="Email Address"
+            required
+            autoComplete="off"
+          />
 
-        <input
-          label="Password"
-          id="register-password-2"
-          type="password"
-          value={password2}
-          name="password2"
-          onChange={(e) => onChange(e)}
-          placeholder="Confirm Password"
-          autoComplete="off"
-          minLength="6"
-        />
+          <Input
+            label="Password"
+            id="register-password"
+            type="password"
+            value={password}
+            name="password"
+            onChange={(e) => onChange(e)}
+            placeholder="Create a password"
+            autoComplete="off"
+            minLength="6"
+          />
 
-        <MyButton
-          variant="primary"
-          text="Register"
-          onClick={(e) => onSubmit(e)}
-          color="white"
-          type="submit"
-          className={`float-right`}
-          id="user-register-button"
-        >
-          Register
-        </MyButton>
+          <Input
+            label="Password"
+            id="register-password-2"
+            type="password"
+            value={password2}
+            name="password2"
+            onChange={(e) => onChange(e)}
+            placeholder="Confirm Password"
+            autoComplete="off"
+            minLength="6"
+          />
 
-        <p className="my-1">
-          Already have an account? <Link to="/login">Sign In</Link>
-        </p>
-      </form>
-    </>
+          <AuthButton>
+            <MyButton
+              variant="primary"
+              text="Register"
+              onClick={(e) => onSubmit(e)}
+              color="white"
+              type="submit"
+              className="auth-button"
+              id="user-register-button"
+            >
+              Register
+            </MyButton>
+          </AuthButton>
+
+          <p className="auth-redirect-paragraph">
+            Already have an account? <Link to="/login">Sign In</Link>
+          </p>
+        </AuthForm>
+      </AuthContainer>
+    </AuthWrapper>
   );
 };
 
