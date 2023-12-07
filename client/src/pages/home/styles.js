@@ -66,8 +66,14 @@ export const FirstImage = styled.img`
 export const AboutMeSectionWrapper = styled.div`
   display: flex;
   justify-content: center;
-  color: white;
-  margin: 100px 150px;
+  margin: 50px 0;
+  gap: 25px;
+
+  & .about__button,
+  & .about__description {
+    margin-top: 20px;
+    display: block;
+  }
 `;
 
 export const AboutMePictureWrapper = styled.div`
@@ -81,7 +87,7 @@ export const AboutMePicture = styled.div`
   background-image: url(../../images/IMG_6796.jpeg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 70%;
   height: 100%;
   width: 100%;
 `;
@@ -99,21 +105,26 @@ export const AboutMeHeader = styled.h2`
   line-height: 1.7em;
 `;
 
-export const OrderSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  padding: 100px 150px;
-  background: rgb(253, 77, 153);
-  background: linear-gradient(
-    150deg,
-    rgba(253, 77, 153, 1) 14%,
-    rgba(62, 233, 242, 1) 80%
-  );
+export const HomeSection = styled.section`
+  &.order {
+    background: linear-gradient(
+      150deg,
+      rgba(253, 77, 153, 1) 14%,
+      rgba(62, 233, 242, 1) 80%
+    );
+  }
+
+  &.reviews {
+    background-color: lightgrey;
+    padding: 50px 0;
+  }
 `;
 
-export const OrderSectionDescription = styled.div`
-  font-size: 40px;
+export const OrderSectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  padding: 50px 0;
 `;
 
 export const SectionWrapper = styled.div`
@@ -180,3 +191,5 @@ export const AdvantageCartDescription = styled.p`
   text-align: center;
   margin-top: 20px;
 `;
+
+export const ReviewsHomeWrapper = styled.div``;

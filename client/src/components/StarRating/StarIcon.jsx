@@ -1,6 +1,6 @@
 import { StarIconSvg } from './styles';
 
-function StarIcon({ fill = 'none' }) {
+function StarIcon({ fill = 'fd4d99' }) {
   return (
     <StarIconSvg
       fill={fill}

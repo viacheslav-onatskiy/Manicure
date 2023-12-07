@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const Count = ({ label, number, duration }) => {
-  // label of counter
+const AnimatedCount = ({ number, duration }) => {
   // number to increment to
   // duration of count in seconds
   // number displayed by component
@@ -9,14 +8,13 @@ const Count = ({ label, number, duration }) => {
 
   useEffect(() => {
     let start = 0;
-    // first three numbers from props
     const end = parseInt(number.substring(0, 3));
-    // if zero, return
+
     if (start === end) return;
 
     // find duration per increment
-    let totalMilSecDur = parseInt(duration);
-    let incrementTime = (totalMilSecDur / end) * 100;
+    let totalMillisecondsDuration = parseInt(duration);
+    let incrementTime = (totalMillisecondsDuration / end) * 100;
 
     // timer increments start counter
     // then updates count
@@ -24,21 +22,12 @@ const Count = ({ label, number, duration }) => {
     let timer = setInterval(() => {
       start += 1;
       setCount(String(start) + number.substring(3));
+
       if (start === end) clearInterval(timer);
     }, incrementTime);
-
-    // dependency array
   }, [number, duration]);
 
-  return (
-    <div className="Count">
-      <h3>
-        <i>
-          {label}: {count}
-        </i>
-      </h3>
-    </div>
-  );
+  return <div>{count}</div>;
 };
 
-export default Count;
+export default AnimatedCount;

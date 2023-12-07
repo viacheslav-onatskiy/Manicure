@@ -1,6 +1,6 @@
 import formatDate from '../../../helpers/formatDate';
 import { MyButton } from '../../common/styles';
-import StarIcon from '../../StarRating/StarIcon';
+import StarRating from '../../StarRating';
 import PropTypes from 'prop-types';
 import {
   ReviewAuthor,
@@ -20,16 +20,7 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
         <ReviewDate>{formatDate(new Date(`${review.date}`))}</ReviewDate>
       </ReviewHeader>
       <ReviewRating>
-        {Array(review.rating)
-          .fill()
-          .map((_, idx) => (
-            <StarIcon key={idx} fill="#fd4d99" />
-          ))}
-        {Array(Number(5 - review.rating))
-          .fill()
-          .map((_, idx) => (
-            <StarIcon key={idx} />
-          ))}
+        <StarRating rating={review.rating} isEditable={false} />
         <ReviewButtons>
           {review.user === userId && (
             <>

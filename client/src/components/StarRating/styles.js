@@ -1,12 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StarRatingWrapper = styled.div`
   display: flex;
   justify-content: center;
   color: #a1a1a8;
-  background: #f3f3f3;
   margin: 20px 0 0 0;
-  
 `;
 
 export const StarIconSvg = styled.svg`
@@ -33,4 +31,4 @@ export const StarRatingButton = styled.button`
   &.off {
     color: #ccc;
   }
-`
+`;

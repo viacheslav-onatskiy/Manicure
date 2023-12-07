@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { RatingIconWrapper, StarRatingWrapper } from './styles';
 import StarIcon from './StarIcon';
 
-export const StarRating = ({ rating = 4, onSaveRating }) => {
+export const StarRating = ({ rating = 4, onSaveRating, isEditable = true }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
   const onMouseEnter = (value) => {
@@ -21,6 +21,7 @@ export const StarRating = ({ rating = 4, onSaveRating }) => {
             key={index}
             index={index}
             rating={rating}
+            isEditable={isEditable}
             hoverRating={hoverRating}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -35,6 +36,7 @@ export const StarRating = ({ rating = 4, onSaveRating }) => {
 function RatingIcon({
   index,
   rating,
+  isEditable,
   hoverRating,
   onMouseEnter,
   onMouseLeave,
@@ -48,6 +50,10 @@ function RatingIcon({
     }
     return 'none';
   }, [rating, hoverRating, index]);
+
+  if (!isEditable) {
+    return <StarIcon fill={fill} />;
+  }
 
   return (
     <RatingIconWrapper

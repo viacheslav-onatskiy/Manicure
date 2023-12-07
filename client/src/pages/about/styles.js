@@ -18,6 +18,11 @@ export const AboutSection = styled.div`
   &.insta {
     display: block;
   }
+
+  &.facts {
+    background-color: #c7c7ed;
+    background-color: #dcdcf1;
+  }
 `;
 
 export const AboutSectionItem = styled.div`

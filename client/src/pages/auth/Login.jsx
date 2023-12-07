@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <PageHeading>Contact</PageHeading>
+      <PageHeading>Login</PageHeading>
 
       <AuthContainer className="container">
         <SectionHeader>Sign Into Your Account</SectionHeader>

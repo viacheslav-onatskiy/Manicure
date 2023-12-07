@@ -3,6 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollToTopButton from '../atoms/ScrollToTop/ScrollToTop.js';
 
 const Layout = () => {
   return (
@@ -14,6 +15,7 @@ const Layout = () => {
       <Outlet />
 
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

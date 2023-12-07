@@ -1,5 +1,5 @@
-import Count from '../../components/Count/Count';
-import { MyButton } from '../../components/common/styles';
+import { Link } from 'react-router-dom';
+import { Heading3, MyButton } from '../../components/common/styles';
 import {
   FirstImageWrapper,
   ImageMiddleTextWrapper,
@@ -11,16 +11,17 @@ import {
   AboutMePictureWrapper,
   AboutMePicture,
   AboutMeDescriptionWrapper,
-  AboutMeHeader,
-  OrderSection,
-  OrderSectionDescription,
   AdvantageCartsWrapper,
   AdvantageCart,
   SectionWrapper,
   AdvantageCartDescription,
   AdvantageIcon,
-  SectionHeader
+  SectionHeader,
+  OrderSectionWrapper,
+  HomeSection,
+  ReviewsHomeWrapper
 } from './styles';
+import Carousel from '../../components/carousel';
 
 export const Home = () => {
   return (
@@ -49,32 +50,31 @@ export const Home = () => {
       </section>
 
       {/* ABOUT ME */}
-      <section>
-        <Count number="1234" duration="11" label="Label" />
+      <section className="container">
         <AboutMeSectionWrapper>
           <AboutMePictureWrapper>
             <AboutMePicture />
           </AboutMePictureWrapper>
           <AboutMeDescriptionWrapper>
-            <AboutMeHeader>Обо мне</AboutMeHeader>
-            <p>
-              Привет! Меня зовут Яна Ивакхненко. Делаю маникюр с 2015 года. Я
-              профессиональный мастер маникюра из Харькова. Люблю фотографировать людей в
-              разных городах и странах! <br />
-              <br />
+            <Heading3>About me</Heading3>
+            <p className="about__description">
+              Hello! My name is Yana Ivakhnenko. I have been doing manicures since 2015. I
+              am a professional nail master from Kharkiv.
             </p>
+
+            <Link to={'/about'} className="about__button">
+              <MyButton>Read more</MyButton>
+            </Link>
           </AboutMeDescriptionWrapper>
         </AboutMeSectionWrapper>
       </section>
 
-      <section>
-        <OrderSection>
-          <OrderSectionDescription>
-            Хотите получить красивые ногти?
-          </OrderSectionDescription>
+      <HomeSection className="order">
+        <OrderSectionWrapper className="container">
+          <Heading3>Хотите получить красивые ногти?</Heading3>
           <MyButton>ЗАКАЗАТЬ МАНИКЮР</MyButton>
-        </OrderSection>
-      </section>
+        </OrderSectionWrapper>
+      </HomeSection>
 
       <section about="advantages">
         <SectionWrapper className="advantages">
@@ -190,6 +190,13 @@ export const Home = () => {
           </div>
         </SectionWrapper>
       </section>
+
+      <HomeSection className="reviews">
+        <ReviewsHomeWrapper className="container">
+          <Heading3>Reviews</Heading3>
+          <Carousel />
+        </ReviewsHomeWrapper>
+      </HomeSection>
     </>
   );
 };
