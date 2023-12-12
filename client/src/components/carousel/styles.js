@@ -65,6 +65,11 @@ export const CarouselSlide = styled.div`
     margin-top: 20px;
     color: var(--darker);
   }
+
+  .star__rating {
+    margin: 20px 0 0 0;
+    background-color: green;
+  }
 `;
 
 export const SlideDescription = styled.div`
@@ -78,6 +83,7 @@ export const SlideDescription = styled.div`
   line-clamp: 4;
   -webkit-box-orient: vertical;
   max-width: 60%;
+  font-style: italic;
 `;
 
 export const CarouselArrow = styled.div`

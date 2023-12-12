@@ -4,7 +4,6 @@ export const StarRatingWrapper = styled.div`
   display: flex;
   justify-content: center;
   color: #a1a1a8;
-  margin: 20px 0 0 0;
 `;
 
 export const StarIconSvg = styled.svg`

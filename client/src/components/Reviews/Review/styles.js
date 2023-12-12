@@ -8,6 +8,7 @@ export const ReviewWrapper = styled.div`
   border-radius: 8px;
   padding: 10px 15px;
   color: #333333;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.15);
 `;
 
 export const ReviewHeader = styled.div`

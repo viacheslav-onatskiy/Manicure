@@ -8,6 +8,12 @@ import {
   updateReview,
   getReviews
 } from './actions/review';
+import {
+  setPageAction,
+  setPageItemsAction,
+  setPageResetAction,
+  setPageSizeAction
+} from './actions/pagination';
 
 export function useAuth() {
   const dispatch = useDispatch();
@@ -117,5 +123,57 @@ export function useReview() {
     addReview: boundAddReview,
     deleteReview: boundDeleteReview,
     updateReview: boundUpdateReview
+  };
+}
+
+export function usePagination() {
+  const dispatch = useDispatch();
+  const { activePage, pageSize, pageOfItems, pageReset } = useSelector(
+    (state) => ({
+      activePage: state.pagination.activePage,
+      pageSize: state.pagination.pageSize,
+      pageOfItems: state.pagination.pageOfItems,
+      pageReset: state.pagination.pageReset
+    }),
+    shallowEqual
+  );
+
+  const boundSetPageSize = useCallback(
+    (...args) => {
+      return dispatch(setPageSizeAction(...args));
+    },
+    [dispatch]
+  );
+
+  const boundSetPage = useCallback(
+    (...args) => {
+      return dispatch(setPageAction(...args));
+    },
+    [dispatch]
+  );
+
+  const boundSetPageItems = useCallback(
+    (...args) => {
+      return dispatch(setPageItemsAction(...args));
+    },
+    [dispatch]
+  );
+
+  const boundSetPageReset = useCallback(
+    (...args) => {
+      return dispatch(setPageResetAction(...args));
+    },
+    [dispatch]
+  );
+
+  return {
+    activePage,
+    pageSize,
+    pageOfItems,
+    pageReset,
+    setPageSize: boundSetPageSize,
+    setPage: boundSetPage,
+    setPageItems: boundSetPageItems,
+    setPageReset: boundSetPageReset
   };
 }

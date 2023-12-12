@@ -94,7 +94,7 @@ export const Heading5 = styled.h5`
 export const MyButton = styled.button`
   border: 1px solid #fd4d99;
   padding: 5px 25px;
-  border-radius: ${({ rounded }) => (rounded ? '30px' : '8px')};
+  border-radius: ${({ $rounded }) => ($rounded ? '30px' : '8px')};
 
   color: ${({ color }) => color || 'white'};
   font-size: ${({ fontSize }) => fontSize || '1.7em'};

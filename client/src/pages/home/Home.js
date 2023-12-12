@@ -195,6 +195,10 @@ export const Home = () => {
         <ReviewsHomeWrapper className="container">
           <Heading3>Reviews</Heading3>
           <Carousel />
+
+          <Link to="/reviews" className="all-reviews-btn">
+            <MyButton>See all reviews</MyButton>
+          </Link>
         </ReviewsHomeWrapper>
       </HomeSection>
     </>

@@ -192,4 +192,14 @@ export const AdvantageCartDescription = styled.p`
   margin-top: 20px;
 `;
 
-export const ReviewsHomeWrapper = styled.div``;
+export const ReviewsHomeWrapper = styled.div`
+  & .all-reviews-btn {
+    margin: 15px auto 0;
+    display: block;
+    text-align: center;
+
+    button {
+      font-size: 18px;
+    }
+  }
+`;

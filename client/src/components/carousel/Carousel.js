@@ -51,19 +51,22 @@ const Carousel = () => {
   return (
     <CarouselWrapper>
       <CarouselSlides style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-        {reviews.map((review, index) => (
-          <CarouselSlideWrapper key={index}>
-            <CarouselSlide>
-              <div className="quote-icon">{renderIcon('quote')}</div>
-              <SlideDescription>
-                description: {review.description.toString()}
-              </SlideDescription>
-              <StarRating rating={review.rating} isEditable={false} />
-              <Heading4 className="slide__user">{review.name}</Heading4>
-              <Heading5>Client</Heading5>
-            </CarouselSlide>
-          </CarouselSlideWrapper>
-        ))}
+        {reviews?.length &&
+          reviews.map((review, index) => (
+            <CarouselSlideWrapper key={index}>
+              <CarouselSlide>
+                <div className="quote-icon">{renderIcon('quote')}</div>
+                <SlideDescription>{review.description.toString()}</SlideDescription>
+                <StarRating
+                  rating={review.rating}
+                  isEditable={false}
+                  className="star__rating"
+                />
+                <Heading4 className="slide__user">{review.name}</Heading4>
+                <Heading5>Client</Heading5>
+              </CarouselSlide>
+            </CarouselSlideWrapper>
+          ))}
       </CarouselSlides>
       <CarouselArrow className="left" onClick={prevSlide}>
         <MyButton>⭠</MyButton>

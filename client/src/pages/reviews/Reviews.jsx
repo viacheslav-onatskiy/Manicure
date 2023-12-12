@@ -4,14 +4,24 @@ import Modal from '../../components/Modal/index.js';
 import { MyButton, PageHeading } from '../../components/common/styles.js';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
-import { useAuth, useReview } from '../../redux/hooks.js';
+import { useAuth, usePagination, useReview } from '../../redux/hooks.js';
 import Review from '../../components/Reviews/Review/Review.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
+import Pagination from '../../components/atoms/Pagination/Pagination.js';
 
 const Reviews = () => {
   const { review, reviews, addReview, getReviews, updateReview, deleteReview, loading } =
     useReview();
   const { user, isAuthenticated, token } = useAuth();
+  const {
+    activePage,
+    pageSize,
+    pageOfItems,
+    setPageItems,
+    setPage,
+    pageReset,
+    setPageReset
+  } = usePagination();
 
   const [modal, setModal] = useState({
     isOpen: false,
@@ -103,7 +113,7 @@ const Reviews = () => {
       <ReviewsWrapper>
         <ReviewsContentWrapper>
           <ReviewsButtonWrapper>
-            <MyButton bg="#fd4d99" rounded onClick={() => openModal()}>
+            <MyButton bg="#fd4d99" $rounded onClick={() => openModal()}>
               Leave review
             </MyButton>
           </ReviewsButtonWrapper>
@@ -114,7 +124,7 @@ const Reviews = () => {
             <h2>You don't have any reviews. Click the button to add a review!</h2>
           ) : (
             <>
-              {reviews.map((review) => (
+              {pageOfItems.map((review) => (
                 <Review
                   key={review._id}
                   review={review}
@@ -123,6 +133,17 @@ const Reviews = () => {
                   userId={user?._id}
                 />
               ))}
+
+              <Pagination
+                id={'reviews-pagination'}
+                items={reviews}
+                onChangePage={setPageItems}
+                setActivePage={setPage}
+                pageSize={pageSize}
+                activePage={activePage}
+                paginationReset={pageReset}
+                setPaginationReset={setPageReset}
+              />
             </>
           )}
         </ReviewsContentWrapper>
