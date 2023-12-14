@@ -42,12 +42,13 @@ const Contact = () => {
               <ContactListItem>
                 <SectionHeading>Address</SectionHeading>
                 <ContactDescription>
-                  <ContactIcon>{renderIcon('contactAddress')}</ContactIcon>
                   <ContactLink
+                    title="Open map"
                     target="_blank"
                     href="https://www.google.com/maps/place/3355+North+Rd+%23265,+Burnaby,+BC+V3J+7T9/@49.253893,-122.893541,16z/data=!4m6!3m5!1s0x54867839d8143fd1:0xbdf0efdc7768a81a!8m2!3d49.2538925!4d-122.893541!16s%2Fg%2F11kqc223mh?hl=ru&entry=ttu"
                     rel="noreferrer"
                   >
+                    <ContactIcon>{renderIcon('contactAddress')}</ContactIcon>
                     3355 North Rd #265 Burnaby, BC V3J 7T9
                   </ContactLink>
                 </ContactDescription>
@@ -56,16 +57,18 @@ const Contact = () => {
               <ContactListItem>
                 <SectionHeading>Phone</SectionHeading>
                 <ContactDescription>
-                  <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
-                  <ContactLink href="tel:+1672-272-14-17">+1-672-272-14-17</ContactLink>
+                  <ContactLink href="tel:+1672-272-14-17" title="Call me">
+                    <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
+                    +1-672-272-14-17
+                  </ContactLink>
                 </ContactDescription>
               </ContactListItem>
 
               <ContactListItem>
                 <SectionHeading>E-mail</SectionHeading>
                 <ContactDescription>
-                  <ContactIcon>{renderIcon('contactEmail')}</ContactIcon>
-                  <ContactLink href="mailto:email@example.com">
+                  <ContactLink href="mailto:email@example.com" title="Text me a message">
+                    <ContactIcon>{renderIcon('contactEmail')}</ContactIcon>
                     email@example.com
                   </ContactLink>
                 </ContactDescription>
@@ -74,8 +77,8 @@ const Contact = () => {
               <ContactListItem>
                 <SectionHeading>Opening Hours</SectionHeading>
                 <ContactDescription>
-                  <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
                   <ContactLink className="contact-hours">
+                    <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
                     <p>Mon-Sat: 9am - 5pm</p>
                     <p>Sunday: Closed</p>
                   </ContactLink>

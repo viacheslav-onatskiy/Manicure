@@ -12,7 +12,8 @@ import {
 } from './styles';
 import { renderIcon } from '../../images/svgIcons';
 import StarRating from '../StarRating';
-import { Heading4, Heading5, MyButton } from '../common/styles';
+import { Heading4, Heading5 } from '../common/styles';
+import Button from '../atoms/Button';
 
 const Carousel = () => {
   const { reviews, getReviews } = useReview();
@@ -69,10 +70,10 @@ const Carousel = () => {
           ))}
       </CarouselSlides>
       <CarouselArrow className="left" onClick={prevSlide}>
-        <MyButton>⭠</MyButton>
+        <Button>⭠</Button>
       </CarouselArrow>
       <CarouselArrow className="right" onClick={nextSlide}>
-        <MyButton>⭢</MyButton>
+        <Button>⭢</Button>
       </CarouselArrow>
 
       <CarouselIndicators>

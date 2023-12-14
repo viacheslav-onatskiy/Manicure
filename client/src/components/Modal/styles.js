@@ -1,5 +1,34 @@
-import styled from 'styled-components';
-import { MyButton } from '../common/styles';
+import styled, { css } from 'styled-components';
+import Button from '../atoms/Button';
+
+const modalButtonStyles = css`
+  position: fixed;
+  left: 40px;
+  top: 100px;
+  color: ${({ theme }) => theme.colors.primary2};
+  outline-color: ${({ theme }) => theme.colors.primary2};
+  font-size: 55px;
+  line-height: 15px;
+  padding: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 101;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary1};
+    outline-color: ${({ theme }) => theme.colors.primary1};
+  }
+
+  &:focus {
+    color: ${({ theme }) => theme.colors.primary2};
+    outline-color: ${({ theme }) => theme.colors.primary2};
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.colors.white};
+    outline-color: ${({ theme }) => theme.colors.white};
+  }
+`;
 
 export const ModalWrapper = styled.div`
   position: fixed;
@@ -14,10 +43,20 @@ export const ModalWrapper = styled.div`
 
   &#lightbox-modal {
     & .modal-main-content {
-      width: 40rem;
+      width: fit-content;
       background: transparent;
       padding: 0;
     }
+  }
+
+  .modal__prev-button {
+    ${modalButtonStyles}
+  }
+
+  .modal__next-button {
+    ${modalButtonStyles}
+    left: unset;
+    right: 40px;
   }
 `;
 
@@ -25,7 +64,7 @@ export const ModalMain = styled.div`
   position: fixed;
   background: #f1f1f1;
   color: #3d19d9;
-  width: 35rem;
+  width: 50vw;
   height: auto;
   top: 50%;
   left: 50%;
@@ -39,28 +78,11 @@ export const ModalMain = styled.div`
   max-height: 80vh;
 `;
 
-export const ModalCloseButton = styled(MyButton)`
+export const ModalCloseButton = styled(Button)`
   position: fixed;
-  right: 10px;
-  top: 10px;
+  right: 15px;
+  top: 15px;
   font-size: 15px;
   line-height: 15px;
   padding: 10px;
-`;
-
-export const PrevButton = styled(MyButton)`
-  position: fixed;
-  left: 40px;
-  top: 100px;
-  font-size: 55px;
-  line-height: 15px;
-  padding: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 101;
-`;
-
-export const NextButton = styled(PrevButton)`
-  left: unset;
-  right: 40px;
 `;

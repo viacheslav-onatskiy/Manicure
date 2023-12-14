@@ -77,6 +77,10 @@ export const AboutPresentDescription = styled.div`
 export const AboutPresentButtonWrapper = styled.div`
   margin: 40px 0 0;
   text-align: center;
+
+  .presentation__button {
+    font-size: 25px;
+  }
 `;
 
 export const AboutInstaWrapper = styled.div`
@@ -97,12 +101,23 @@ export const AboutInstaItem = styled.div`
     position: relative;
     background-size: cover;
 
+    a {
+      display: block;
+    }
+
     &:hover {
-      box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.25);
+      box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      overflow: hidden;
+
       & .overlay {
         opacity: 1;
         cursor: pointer;
       }
+    }
+
+    &:active {
+      box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.25);
     }
   }
 
@@ -135,6 +150,10 @@ export const AboutInstaItem = styled.div`
     top: 0;
     left: -60px;
     z-index: 2;
+  }
+
+  &:hover .img {
+    z-index: 6;
   }
 `;
 

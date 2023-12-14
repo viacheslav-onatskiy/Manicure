@@ -2,52 +2,21 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavigationHeaderWrapper = styled.nav`
-  background: ${(props) => (props.$primary ? '#BF4F74' : 'white')};
+  background: ${({ theme }) => theme.colors.white};
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 10;
-  padding: 3px 0;
-
-  ${
-    '' /* & .isActive {
-    background: yellow;
-  } */
-  }
-
-  a {
-    styled(NavigationLink);
-  }
+  padding: 1px 25px;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.15);
 `;
 
 export const NavigationLink = styled(NavLink)`
-  background: ${(props) => (props.$primary ? '#BF4F74' : '#333333')};
+  margin: 0 8px;
 
-  margin: 0 7px 0 0;
-  padding: 5px 7px;
-  border-radius: 7px;
-  color: #999999;
-
-  ${
-    '' /* color: ${(props) => props.active ? "#fff" : "#545e6f"};
-  background: ${(props) => props.active ? "#7600dc" : "#f0f0f0"}; */
-  }
-
-  &.active {
+  &.active button {
     color: #f0f0f0;
-    background: #bf4f74;
-  }
-
-  &:hover {
-    background: pink;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  &:active {
-    color: green;
-    font-weight: 500;
-    background: #333333;
+    background: ${({ theme }) => theme.colors.pink};
   }
 `;
 
@@ -57,12 +26,11 @@ export const NavLogoWrapper = styled(NavLink)`
   align-items: center;
   color: #fd4d99;
   font-weight: 600;
-  margin: 0 20px;
+  margin-right: 25px;
 `;
 
 export const NavLogo = styled.div`
   background-image: url(../../images/IMG_7720.jpeg);
-  ${'' /* background-attachment: fixed; */}
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -84,7 +52,6 @@ export const NavigationRightButtons = styled.div`
   margin-left: auto;
   display: flex;
   color: #999999;
-  gap: 15px;
 
   p {
     align-self: center;

@@ -12,7 +12,7 @@ import {
   SectionContainer,
   ServiceSectionItem
 } from '../styles';
-import { MyButton } from '../../common/styles';
+import Button from '../../atoms/Button';
 
 const ServiceForm = () => {
   const [inputs, setInputs] = useState({
@@ -56,9 +56,9 @@ const ServiceForm = () => {
               hours or visit our salon in person.
             </SectionDescription>
             <SectionButtonContainer>
-              <MyButton color="#001515" rounded>
-                Записаться!
-              </MyButton>
+              <Button variant="outlined" size="large" formType="rounded2">
+                Make an appointment!
+              </Button>
             </SectionButtonContainer>
           </ServiceSectionItem>
           <ServiceSectionItem>
@@ -73,7 +73,7 @@ const ServiceForm = () => {
                   onChange={handleChange}
                   iconType="userName"
                 />
-              </ServiceFormItem>{' '}
+              </ServiceFormItem>
               <ServiceFormItem>
                 <Input
                   id="email"
@@ -107,9 +107,10 @@ const ServiceForm = () => {
                   iconType="message"
                 />
               </ServiceFormItem>
-              <MyButton variant="primary" bg="#fd4d99" onClick={sendEmail} type="submit">
-                Contact
-              </MyButton>
+
+              <Button variant="primary" size="large" formType="rounded1">
+                Contact me!
+              </Button>
             </ServiceFromWrapper>
           </ServiceSectionItem>
         </ServiceSection>

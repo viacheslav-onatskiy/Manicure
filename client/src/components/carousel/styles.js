@@ -68,7 +68,6 @@ export const CarouselSlide = styled.div`
 
   .star__rating {
     margin: 20px 0 0 0;
-    background-color: green;
   }
 `;
 
@@ -96,12 +95,19 @@ export const CarouselArrow = styled.div`
   cursor: pointer;
   outline: none;
 
-  & .left {
+  &.left {
     left: 10px;
   }
 
   &.right {
     right: 10px;
+  }
+
+  &.left,
+  &.right {
+    button {
+      font-size: 50px;
+    }
   }
 `;
 

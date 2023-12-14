@@ -12,10 +12,11 @@ import {
   PricingListItem,
   PricingImage
 } from './styles';
-import { Heading2, Heading3, MyButton, PageHeading } from '../common/styles';
+import { Heading2, Heading3, PageHeading } from '../common/styles';
 import ManicureImg from '../../images/IMG_8937.jpeg';
 import ServiceForm from './ServiceForm/ServiceForm';
 import servicesImage from '../../images/services_hand.jpg';
+import Button from '../atoms/Button';
 
 const Services = () => {
   return (
@@ -37,7 +38,9 @@ const Services = () => {
               </p>
             </SectionDescription>
             <SectionButtonContainer>
-              <MyButton rounded>Записаться</MyButton>
+              <Button formType="rounded2" variant="primary" size="large">
+                Записаться
+              </Button>
             </SectionButtonContainer>
           </ServiceSectionItem>
         </ServiceSection>
@@ -55,9 +58,9 @@ const Services = () => {
               </p>
             </SectionDescription>
             <SectionButtonContainer>
-              <MyButton color="#001515" rounded>
+              <Button formType="rounded2" variant="outlined" size="large">
                 Записаться!
-              </MyButton>
+              </Button>
             </SectionButtonContainer>
           </ServiceSectionItem>
           <ServiceSectionItem>
@@ -86,7 +89,9 @@ const Services = () => {
             <p className="schedule-description">
               I will be glad to see you anytime at our salon.
             </p>
-            <MyButton className="btn-appointment">MAKE AN APPOINTMENT</MyButton>
+            <Button variant="primary" className="btn-appointment">
+              MAKE AN APPOINTMENT
+            </Button>
           </PricingItemBox>
 
           <PricingItemBox className="pricing-image">

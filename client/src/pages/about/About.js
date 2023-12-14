@@ -19,13 +19,13 @@ import {
   AboutTopSectionWrapper,
   AboutWrapper
 } from './styles.js';
-import { Heading3, Heading5, MyButton } from '../../components/common/styles.js';
+import { Heading3, Heading5 } from '../../components/common/styles.js';
 import AboutFacts from './AboutFacts/AboutFacts.js';
+import Button from '../../components/atoms/Button/Button.js';
 
 const About = () => {
   return (
     <>
-      {/* <PageHeading>About</PageHeading> */}
       <AboutWrapper>
         <AboutTopSectionWrapper>
           <AboutSection className="container">
@@ -36,7 +36,14 @@ const About = () => {
               <AboutPresentDescription>The best nail master</AboutPresentDescription>
 
               <AboutPresentButtonWrapper>
-                <MyButton className="fill">BOOK NOW</MyButton>
+                <Button
+                  className="presentation__button"
+                  size="large"
+                  variant="primary"
+                  formType="rounded1"
+                >
+                  BOOK NOW
+                </Button>
               </AboutPresentButtonWrapper>
             </AboutSectionItem>
 
@@ -73,7 +80,9 @@ const About = () => {
             </AboutPresentDescription>
 
             <AboutPresentButtonWrapper>
-              <MyButton>BOOK NOW</MyButton>
+              <Button size="large" variant="outlined" formType="rounded2">
+                BOOK NOW
+              </Button>
             </AboutPresentButtonWrapper>
           </AboutSectionItem>
         </AboutSection>

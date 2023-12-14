@@ -126,10 +126,14 @@ const Pagination = ({
 
   return (
     <PaginationWrapper>
-      <PaginationButton onClick={() => setPage(1, pagerState.pageSize)}>
+      <PaginationButton
+        variant="outlined"
+        onClick={() => setPage(1, pagerState.pageSize)}
+      >
         First
       </PaginationButton>
       <PaginationButton
+        variant="outlined"
         onClick={() => {
           setPaginationReset(true);
           setPage(pagerState.currentPage - 1, pagerState.pageSize);
@@ -149,12 +153,14 @@ const Pagination = ({
           className={`${!page.value ? 'disabled' : ''} ${
             isActivePage(page) ? 'active' : ''
           }`}
+          variant="outlined"
         >
           {page.value ? page.page : '...'}
         </PaginationButton>
       ))}
 
       <PaginationButton
+        variant="outlined"
         onClick={() => {
           setPaginationReset(true);
           setPage(pagerState.currentPage + 1, pagerState.pageSize);
@@ -163,6 +169,7 @@ const Pagination = ({
         &#11208;
       </PaginationButton>
       <PaginationButton
+        variant="outlined"
         onClick={() => setPage(pagerState.totalPages, pagerState.pageSize)}
       >
         Last

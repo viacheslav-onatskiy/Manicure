@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const ReviewWrapper = styled.div`
   text-align: center;
   margin: 15px 0 0 0;
-  background: #f3f3f3;
-  border: 1px solid grey;
+  border: 1px solid ${({ theme }) => theme.colors.primary1};
   border-radius: 8px;
   padding: 10px 15px;
   color: #333333;

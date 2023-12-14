@@ -1,5 +1,4 @@
 import formatDate from '../../../helpers/formatDate';
-import { MyButton } from '../../common/styles';
 import StarRating from '../../StarRating';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +10,7 @@ import {
   ReviewText,
   ReviewWrapper
 } from './styles';
+import Button from '../../atoms/Button';
 
 const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
   return (
@@ -24,22 +24,22 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
         <ReviewButtons>
           {review.user === userId && (
             <>
-              <MyButton
-                color="#333333"
-                className="small"
+              <Button
+                size="small"
+                variant="outlined"
                 onClick={() => updateReviewFn(review._id)}
                 title="Update review"
               >
                 Update
-              </MyButton>
-              <MyButton
-                color="#333333"
-                className="small"
+              </Button>
+              <Button
+                size="small"
+                variant="primary"
                 onClick={() => deleteReview(review._id)}
                 title="Remove review"
               >
-                X
-              </MyButton>
+                Remove
+              </Button>
             </>
           )}
         </ReviewButtons>

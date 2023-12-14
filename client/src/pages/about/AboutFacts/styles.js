@@ -21,7 +21,7 @@ export const AboutFactsItemImage = styled.div``;
 export const AboutFactsItemImageWrapper = styled.div`
   width: 100px;
   height: 100px;
-  background-color: pink;
+  background-color: ${({ theme }) => theme.colors.primary3};
   border-radius: 50%;
   position: relative;
 `;

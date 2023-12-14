@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Modal from '../../components/Modal/index.js';
-import { MyButton, PageHeading } from '../../components/common/styles.js';
+import { PageHeading } from '../../components/common/styles.js';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
 import { useAuth, usePagination, useReview } from '../../redux/hooks.js';
 import Review from '../../components/Reviews/Review/Review.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import Pagination from '../../components/atoms/Pagination/Pagination.js';
+import Button from '../../components/atoms/Button';
 
 const Reviews = () => {
   const { review, reviews, addReview, getReviews, updateReview, deleteReview, loading } =
@@ -113,9 +114,14 @@ const Reviews = () => {
       <ReviewsWrapper>
         <ReviewsContentWrapper>
           <ReviewsButtonWrapper>
-            <MyButton bg="#fd4d99" $rounded onClick={() => openModal()}>
+            <Button
+              size="large"
+              variant="primary"
+              formType="rounded2"
+              onClick={() => openModal()}
+            >
               Leave review
-            </MyButton>
+            </Button>
           </ReviewsButtonWrapper>
 
           {loading && <Loader />}
@@ -151,14 +157,12 @@ const Reviews = () => {
 
       {modal.isOpen && (
         <Modal isOpen={modal.isOpen} onClose={closeModal} modalId={modal.id}>
-          <div>
-            <ReviewForm
-              modalType={modal.type}
-              formData={formData}
-              setFormData={setFormData}
-              leaveReview={leaveReview}
-            />
-          </div>
+          <ReviewForm
+            modalType={modal.type}
+            formData={formData}
+            setFormData={setFormData}
+            leaveReview={leaveReview}
+          />
         </Modal>
       )}
     </>

@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  ModalCloseButton,
-  ModalMain,
-  ModalWrapper,
-  NextButton,
-  PrevButton
-} from './styles';
+import { ModalCloseButton, ModalMain, ModalWrapper } from './styles';
 import { useSwipe } from '../../helpers/useSwipe';
+import Button from '../atoms/Button';
 
 const Modal = ({
   isOpen = false,
@@ -103,21 +98,31 @@ const Modal = ({
       onTouchEnd={onTouchEnd}
     >
       {showPrev && (
-        <PrevButton onClick={showPrev} ref={leftButtonRef}>
+        <Button
+          className="modal__prev-button"
+          variant="outlined"
+          onClick={showPrev}
+          ref={leftButtonRef}
+        >
           ⭠
-        </PrevButton>
+        </Button>
       )}
       {showNext && (
-        <NextButton onClick={showNext} ref={rightButtonRef}>
+        <Button
+          className="modal__next-button"
+          variant="outlined"
+          onClick={showNext}
+          ref={rightButtonRef}
+        >
           ⭢
-        </NextButton>
+        </Button>
       )}
       <ModalMain className="modal-main-content" ref={modalRef}>
         {hasCloseBtn && (
           <ModalCloseButton
-            className="modal-close-btn"
-            bg="black"
+            variant="primary"
             onClick={handleCloseModal}
+            ref={rightButtonRef}
           >
             x
           </ModalCloseButton>

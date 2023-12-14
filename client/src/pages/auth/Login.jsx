@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useAuth } from '../../redux/hooks';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../home/styles';
-import { MyButton, PageHeading } from '../../components/common/styles';
+import { PageHeading } from '../../components/common/styles';
 import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
 import Input from '../../components/Input';
+import Button from '../../components/atoms/Button';
 
 const Login = () => {
   const { loginUser, isAuthenticated } = useAuth();
@@ -56,28 +57,29 @@ const Login = () => {
             type="password"
             value={password}
             name="password"
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             placeholder="Enter your password"
             autoComplete="off"
             minLength="6"
           />
 
           <AuthButton>
-            <MyButton
+            <Button
               variant="primary"
-              text="Register"
-              onClick={(e) => onSubmit(e)}
-              color="white"
+              onClick={onSubmit}
+              size="large"
               type="submit"
-              className="auth-button"
               id="user-login-button"
             >
               Login
-            </MyButton>
+            </Button>
           </AuthButton>
 
           <p className="auth-redirect-paragraph">
-            Don't have an account? <Link to="/register">Sign Up</Link>
+            Don't have an account?{' '}
+            <Link to="/register">
+              <Button>Sign Up</Button>
+            </Link>
           </p>
         </AuthForm>
       </AuthContainer>

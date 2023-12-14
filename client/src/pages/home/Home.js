@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heading3, MyButton } from '../../components/common/styles';
+import { Heading3 } from '../../components/common/styles';
 import {
   FirstImageWrapper,
   ImageMiddleTextWrapper,
@@ -22,6 +22,7 @@ import {
   ReviewsHomeWrapper
 } from './styles';
 import Carousel from '../../components/carousel';
+import Button from '../../components/atoms/Button';
 
 export const Home = () => {
   return (
@@ -41,8 +42,10 @@ export const Home = () => {
               </ImageMiddleTextWrapper>
 
               <ImageButtonsWrapper>
-                <MyButton>Узнать больше</MyButton>
-                <MyButton>Записаться</MyButton>
+                <Button size="large" variant="outlined">
+                  Узнать больше
+                </Button>
+                <Button>Записаться</Button>
               </ImageButtonsWrapper>
             </ImageMiddleWrapper>
           </FirstImageWrapper>
@@ -63,7 +66,9 @@ export const Home = () => {
             </p>
 
             <Link to={'/about'} className="about__button">
-              <MyButton>Read more</MyButton>
+              <Button size="large" variant="outlined">
+                Read more
+              </Button>
             </Link>
           </AboutMeDescriptionWrapper>
         </AboutMeSectionWrapper>
@@ -72,7 +77,9 @@ export const Home = () => {
       <HomeSection className="order">
         <OrderSectionWrapper className="container">
           <Heading3>Хотите получить красивые ногти?</Heading3>
-          <MyButton>ЗАКАЗАТЬ МАНИКЮР</MyButton>
+          <Button size="large" variant="outlined" color="white">
+            ЗАКАЗАТЬ МАНИКЮР
+          </Button>
         </OrderSectionWrapper>
       </HomeSection>
 
@@ -197,7 +204,9 @@ export const Home = () => {
           <Carousel />
 
           <Link to="/reviews" className="all-reviews-btn">
-            <MyButton>See all reviews</MyButton>
+            <Button size="large" variant="primary" formType="squared">
+              See all reviews
+            </Button>
           </Link>
         </ReviewsHomeWrapper>
       </HomeSection>

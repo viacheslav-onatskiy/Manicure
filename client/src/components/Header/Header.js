@@ -1,5 +1,5 @@
 import { useAuth } from '../../redux/hooks';
-import { MyButton } from '../common/styles';
+import Button from '../atoms/Button';
 import {
   HeaderUserName,
   NavButtons,
@@ -21,11 +21,31 @@ const Header = () => {
           <i>YANA LOGO</i>
         </NavLogoWrapper>
 
-        <NavigationLink to="/about">ABOUT</NavigationLink>
-        <NavigationLink to="/portfolio">PORTFOLIO</NavigationLink>
-        <NavigationLink to="/reviews">REVIEWS</NavigationLink>
-        <NavigationLink to="/services">SERVICES</NavigationLink>
-        <NavigationLink to="/contact">CONTACT</NavigationLink>
+        <NavigationLink to="/about">
+          <Button variant="primary" formType="squared">
+            ABOUT
+          </Button>
+        </NavigationLink>
+        <NavigationLink to="/portfolio">
+          <Button variant="primary" formType="squared">
+            PORTFOLIO
+          </Button>
+        </NavigationLink>
+        <NavigationLink to="/reviews">
+          <Button variant="primary" formType="squared">
+            REVIEWS
+          </Button>
+        </NavigationLink>
+        <NavigationLink to="/services">
+          <Button variant="primary" formType="squared">
+            SERVICES
+          </Button>
+        </NavigationLink>
+        <NavigationLink to="/contact">
+          <Button variant="primary" formType="squared">
+            CONTACT
+          </Button>
+        </NavigationLink>
 
         {loading ? (
           <div>.... Spinner ....</div>
@@ -40,14 +60,18 @@ const Header = () => {
             </p>
             {!isAuthenticated && (
               <>
-                <NavigationLink to="/register">Register</NavigationLink>
-                <NavigationLink to="/login">Login</NavigationLink>
+                <NavigationLink to="/register">
+                  <Button formType="squared">Register</Button>
+                </NavigationLink>
+                <NavigationLink to="/login">
+                  <Button formType="squared">Login</Button>
+                </NavigationLink>
               </>
             )}
             {isAuthenticated && (
-              <MyButton color="#999999" fontSize="1.1rem" onClick={() => logoutUser()}>
+              <Button variant="outlined" onClick={() => logoutUser()}>
                 Logout
-              </MyButton>
+              </Button>
             )}
           </NavigationRightButtons>
         )}

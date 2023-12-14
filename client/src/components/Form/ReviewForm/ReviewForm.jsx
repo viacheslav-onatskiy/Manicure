@@ -1,7 +1,7 @@
 import { StyledAlert, StyledForm } from './styles';
 import StarRating from '../../StarRating';
 import Textarea from '../../Textarea';
-import { MyButton } from '../../common/styles';
+import Button from '../../atoms/Button';
 
 const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
   const { description, rating, isDescriptionInvalid } = formData;
@@ -21,13 +21,14 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
       {isDescriptionInvalid && <StyledAlert>Please fill description.</StyledAlert>}
 
       <StarRating
+        className="modal__rating"
         rating={rating}
         onSaveRating={(ratingValue) => setFormData({ ...formData, rating: ratingValue })}
       />
 
-      <MyButton type="submit" disabled={!description}>
+      <Button className="modal__button" size="large" variant="outlined" type="submit">
         {modalType === 'Add' ? 'Leave review' : 'Update review'}
-      </MyButton>
+      </Button>
     </StyledForm>
   );
 };

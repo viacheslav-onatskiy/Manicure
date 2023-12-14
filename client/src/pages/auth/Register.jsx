@@ -4,8 +4,9 @@ import { toast } from 'react-toastify';
 import { Link, Navigate } from 'react-router-dom';
 import { SectionHeader } from '../home/styles';
 import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
-import { MyButton, PageHeading } from '../../components/common/styles';
+import { PageHeading } from '../../components/common/styles';
 import Input from '../../components/Input';
+import Button from '../../components/atoms/Button';
 
 const Register = () => {
   const { registerUser, isAuthenticated } = useAuth();
@@ -48,7 +49,7 @@ const Register = () => {
             type="text"
             value={name}
             name="name"
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             placeholder="Enter your name"
             autoComplete="off"
           />
@@ -59,7 +60,7 @@ const Register = () => {
             type="email"
             value={email}
             name="email"
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             placeholder="Email Address"
             required
             autoComplete="off"
@@ -71,7 +72,7 @@ const Register = () => {
             type="password"
             value={password}
             name="password"
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             placeholder="Create a password"
             autoComplete="off"
             minLength="6"
@@ -83,28 +84,29 @@ const Register = () => {
             type="password"
             value={password2}
             name="password2"
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             placeholder="Confirm Password"
             autoComplete="off"
             minLength="6"
           />
 
           <AuthButton>
-            <MyButton
+            <Button
               variant="primary"
-              text="Register"
-              onClick={(e) => onSubmit(e)}
-              color="white"
+              onClick={onSubmit}
+              size="large"
               type="submit"
-              className="auth-button"
               id="user-register-button"
             >
               Register
-            </MyButton>
+            </Button>
           </AuthButton>
 
           <p className="auth-redirect-paragraph">
-            Already have an account? <Link to="/login">Sign In</Link>
+            Already have an account?{' '}
+            <Link to="/login">
+              <Button>Sign In</Button>
+            </Link>
           </p>
         </AuthForm>
       </AuthContainer>

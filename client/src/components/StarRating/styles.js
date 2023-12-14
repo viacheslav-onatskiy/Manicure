@@ -9,6 +9,7 @@ export const StarRatingWrapper = styled.div`
 export const StarIconSvg = styled.svg`
   width: 30px;
   height: 30px;
+  stroke: ${({ theme }) => theme.colors.primary1};
 `;
 
 export const RatingIconWrapper = styled.div`

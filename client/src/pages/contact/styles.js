@@ -11,6 +11,7 @@ export const ContactList = styled.ul``;
 export const ContactListItem = styled.li`
   border-bottom: 1px solid var(--toastify-text-color-light);
   margin-top: 10px;
+  padding: 10px 0;
 
   &:last-child {
     border-bottom: none;
@@ -21,28 +22,32 @@ export const ContactListItem = styled.li`
 `;
 
 export const ContactDescription = styled.div`
-  padding: 10px 0;
   font-size: 18px;
   display: flex;
   width: max-content;
 
-  a,
-  .contact-hours {
-    color: var(--toastify-text-color-light);
+  a {
+    color: ${({ theme }) => theme.colors.primary1};
   }
 
   &:hover {
-    svg {
-      color: #fd4d99;
-    }
+    svg,
     a {
-      color: var(--dark);
+      color: ${({ theme }) => theme.colors.dark};
+    }
+  }
+
+  &:active {
+    svg,
+    a {
+      color: ${({ theme }) => theme.colors.primary2};
     }
   }
 `;
 
 export const ContactLink = styled.a`
-  margin-left: 15px;
+  display: flex;
+  gap: 15px;
 `;
 
 export const ContactIcon = styled.div`

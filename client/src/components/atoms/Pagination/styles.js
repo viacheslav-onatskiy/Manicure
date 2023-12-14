@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MyButton } from '../../common/styles';
+import Button from '../Button';
 
 export const PaginationWrapper = styled.div`
   display: flex;
@@ -8,21 +8,10 @@ export const PaginationWrapper = styled.div`
   gap: 10px;
 `;
 
-export const PaginationButton = styled(MyButton)`
-  font-size: 16px;
-  color: var(--grey);
-  border: 1px solid var(--darker);
-  box-shadow: ${({ $shadow }) => $shadow || 'none'};
-  padding: 5px 15px;
-
-  &:hover {
-    font-weight: 600;
-    color: var(--dark);
-  }
-
+export const PaginationButton = styled(Button)`
   &.active {
     font-weight: 700;
-    background-color: var(--darker);
+    background-color: ${({ theme }) => theme.colors.primary2};
   }
 
   &.disabled {

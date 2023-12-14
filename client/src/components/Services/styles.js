@@ -78,9 +78,6 @@ export const PricingItemBox = styled.div`
 
   & .btn-appointment {
     margin-top: 30px;
-    width: 100%;
-    font-size: 17px;
-    color: var(--black);
   }
 
   & .schedule-description {

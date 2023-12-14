@@ -18,7 +18,7 @@ export const SectionWrapper = styled.div`
 `;
 
 export const FooterSection = styled.footer`
-  background-color: var(--dark);
+  background-color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const FooterWrapper = styled.div`
@@ -34,14 +34,32 @@ export const FooterLinkList = styled.ul`
   justify-content: space-around;
   width: 100%;
   list-style-type: none;
+
+  .footer__link {
+    cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary1};
+      svg {
+        color: ${({ theme }) => theme.colors.primary1};
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.05);
+      }
+    }
+
+    &:active {
+      color: ${({ theme }) => theme.colors.primary2};
+      svg {
+        color: ${({ theme }) => theme.colors.primary2};
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.1);
+      }
+    }
+  }
 `;
 
 export const FooterLink = styled.li`
-  & svg:hover {
-    transition: all 0.25s ease-in-out;
-    transform: scale(1.15);
-    cursor: pointer;
-  }
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const FooterNavList = styled.nav`
@@ -66,20 +84,16 @@ export const FooterLine = styled.div`
 `;
 
 export const FooterNavLink = styled(Link)`
-  color: #f0f0f0;
-  margin: 5px 0 0;
-  padding: 10px 14px;
-  border-radius: 6px;
-
-  &:hover {
-    background-color: #fd4d99;
-    transform: scale(1.05);
-    box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.45);
+  &:hover button {
+    color: ${({ theme }) => theme.colors.primary1};
+  }
+  &:active button {
+    color: ${({ theme }) => theme.colors.primary2};
   }
 `;
 
 export const FooterRightsWrapper = styled.div`
-  background-color: var(--darker);
+  background-color: ${({ theme }) => theme.colors.primary5};
   color: white;
   text-align: center;
   padding: 15px 0;
