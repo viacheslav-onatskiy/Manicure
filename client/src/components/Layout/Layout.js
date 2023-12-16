@@ -4,19 +4,22 @@ import Footer from '../Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTopButton from '../atoms/ScrollToTop/ScrollToTop.js';
+import { MainOutlet } from './styles.js';
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <Header />
 
       <ToastContainer newestOnTop autoClose={2000} />
 
-      <Outlet />
+      <MainOutlet>
+        <Outlet />
+      </MainOutlet>
 
       <Footer />
       <ScrollToTopButton />
-    </div>
+    </>
   );
 };
 

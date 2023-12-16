@@ -1,14 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const NavigationHeaderWrapper = styled.nav`
+export const NavigationHeaderWrapper = styled.nav.attrs((props) => ({
+  $isVisible: props.$isVisible
+}))`
+  top: ${({ $isVisible }) => ($isVisible ? '0' : '-100px')};
   background: ${({ theme }) => theme.colors.white};
-  position: sticky;
-  top: 0;
+  position: fixed;
   width: 100%;
   z-index: 10;
   padding: 1px 25px;
   box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.15);
+  transition: top 0.3s;
 `;
 
 export const NavigationLink = styled(NavLink)`

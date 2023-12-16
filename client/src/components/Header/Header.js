@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../redux/hooks';
 import Button from '../atoms/Button';
 import {
@@ -12,43 +13,65 @@ import {
 
 const Header = () => {
   const { isAuthenticated, logoutUser, user, loading } = useAuth();
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  const navigationLinks = [
+    { linkTo: 'about', text: 'ABOUT' },
+    { linkTo: 'portfolio', text: 'PORTFOLIO' },
+    { linkTo: 'reviews', text: 'REVIEWS' },
+    { linkTo: 'services', text: 'SERVICES' },
+    { linkTo: 'contact', text: 'CONTACT' }
+  ];
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY;
+    const isScrolledDown = prevScrollPos > currentScrollPos;
+
+    setPrevScrollPos(currentScrollPos);
+
+    setVisible(isScrolledDown || currentScrollPos < 10);
+  };
+
+  let RAF;
+
+  const onScroll = () => {
+    if (!RAF) {
+      RAF = requestAnimationFrame(() => {
+        handleScroll();
+        RAF = null;
+      });
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prevScrollPos, visible]);
 
   return (
-    <NavigationHeaderWrapper>
-      <NavButtons className="" id="navbar">
-        <NavLogoWrapper to="/" onClick={() => {}} title="Toggle Navigation Menu">
+    // <NavigationHeaderWrapper isVisible={visible} style={{ top: visible ? '0' : '-100px' }}>
+    <NavigationHeaderWrapper $isVisible={visible}>
+      <NavButtons>
+        <NavLogoWrapper to="/" title="Home page">
           <NavLogo />
-          <i>YANA LOGO</i>
+          <i>YANA</i>
         </NavLogoWrapper>
 
-        <NavigationLink to="/about">
-          <Button variant="primary" formType="squared">
-            ABOUT
-          </Button>
-        </NavigationLink>
-        <NavigationLink to="/portfolio">
-          <Button variant="primary" formType="squared">
-            PORTFOLIO
-          </Button>
-        </NavigationLink>
-        <NavigationLink to="/reviews">
-          <Button variant="primary" formType="squared">
-            REVIEWS
-          </Button>
-        </NavigationLink>
-        <NavigationLink to="/services">
-          <Button variant="primary" formType="squared">
-            SERVICES
-          </Button>
-        </NavigationLink>
-        <NavigationLink to="/contact">
-          <Button variant="primary" formType="squared">
-            CONTACT
-          </Button>
-        </NavigationLink>
+        {navigationLinks?.map((link, index) => (
+          <NavigationLink key={`${link.linkTo}-${index}`} to={link.linkTo}>
+            <Button variant="primary" formType="squared">
+              {link.text}
+            </Button>
+          </NavigationLink>
+        ))}
 
         {loading ? (
-          <div>.... Spinner ....</div>
+          <></>
         ) : (
           <NavigationRightButtons>
             <p>
