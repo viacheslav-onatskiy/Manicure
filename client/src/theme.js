@@ -9,6 +9,7 @@ export const theme = {
     dark1: '#6b6a70',
     dark2: '#98979b',
     grey: '#9b9b9b',
+    lightGrey: '#ebebeb',
     black: '#111111',
     white: '#fff',
     pink: '#fd4d99'

@@ -8,6 +8,10 @@ export const SectionContainer = styled.section`
   &.pricing {
     margin: 100px auto;
   }
+
+  &.my-services {
+    background-color: #f6f6f6;
+  }
 `;
 
 export const ServiceSection = styled.div`

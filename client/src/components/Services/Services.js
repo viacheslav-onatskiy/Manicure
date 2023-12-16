@@ -17,11 +17,57 @@ import ManicureImg from '../../images/IMG_8937.jpeg';
 import ServiceForm from './ServiceForm/ServiceForm';
 import servicesImage from '../../images/services_hand.jpg';
 import Button from '../atoms/Button';
+import CardsList from './CardsList';
 
 const Services = () => {
+  const servicesList = [
+    {
+      heading: 'Manicure',
+      iconName: 'manicure-service',
+      description: `
+      -Classic Manicure
+      -European Manicure
+      -Spa Manicure`
+    },
+    {
+      heading: 'Pedicure',
+      iconName: 'pedicure-service',
+      description: `
+      -Classic Pedicure
+      -Spa Pedicure`
+    },
+    {
+      heading: 'Nail Art',
+      iconName: 'nail-art-service',
+      description: `
+      -French Manicure
+      -Artistic Design`
+    },
+    {
+      heading: 'Nail Extensions',
+      iconName: 'nail-extensions-service',
+      description: `-Gel Extensions`
+    },
+    {
+      heading: 'Skin Care',
+      iconName: 'skin-care-service',
+      description: `
+      -Skin care description`
+    },
+    {
+      heading: 'Massage',
+      iconName: 'massage-service',
+      description: `Massage description`
+    }
+  ];
+
   return (
     <>
-      <PageHeading>Services</PageHeading>
+      <PageHeading>My Services</PageHeading>
+
+      <SectionContainer className="my-services">
+        <CardsList items={servicesList} />
+      </SectionContainer>
 
       <SectionContainer>
         <ServiceSection className="container">
