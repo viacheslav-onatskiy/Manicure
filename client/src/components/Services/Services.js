@@ -72,7 +72,7 @@ const Services = () => {
       <SectionContainer>
         <ServiceSection className="container">
           <ServiceSectionItem>
-            <ServiceImage primary imgSource={ManicureImg} />
+            <ServiceImage />
           </ServiceSectionItem>
           <ServiceSectionItem>
             <SectionHeading>Маникюр</SectionHeading>
@@ -110,7 +110,7 @@ const Services = () => {
             </SectionButtonContainer>
           </ServiceSectionItem>
           <ServiceSectionItem>
-            <ServiceImage primary imgSource={'red'} />
+            <ServiceImage />
           </ServiceSectionItem>
         </ServiceSection>
       </SectionContainer>

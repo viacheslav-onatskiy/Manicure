@@ -23,6 +23,27 @@ export const CardItemWrapper = styled.div`
 
   &:nth-child(n + 4) {
     border-bottom: 1px solid transparent;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+
+      &:not(:last-child) {
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+      }
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    width: calc(100% / 2);
+    padding: 30px 22px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    width: 100%;
+    padding: 20px 15px;
+    border-right: 1px solid transparent;
   }
 
   &:hover {

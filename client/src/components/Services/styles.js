@@ -9,6 +9,10 @@ export const SectionContainer = styled.section.attrs((props) => ({
 
   &.pricing {
     margin: 100px auto;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      margin: 30px 10px;
+    }
   }
 
   &.my-services {
@@ -52,8 +56,7 @@ export const ServiceImage = styled.div`
   width: 100%;
   min-height: 400px;
   height: 100%;
-  background: no-repeat center/100%
-    ${(props) => (props.imgSource ? `url(${ManicureImg})` : props.imgSource)};
+  background: no-repeat center/100% url(${ManicureImg});
 `;
 
 export const SectionDescription = styled.div`
@@ -83,39 +86,69 @@ export const PricingWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  border: 3px solid var(--darker);
+  border: 3px solid ${({ theme }) => theme.colors.primary5};
 
   & * {
     text-align: start;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      text-align: center;
+    }
   }
 `;
 
 export const PricingItemBox = styled.div`
   flex: 0 0 auto;
   width: calc(100% / 3);
-  padding: 40px 60px;
+  padding: 15px 25px;
+
+  @media (min-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    padding: 40px 60px;
+  }
 
   &.pricing-price {
-    background-color: var(--darker);
+    background-color: ${({ theme }) => theme.colors.primary5};
     color: white;
     padding-left: 80px;
 
+    @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      padding-left: 30px;
+    }
+
     & p {
-      color: var(--light);
+      color: ${({ theme }) => theme.colors.primary4};
     }
   }
 
   & .btn-appointment {
     margin-top: 30px;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      margin-top: 30px;
+    }
   }
 
   & .schedule-description {
-    color: grey;
+    color: ${({ theme }) => theme.colors.grey};
     margin-top: 25px;
   }
 
   &.pricing-image {
     position: relative;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      display: none;
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    padding: 20px 30px;
+    width: calc(100% / 2);
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    padding: 20px 30px;
+    width: 100%;
   }
 `;
 
@@ -125,7 +158,7 @@ export const PricingListItem = styled.li`
   margin-top: 15px;
 
   & p {
-    color: var(--grey);
+    color: ${({ theme }) => theme.colors.grey};
   }
 `;
 

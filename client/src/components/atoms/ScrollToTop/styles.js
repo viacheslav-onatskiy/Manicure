@@ -13,6 +13,7 @@ export const ScrollToTopButtonElement = styled.div`
   cursor: pointer;
   box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.15);
   opacity: 0.8;
+  z-index: 10;
 
   svg {
     width: 40px;

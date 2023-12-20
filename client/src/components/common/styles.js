@@ -96,16 +96,28 @@ export const Heading1 = styled.h1`
 export const Heading2 = styled.h2`
   font-size: 48px;
   line-height: 1.45;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    font-size: 30px;
+  }
 `;
 
 export const Heading3 = styled.h3`
   font-size: 32px;
   line-height: 1.5;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    font-size: 25px;
+  }
 `;
 
 export const Heading4 = styled.h4`
   font-size: 24px;
   line-height: 1.25;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    font-size: 18px;
+  }
 `;
 
 export const Heading5 = styled.h5`
