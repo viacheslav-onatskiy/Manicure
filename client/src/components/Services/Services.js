@@ -92,7 +92,7 @@ const Services = () => {
         </ServiceSection>
       </SectionContainer>
 
-      <SectionContainer bgColor="#bef1f1" color="#001515">
+      <SectionContainer $bgColor="#bef1f1" color="#001515">
         <ServiceSection className="container">
           <ServiceSectionItem>
             <SectionHeading>Педикюр</SectionHeading>
@@ -117,7 +117,7 @@ const Services = () => {
 
       <ServiceForm />
 
-      <SectionContainer bgColor="#fff" color="#001515" className="pricing container">
+      <SectionContainer $bgColor="#fff" color="#001515" className="pricing container">
         <PricingWrapper>
           <PricingItemBox>
             <Heading2>Schedule</Heading2>

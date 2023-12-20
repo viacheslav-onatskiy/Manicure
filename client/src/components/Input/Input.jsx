@@ -30,7 +30,7 @@ export const Input = ({
           onClick={onClick}
           onBlur={onBlur}
           onKeyDown={onKeyDown}
-          iconType={iconType}
+          $iconType={iconType}
         />
         <span className="scaled__field" />
         {iconType && <InputIcon>{renderIcon(iconType)}</InputIcon>}

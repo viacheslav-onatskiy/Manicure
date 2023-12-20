@@ -30,7 +30,7 @@ export const Textarea = ({
           onBlur={onBlur}
           onKeyDown={onKeyDown}
           rows={rowsNumber}
-          iconType={iconType}
+          $iconType={iconType}
         />
         <span className="scaled__field" />
         {iconType && <TextareaIcon>{renderIcon(iconType)}</TextareaIcon>}

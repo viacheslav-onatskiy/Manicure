@@ -44,7 +44,7 @@ const ServiceForm = () => {
 
   return (
     <>
-      <SectionContainer bgColor="#f1f2b4" color="#001515">
+      <SectionContainer $bgColor="#f1f2b4" color="#001515">
         <ServiceSection className="container">
           <ServiceSectionItem>
             <SectionHeading>Contact me</SectionHeading>
@@ -108,7 +108,12 @@ const ServiceForm = () => {
                 />
               </ServiceFormItem>
 
-              <Button variant="primary" size="large" formType="rounded1">
+              <Button
+                className="fullWidth"
+                variant="primary"
+                size="large"
+                formType="rounded1"
+              >
                 Contact me!
               </Button>
             </ServiceFromWrapper>

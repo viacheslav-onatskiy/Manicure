@@ -11,6 +11,15 @@ const commonButtonStyles = css`
   transition: all 0.2s ease;
   background-color: transparent;
 
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 5px 15px;
+    font-size: ${({ fontSize }) => fontSize || '16px'};
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
   &:hover {
     color: ${({ theme }) => theme.colors.dark};
   }

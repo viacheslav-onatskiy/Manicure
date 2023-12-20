@@ -135,12 +135,6 @@ export const SectionWrapper = styled.div`
   &.advantages {
     color: #333333;
   }
-
-  & .container {
-    max-width: 72rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
 `;
 
 export const SectionHeader = styled.div`

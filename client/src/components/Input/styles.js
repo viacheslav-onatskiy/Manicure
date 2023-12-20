@@ -74,8 +74,10 @@ export const InputLabel = styled.label`
   cursor: pointer;
 `;
 
-export const InputStyle = styled.input`
-  padding: ${(props) => (props.iconType ? '5px 10px 5px 40px' : '5px 10px')};
+export const InputStyle = styled.input.attrs((props) => ({
+  $iconType: props.$iconType
+}))`
+  padding: ${(props) => (props.$iconType ? '5px 10px 5px 40px' : '5px 10px')};
   width: 100%;
   min-width: 10em;
 `;

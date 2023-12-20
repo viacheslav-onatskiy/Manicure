@@ -11,9 +11,11 @@ import {
   NavigationRightButtons
 } from './styles';
 import MobileHeader from './MobileNavbar';
+import { useDimension } from '../../helpers/useDimension';
 
 const Header = () => {
   const { isAuthenticated, logoutUser, user, loading } = useAuth();
+  const { isMobile } = useDimension();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -25,23 +27,6 @@ const Header = () => {
     { linkTo: 'services', text: 'SERVICES', iconName: 'services' },
     { linkTo: 'contact', text: 'CONTACT', iconName: 'contact' }
   ];
-
-  const [windowDimension, setWindowDimension] = useState(null);
-
-  useEffect(() => {
-    setWindowDimension(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimension(window.innerWidth);
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const isMobile = windowDimension <= 640;
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -78,7 +63,7 @@ const Header = () => {
   }, [prevScrollPos, visible]);
 
   return (
-    <>
+    <header>
       {isMobile ? (
         <MobileHeader
           isVisible={visible}
@@ -136,7 +121,7 @@ const Header = () => {
           </NavButtons>
         </NavigationHeaderWrapper>
       )}
-    </>
+    </header>
   );
 };
 

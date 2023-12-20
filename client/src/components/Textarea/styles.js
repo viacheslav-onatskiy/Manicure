@@ -72,8 +72,10 @@ export const TextareaLabel = styled.label`
   cursor: pointer;
 `;
 
-export const TextareaStyle = styled.textarea`
-  padding: ${(props) => (props.iconType ? '5px 10px 5px 40px' : '5px 10px')};
+export const TextareaStyle = styled.textarea.attrs((props) => ({
+  $iconType: props.$iconType
+}))`
+  padding: ${(props) => (props.$iconType ? '5px 10px 5px 40px' : '5px 10px')};
   width: 100%;
   border-radius: 5px;
   resize: none;

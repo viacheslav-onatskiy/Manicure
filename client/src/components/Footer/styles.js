@@ -9,12 +9,6 @@ export const SectionWrapper = styled.div`
     background-color: white;
     color: #333333;
   }
-
-  & .container {
-    max-width: 72rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
 `;
 
 export const FooterSection = styled.footer`
@@ -27,6 +21,10 @@ export const FooterWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 35px 0;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 15px 0;
+  }
 `;
 
 export const FooterLinkList = styled.ul`
@@ -35,11 +33,18 @@ export const FooterLinkList = styled.ul`
   width: 100%;
   list-style-type: none;
 
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
   .footer__link {
     cursor: pointer;
 
     &:hover {
       color: ${({ theme }) => theme.colors.primary1};
+
       svg {
         color: ${({ theme }) => theme.colors.primary1};
         transition: all 0.2s ease-in-out;
@@ -49,6 +54,7 @@ export const FooterLinkList = styled.ul`
 
     &:active {
       color: ${({ theme }) => theme.colors.primary2};
+
       svg {
         color: ${({ theme }) => theme.colors.primary2};
         transition: all 0.2s ease-in-out;
@@ -66,11 +72,24 @@ export const FooterNavList = styled.nav`
   display: flex;
   justify-content: space-around;
   width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const FooterIconsLinkList = styled.div`
   display: flex;
   gap: 15px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    justify-content: center;
+
+    div {
+      width: auto;
+    }
+  }
+
   svg {
     width: 36px;
     height: 36px;
@@ -89,6 +108,11 @@ export const FooterNavLink = styled(Link)`
   }
   &:active button {
     color: ${({ theme }) => theme.colors.primary2};
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    width: 30%;
+    text-align: center;
   }
 `;
 

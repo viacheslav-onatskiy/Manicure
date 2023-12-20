@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import ManicureImg from '../../images/IMG_8937.jpeg';
 
-export const SectionContainer = styled.section`
-  background-color: ${({ bgColor }) => bgColor || ''};
-  color: ${({ color }) => color || 'black'};
+export const SectionContainer = styled.section.attrs((props) => ({
+  $bgColor: props.$bgColor || ''
+}))`
+  background-color: ${({ $bgColor }) => $bgColor || ''};
+  color: ${({ color, theme }) => color || theme.colors.dark};
 
   &.pricing {
     margin: 100px auto;
@@ -19,17 +21,31 @@ export const ServiceSection = styled.div`
   justify-content: space-between;
   gap: 25px;
   padding: 35px 0;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap;
+    padding: 15px 0;
+  }
 `;
 
 export const ServiceSectionItem = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const SectionHeading = styled.div`
   font-size: 25px;
   font-weight: 600;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    font-size: 22px;
+    text-align: center;
+  }
 `;
 
 export const ServiceImage = styled.div`
@@ -44,6 +60,11 @@ export const SectionDescription = styled.div`
   margin: 20px 0;
   font-size: 22px;
 
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
   p {
     margin-top: 20px;
   }
@@ -52,6 +73,10 @@ export const SectionDescription = styled.div`
 export const SectionButtonContainer = styled.div`
   margin: auto 0 0 0;
   width: fit-content;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    align-self: center;
+  }
 `;
 
 export const PricingWrapper = styled.div`

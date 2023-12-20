@@ -23,7 +23,7 @@ const Contact = () => {
 
       <ServiceForm />
 
-      <SectionContainer bgColor="#bef1f1" color="#001515">
+      <SectionContainer $bgColor="#bef1f1">
         <ServiceSection className="container">
           <ServiceSectionItem>
             <iframe

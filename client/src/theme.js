@@ -21,5 +21,10 @@ export const theme = {
     small: '14px',
     medium: '16px',
     large: '18px'
+  },
+  screenSizes: {
+    mobile: '576px',
+    tablet: '768px',
+    laptop: '1024px'
   }
 };

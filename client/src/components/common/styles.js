@@ -22,6 +22,11 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  ul,
+  ol {
+    list-style: none;
+  }
+
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -49,6 +54,18 @@ export const GlobalStyle = createGlobalStyle`
   #root, #__next {
     isolation: isolate;
   }
+
+  .container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
 `;
 
 export const PageHeading = styled.div`
@@ -63,6 +80,11 @@ export const PageHeading = styled.div`
     rgba(253, 77, 153, 1) 14%,
     rgba(62, 233, 242, 1) 80%
   );
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 15px 0;
+    font-size: 25px;
+  }
 `;
 
 export const Heading1 = styled.h1`

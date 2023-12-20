@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ContactWrapper = styled.div`
   & iframe {
+    min-height: 350px;
     flex: 1 1 100%;
   }
 `;
@@ -26,21 +27,26 @@ export const ContactDescription = styled.div`
   display: flex;
   width: max-content;
 
-  a {
-    color: ${({ theme }) => theme.colors.primary1};
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer__link {
+    color: ${({ theme }) => theme.colors.grey};
   }
 
   &:hover {
     svg,
     a {
-      color: ${({ theme }) => theme.colors.dark};
+      color: ${({ theme }) => theme.colors.dark1};
     }
   }
 
   &:active {
     svg,
     a {
-      color: ${({ theme }) => theme.colors.primary2};
+      color: ${({ theme }) => theme.colors.black};
     }
   }
 `;
@@ -48,9 +54,14 @@ export const ContactDescription = styled.div`
 export const ContactLink = styled.a`
   display: flex;
   gap: 15px;
+  color: ${({ theme }) => theme.colors.grey};
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    gap: 5px;
+  }
 `;
 
 export const ContactIcon = styled.div`
   align-self: center;
-  color: var(--toastify-text-color-light);
+  color: ${({ theme }) => theme.colors.grey};
 `;
