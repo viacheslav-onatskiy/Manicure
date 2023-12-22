@@ -11,8 +11,41 @@ import {
   ReviewWrapper
 } from './styles';
 import Button from '../../atoms/Button';
+import { useDimension } from '../../../helpers/useDimension';
+import { renderIcon } from '../../../images/svgIcons';
+import { useEffect, useRef, useState } from 'react';
 
 const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
+  const [numberOfLines, setNumberOfLines] = useState(0);
+  const [isTextHidden, setIsTextHidden] = useState(false);
+  const [isHideButtonAvailable, setIsHideButtonAvailable] = useState(false);
+  const { isMobile } = useDimension();
+  const elementRef = useRef(null);
+
+  const showFullText = () => {
+    setIsTextHidden(false);
+    setIsHideButtonAvailable(true);
+  };
+
+  const hideFullText = () => {
+    setIsTextHidden(true);
+    setIsHideButtonAvailable(false);
+  };
+
+  useEffect(() => {
+    if (numberOfLines > 3) {
+      setIsTextHidden(true);
+    }
+  }, [numberOfLines]);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    const height = element.clientHeight;
+    const lineHeight = parseInt(window.getComputedStyle(element).lineHeight);
+
+    setNumberOfLines(Math.floor(height / lineHeight));
+  }, []);
+
   return (
     <ReviewWrapper>
       <ReviewHeader>
@@ -26,26 +59,37 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
             <>
               <Button
                 size="small"
-                variant="outlined"
+                variant={isMobile ? '' : 'outlined'}
                 onClick={() => updateReviewFn(review._id)}
                 title="Update review"
               >
-                Update
+                {isMobile ? renderIcon('update') : 'Update'}
               </Button>
               <Button
                 size="small"
-                variant="primary"
+                variant={isMobile ? '' : 'primary'}
                 onClick={() => deleteReview(review._id)}
                 title="Remove review"
               >
-                Remove
+                {isMobile ? renderIcon('remove') : 'Remove'}
               </Button>
             </>
           )}
         </ReviewButtons>
       </ReviewRating>
-
-      <ReviewText>{review.description}</ReviewText>
+      <ReviewText className={!!isTextHidden ? 'line-clamp' : ''} ref={elementRef}>
+        {review.description}
+      </ReviewText>
+      {isTextHidden && (
+        <Button className="show-hide-button" onClick={() => showFullText()}>
+          Show more
+        </Button>
+      )}
+      {isHideButtonAvailable && (
+        <Button className="show-hide-button" onClick={() => hideFullText()}>
+          Hide
+        </Button>
+      )}
     </ReviewWrapper>
   );
 };

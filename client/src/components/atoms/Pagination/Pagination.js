@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PaginationButton, PaginationWrapper } from './styles';
+import { useDimension } from '../../../helpers/useDimension';
 
 const Pagination = ({
   items,
@@ -12,6 +13,7 @@ const Pagination = ({
   setPaginationReset
 }) => {
   const [pagerState, setPagerState] = useState({});
+  const { isMobile } = useDimension();
 
   const setPage = useCallback(
     (page, size) => {
@@ -126,25 +128,28 @@ const Pagination = ({
 
   return (
     <PaginationWrapper>
-      <PaginationButton
-        variant="outlined"
-        onClick={() => setPage(1, pagerState.pageSize)}
-      >
-        First
-      </PaginationButton>
-      <PaginationButton
-        variant="outlined"
-        onClick={() => {
-          setPaginationReset(true);
-          setPage(pagerState.currentPage - 1, pagerState.pageSize);
-        }}
-      >
-        &#11207;
-      </PaginationButton>
+      {!isMobile && (
+        <>
+          <PaginationButton
+            variant="outlined"
+            onClick={() => setPage(1, pagerState.pageSize)}
+          >
+            First
+          </PaginationButton>
 
+          <PaginationButton
+            variant="outlined"
+            onClick={() => {
+              setPaginationReset(true);
+              setPage(pagerState.currentPage - 1, pagerState.pageSize);
+            }}
+          >
+            &#11207;
+          </PaginationButton>
+        </>
+      )}
       {pagerState.pages.map((page, i) => (
         <PaginationButton
-          active={page.value && pagerState.currentPage === page.page}
           key={`page-${i}`}
           onClick={() => {
             setPaginationReset(true);
@@ -153,27 +158,31 @@ const Pagination = ({
           className={`${!page.value ? 'disabled' : ''} ${
             isActivePage(page) ? 'active' : ''
           }`}
-          variant="outlined"
+          variant={page.value ? 'outlined' : ''}
         >
           {page.value ? page.page : '...'}
         </PaginationButton>
       ))}
 
-      <PaginationButton
-        variant="outlined"
-        onClick={() => {
-          setPaginationReset(true);
-          setPage(pagerState.currentPage + 1, pagerState.pageSize);
-        }}
-      >
-        &#11208;
-      </PaginationButton>
-      <PaginationButton
-        variant="outlined"
-        onClick={() => setPage(pagerState.totalPages, pagerState.pageSize)}
-      >
-        Last
-      </PaginationButton>
+      {!isMobile && (
+        <>
+          <PaginationButton
+            variant="outlined"
+            onClick={() => {
+              setPaginationReset(true);
+              setPage(pagerState.currentPage + 1, pagerState.pageSize);
+            }}
+          >
+            &#11208;
+          </PaginationButton>
+          <PaginationButton
+            variant="outlined"
+            onClick={() => setPage(pagerState.totalPages, pagerState.pageSize)}
+          >
+            Last
+          </PaginationButton>
+        </>
+      )}
     </PaginationWrapper>
   );
 };

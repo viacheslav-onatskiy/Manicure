@@ -13,7 +13,6 @@ import {
   PricingImage
 } from './styles';
 import { Heading2, Heading3, PageHeading } from '../common/styles';
-import ManicureImg from '../../images/IMG_8937.jpeg';
 import ServiceForm from './ServiceForm/ServiceForm';
 import servicesImage from '../../images/services_hand.jpg';
 import Button from '../atoms/Button';

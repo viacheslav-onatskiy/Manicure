@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Modal from '../../components/Modal/index.js';
-import { PageHeading } from '../../components/common/styles.js';
+import { Heading2, PageHeading } from '../../components/common/styles.js';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
 import { useAuth, usePagination, useReview } from '../../redux/hooks.js';
@@ -9,11 +9,13 @@ import Review from '../../components/Reviews/Review/Review.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import Pagination from '../../components/atoms/Pagination/Pagination.js';
 import Button from '../../components/atoms/Button';
+import { useDimension } from '../../helpers/useDimension.js';
 
 const Reviews = () => {
   const { review, reviews, addReview, getReviews, updateReview, deleteReview, loading } =
     useReview();
   const { user, isAuthenticated, token } = useAuth();
+  const { isMobile } = useDimension();
   const {
     activePage,
     pageSize,
@@ -100,7 +102,6 @@ const Reviews = () => {
     openModal('Update', 'reviews-modal');
   };
 
-  // Fetch All Reviews
   useEffect(() => {
     if (!reviews.length) {
       getReviews();
@@ -112,7 +113,7 @@ const Reviews = () => {
       <PageHeading>Reviews</PageHeading>
 
       <ReviewsWrapper>
-        <ReviewsContentWrapper>
+        <ReviewsContentWrapper className={isMobile ? 'container' : ''}>
           <ReviewsButtonWrapper>
             <Button
               size="large"
@@ -127,7 +128,9 @@ const Reviews = () => {
           {loading && <Loader />}
 
           {reviews && reviews.length === 0 && !loading ? (
-            <h2>You don't have any reviews. Click the button to add a review!</h2>
+            <Heading2>
+              You don't have any reviews. Click the button to add a review!
+            </Heading2>
           ) : (
             <>
               {pageOfItems.map((review) => (
