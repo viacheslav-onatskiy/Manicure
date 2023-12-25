@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AboutWrapper = styled.div``;
 
 export const AboutTopSectionWrapper = styled.div`
-  background-color: var(--darker);
+  background-color: ${({ theme }) => theme.colors.primary5};
   margin: 20px;
   height: 450px;
 `;
@@ -13,7 +13,13 @@ export const AboutSection = styled.div`
   justify-content: space-between;
   gap: 35px;
   padding: 35px 0;
-  color: var(--dark);
+  color: ${({ theme }) => theme.colors.dark};
+
+  &.about-me {
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      flex-wrap: wrap;
+    }
+  }
 
   &.insta {
     display: block;
@@ -26,7 +32,19 @@ export const AboutSection = styled.div`
 `;
 
 export const AboutSectionItem = styled.div`
-  width: 50%;
+  @media screen and (min-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    &.header-picture {
+      display: none;
+    }
+  }
 `;
 
 export const AboutPresentTopPictureWrapper = styled.div`
@@ -34,16 +52,23 @@ export const AboutPresentTopPictureWrapper = styled.div`
 `;
 
 export const AboutPresentTopPicture = styled.div`
-  background-image: url('../../images/IMG_7720.jpeg');
-  background-position: top -155px right -1px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  min-height: 450px;
-  position: absolute;
-  top: 0;
-  border-radius: 5px;
-  box-shadow: 8px 8px 11px 1px rgba(0, 0, 0, 0.5);
+  @media screen and (min-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    background-position: center;
+    background-image: url('../../images/IMG_7720.jpeg');
+    background-position: top -155px right -1px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 450px;
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    box-shadow: 8px 8px 11px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    background-position: center;
+  }
 `;
 
 export const AboutPresentPicture = styled.div`
@@ -68,9 +93,34 @@ export const AboutPresentDescription = styled.div`
   text-align: end;
   font-style: italic;
 
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    text-align: center;
+  }
+
   &.info {
-    font-size: 20px;
     text-align: justify;
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      font-size: 15px;
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+    h3 {
+      font-size: 20px;
+
+      @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+        font-size: 15px;
+      }
+    }
   }
 `;
 
@@ -91,11 +141,19 @@ export const AboutInstaList = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 350px;
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    height: auto;
+  }
 `;
 
 export const AboutInstaItem = styled.div`
   width: calc(100% / 6);
   height: 100%;
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    width: calc(100% / 3);
+  }
 
   .img {
     position: relative;
@@ -126,34 +184,58 @@ export const AboutInstaItem = styled.div`
     left: 25px;
     z-index: 4;
   }
+
   &:nth-child(2) .img {
     top: 60px;
     left: 10px;
     z-index: 2;
   }
+
   &:nth-child(3) .img {
     top: 15px;
     left: -12px;
     z-index: 1;
   }
+
   &:nth-child(4) .img {
     top: 0;
     left: -30px;
     z-index: 2;
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      left: 30px;
+    }
   }
+
   &:nth-child(5) .img {
     top: 25px;
     left: -50px;
     z-index: 2;
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      left: 20px;
+    }
   }
+
   &:nth-child(6) .img {
     top: 0;
     left: -60px;
     z-index: 2;
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      left: -10px;
+    }
   }
 
   &:hover .img {
     z-index: 6;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    &:nth-child(1n) .img {
+      top: 0;
+      left: 0;
+    }
   }
 `;
 

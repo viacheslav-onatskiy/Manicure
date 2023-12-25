@@ -1,11 +1,16 @@
 import styled from 'styled-components';
-import { Heading2, Heading5 } from '../../../components/common/styles.js';
+import { Heading2, Heading4 } from '../../../components/common/styles.js';
 
 export const AboutFactsWrapper = styled.div``;
 
 export const AboutFactsList = styled.div`
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    flex-wrap: wrap;
+    gap: 15px 0;
+  }
 `;
 
 export const AboutFactsItem = styled.div`
@@ -14,6 +19,16 @@ export const AboutFactsItem = styled.div`
   align-items: center;
   width: 25%;
   padding: 15px;
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    padding: 10px;
+    flex: 0 0 50%;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 10px;
+    flex: 0 0 100%;
+  }
 `;
 
 export const AboutFactsItemImage = styled.div``;
@@ -40,7 +55,7 @@ export const AboutFactsItemImageIcon = styled.div`
   }
 `;
 
-export const AboutFactsItemHeading = styled(Heading5)`
+export const AboutFactsItemHeading = styled(Heading4)`
   margin-top: 20px;
   height: 50px;
 `;

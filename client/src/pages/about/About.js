@@ -19,7 +19,7 @@ import {
   AboutTopSectionWrapper,
   AboutWrapper
 } from './styles.js';
-import { Heading3, Heading5 } from '../../components/common/styles.js';
+import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
 import AboutFacts from './AboutFacts/AboutFacts.js';
 import Button from '../../components/atoms/Button/Button.js';
 
@@ -47,7 +47,7 @@ const About = () => {
               </AboutPresentButtonWrapper>
             </AboutSectionItem>
 
-            <AboutSectionItem>
+            <AboutSectionItem className="header-picture">
               <AboutPresentTopPictureWrapper>
                 <AboutPresentTopPicture />
               </AboutPresentTopPictureWrapper>
@@ -55,7 +55,7 @@ const About = () => {
           </AboutSection>
         </AboutTopSectionWrapper>
 
-        <AboutSection className="container">
+        <AboutSection className="container about-me">
           <AboutSectionItem>
             <AboutPresentPicture />
           </AboutSectionItem>
@@ -64,19 +64,18 @@ const About = () => {
             <AboutPresentHeading>Немного о себе</AboutPresentHeading>
 
             <AboutPresentDescription className="info">
-              <p>🌸 Добро пожаловать в мир красоты и ухоженности! 🌸</p>
-              <p>
+              <Heading2>🌸 Добро пожаловать в мир красоты и ухоженности! 🌸</Heading2>
+              <Heading3>
                 Привет! Меня зовут Яна, и я - профессиональный сертифицированный мастер
                 маникюра с 7 лет опыта. Мое призвание - создавать произведения искусства
                 на ваших ногтях. Я стремлюсь к индивидуальному подходу к каждому клиенту,
                 предоставляя высококачественные услуги и используя только лучшие
                 материалы.
-              </p>
-              <p>
+                <br />
                 С моими услугами ваши руки станут настоящим произведением искусства,
-                отражающим вашу индивидуальность и стиль.
-              </p>
-              <p>Давайте вместе создадим неповторимый облик ваших ногтей!</p>
+                отражающим вашу индивидуальность и стиль. <br />
+                Давайте вместе создадим неповторимый облик ваших ногтей!
+              </Heading3>
             </AboutPresentDescription>
 
             <AboutPresentButtonWrapper>
