@@ -92,7 +92,7 @@ const Modal = ({
   return (
     <ModalWrapper
       id={modalId}
-      isShowModal={isModalOpen}
+      $isShowModal={isModalOpen}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -117,16 +117,12 @@ const Modal = ({
           ⭢
         </Button>
       )}
+      {hasCloseBtn && (
+        <ModalCloseButton variant="outlined" onClick={handleCloseModal}>
+          x
+        </ModalCloseButton>
+      )}
       <ModalMain className="modal-main-content" ref={modalRef}>
-        {hasCloseBtn && (
-          <ModalCloseButton
-            variant="primary"
-            onClick={handleCloseModal}
-            ref={rightButtonRef}
-          >
-            x
-          </ModalCloseButton>
-        )}
         {children}
       </ModalMain>
     </ModalWrapper>

@@ -46,14 +46,20 @@ export const ReviewRating = styled.div`
   margin: 10px 0 0 0;
 `;
 
-export const ReviewText = styled.p`
+export const ReviewText = styled.pre`
   text-align: start;
   margin: 10px 0 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 
   &.line-clamp {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      -webkit-line-clamp: 5;
+    }
   }
 `;

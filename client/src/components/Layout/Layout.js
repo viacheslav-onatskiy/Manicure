@@ -11,7 +11,7 @@ const Layout = () => {
     <>
       <Header />
 
-      <ToastContainer newestOnTop autoClose={2000} />
+      <ToastContainer newestOnTop autoClose={2000} limit={2} />
 
       <MainOutlet>
         <Outlet />

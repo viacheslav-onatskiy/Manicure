@@ -3,6 +3,7 @@ import Modal from '../Modal';
 import { ImageGalleryWrapper, LightBoxWrapper } from './styles';
 import { useSwipe } from '../../helpers/useSwipe.js';
 import ImageMagnifier from '../ImageMagnifier/ImageMagnifier.js';
+import { useDimension } from '../../helpers/useDimension.js';
 
 export const images = [
   {
@@ -137,6 +138,7 @@ export const images = [
 
 const ImageGallery = () => {
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
+  const { isMobile } = useDimension();
 
   const [imageToShow, setImageToShow] = useState(undefined);
   const [lightboxDisplay, setLightBoxDisplay] = useState(false);
@@ -178,15 +180,20 @@ const ImageGallery = () => {
     }
   };
 
+  const galleryImageClasses = (index) => {
+    const positionClass = !isMobile ? (index % 2 === 0 ? 'from-left' : 'from-right') : '';
+    const itemNumberClass = `gallery__item--${index + 1}`;
+
+    return `gallery__item ${positionClass} ${itemNumberClass}`;
+  };
+
   return (
     <>
       <ImageGalleryWrapper className="gallery">
         {images.map((image, index) => (
           <figure
             key={`${image.alt + index}`}
-            className={`gallery__item 
-              ${index % 2 === 0 ? 'from-left' : 'from-right'}
-              from-left gallery__item--${index + 1}`}
+            className={galleryImageClasses(index)}
             onClick={() => showImage(image)}
           >
             <img alt={image.alt} className="gallery__img" src={image.imageUrl} />
@@ -200,9 +207,9 @@ const ImageGallery = () => {
             isOpen={lightboxDisplay}
             modalId="lightbox-modal"
             onClose={hideLightBox}
-            showNext={showNext}
-            showPrev={showPrev}
-            hasCloseBtn={false}
+            showNext={!isMobile && showNext}
+            showPrev={!isMobile && showPrev}
+            hasCloseBtn={!isMobile}
           >
             <LightBoxWrapper
               onTouchStart={onTouchStart}

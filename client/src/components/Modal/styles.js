@@ -26,11 +26,13 @@ const modalButtonStyles = css`
 
   &:active {
     color: ${({ theme }) => theme.colors.white};
-    outline-color: ${({ theme }) => theme.colors.white};
+    outline: 1px solid ${({ theme }) => theme.colors.white};
   }
 `;
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div.attrs((props) => ({
+  $isShowModal: props.$isShowModal
+}))`
   position: fixed;
   top: 0;
   left: 0;
@@ -38,8 +40,8 @@ export const ModalWrapper = styled.div`
   height: 100%;
   background: #00000099;
   backdrop-filter: blur(1px);
-  display: ${({ isShowModal }) => (isShowModal ? 'block' : 'none')};
-  z-index: 20;
+  display: ${({ $isShowModal }) => ($isShowModal ? 'block' : 'none')};
+  z-index: 101;
 
   &#lightbox-modal {
     & .modal-main-content {
@@ -61,10 +63,9 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalMain = styled.div`
-  position: fixed;
   background: #f1f1f1;
   color: #3d19d9;
-  width: 50vw;
+  width: 60vw;
   height: auto;
   top: 50%;
   left: 50%;
@@ -74,15 +75,27 @@ export const ModalMain = styled.div`
   align-items: center;
   border-radius: 15px;
   position: relative;
-  padding: 35px 25px;
+  padding: 55px 25px;
   max-height: 80vh;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+  }
 `;
 
 export const ModalCloseButton = styled(Button)`
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  font-size: 15px;
+  ${modalButtonStyles}
+  left: unset;
+  right: 45px;
+  top: 45px;
+  font-size: 25px;
   line-height: 15px;
-  padding: 10px;
+  padding: 20px;
+  z-index: 1;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    right: 25px;
+    top: 25px;
+    font-size: 20px;
+    padding: 15px;
+  }
 `;

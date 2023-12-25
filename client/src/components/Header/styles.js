@@ -55,6 +55,7 @@ export const NavigationRightButtons = styled.div`
   margin-left: auto;
   display: flex;
   color: #999999;
+  gap: 15px;
 
   p {
     align-self: center;

@@ -2,12 +2,23 @@ import { StyledAlert, StyledForm } from './styles';
 import StarRating from '../../StarRating';
 import Textarea from '../../Textarea';
 import Button from '../../atoms/Button';
+import { useDimension } from '../../../helpers/useDimension';
+import { toast } from 'react-toastify';
 
 const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
+  const { isMobile } = useDimension();
   const { description, rating, isDescriptionInvalid } = formData;
+  const toastId = 'custom-id-toastify';
 
-  const handleDescription = (e) => {
-    setFormData({ ...formData, description: e.target.value });
+  const handleDescription = (event) => {
+    const inputValue = event.target.value;
+
+    if (inputValue.length >= 400) {
+      toast('Max length is 400 symbols', { toastId });
+      return;
+    }
+
+    setFormData({ ...formData, description: inputValue });
   };
 
   return (
@@ -15,7 +26,7 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
       <Textarea
         value={description}
         onChange={handleDescription}
-        rowsNumber="4"
+        rowsNumber={isMobile ? '7' : '5'}
         placeholder="Description"
       />
       {isDescriptionInvalid && <StyledAlert>Please fill description.</StyledAlert>}

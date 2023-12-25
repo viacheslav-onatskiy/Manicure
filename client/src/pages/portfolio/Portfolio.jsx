@@ -4,14 +4,16 @@ import { PortfolioHeading } from './styles';
 
 const Portfolio = () => {
   return (
-    <div>
+    <>
       <PageHeading>Portfolio</PageHeading>
-      <PortfolioHeading className="container">
-        За 7 лет работы я сделала более 1500 маникюров. Вот лишь некоторые из них.
-      </PortfolioHeading>
+      <div className="container">
+        <PortfolioHeading>
+          За 7 лет работы я сделала более 1500 маникюров. Вот лишь некоторые из них.
+        </PortfolioHeading>
+      </div>
 
       <ImageGallery />
-    </div>
+    </>
   );
 };
 

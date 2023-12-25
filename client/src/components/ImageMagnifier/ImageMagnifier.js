@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ImageMagnifierImage, ImageMagnifierWrapper } from './styles';
+import { useDimension } from '../../helpers/useDimension';
 
 function ImageMagnifier({
   src = '',
@@ -11,6 +12,7 @@ function ImageMagnifier({
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
+  const { isMobile } = useDimension();
 
   const onMouseEnter = (e) => {
     // update image size and turn-on magnifier
@@ -44,7 +46,7 @@ function ImageMagnifier({
         alt={alt}
       />
 
-      {showMagnifier && (
+      {showMagnifier && !isMobile && (
         <div
           style={{
             display: showMagnifier ? '' : 'none',
