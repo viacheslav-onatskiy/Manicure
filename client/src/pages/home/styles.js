@@ -1,35 +1,41 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Heading3, Heading4 } from '../../components/common/styles';
 
 export const FirstImageWrapper = styled.div`
-  ${'' /* background-image: ${(props) => props.imagePath ? props.imagePath : ''}; */}
   background-image: url(../../images/IMG_7952.jpeg);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
-
-  background-attachment: fixed, fixed;
+  background-attachment: fixed;
   background-position: center -333px;
-  background-repeat: repeat, no-repeat;
+  background-repeat: no-repeat;
 
-  min-height: 300px;
-  height: 550px;
   overflow: hidden;
-
+  height: 550px;
   min-height: 300px;
   width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    flex-wrap: wrap-reverse;
+    margin: 25px 0;
+    position: relative;
+    background-position: center;
+  }
 `;
 
 export const ImageMiddleTextWrapper = styled.div`
-  background: rgba(0, 0, 0, 0.25);
-
-  ${'' /* box-shadow: 0px 0px 15px 18px rgba(0, 0, 0, 0.01) inset; */}
   color: white;
   padding: 30px;
   border-radius: 10px;
   font-size: 30px;
-  text-wrap: nowrap;
   text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    text-wrap: pretty;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    background: rgba(0, 0, 0, 0.25);
+  }
 `;
 
 export const ImageMiddleWrapper = styled.div`
@@ -37,18 +43,23 @@ export const ImageMiddleWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    position: initial;
+    transform: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding-bottom: 30px;
+  }
 `;
 
-export const ImageTextHeader = styled.div`
-  color: white;
-  font-size: 25px;
+export const ImageTextHeader = styled(Heading3)`
   text-transform: uppercase;
 `;
 
-export const ImageTextDescription = styled.div`
+export const ImageTextDescription = styled(Heading4)`
   margin-top: 20px;
   color: #fd4d99;
-  font-size: 20px;
 `;
 
 export const ImageButtonsWrapper = styled.div`
@@ -56,6 +67,31 @@ export const ImageButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap-reverse;
+    margin: 25px 0;
+  }
+
+  button {
+    color: ${({ theme }) => theme.colors.primary3};
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      color: ${({ theme }) => theme.colors.primary4};
+      outline-color: ${({ theme }) => theme.colors.primary4};
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary1};
+      outline-color: ${({ theme }) => theme.colors.primary1};
+    }
+
+    &:active {
+      color: ${({ theme }) => theme.colors.primary4};
+      outline-color: ${({ theme }) => theme.colors.primary4};
+    }
+  }
 `;
 
 export const FirstImage = styled.img`
@@ -69,10 +105,19 @@ export const AboutMeSectionWrapper = styled.div`
   margin: 50px 0;
   gap: 25px;
 
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap-reverse;
+    margin: 25px 0;
+  }
+
   & .about__button,
   & .about__description {
     margin-top: 20px;
     display: block;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      text-align: center;
+    }
   }
 `;
 
@@ -80,14 +125,19 @@ export const AboutMePictureWrapper = styled.div`
   box-sizing: border-box;
   max-width: 50%;
   min-width: 50%;
-  height: 500px;
+  min-height: 450px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const AboutMePicture = styled.div`
   background-image: url(../../images/IMG_6796.jpeg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 70%;
+  background-size: contain;
   height: 100%;
   width: 100%;
 `;
@@ -97,6 +147,10 @@ export const AboutMeDescriptionWrapper = styled.div`
   margin-top: 20px;
   box-sizing: border-box;
   max-width: 50%;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    max-width: 100%;
+  }
 `;
 
 export const AboutMeHeader = styled.h2`
@@ -117,6 +171,10 @@ export const HomeSection = styled.section`
   &.reviews {
     background-color: lightgrey;
     padding: 50px 0;
+
+    @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      padding: 25px 0;
+    }
   }
 `;
 
@@ -125,12 +183,27 @@ export const OrderSectionWrapper = styled.div`
   justify-content: space-around;
   color: white;
   padding: 50px 0;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 25px 0;
+
+    button {
+      width: 50%;
+      font-size: 22px;
+    }
+  }
 `;
 
 export const SectionWrapper = styled.div`
-  padding: 80px 150px;
+  padding: 50px;
   text-align: center;
   font-size: 30px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    padding: 20px;
+  }
 
   &.advantages {
     color: #333333;
@@ -147,28 +220,44 @@ export const AdvantageCartsWrapper = styled.div`
   justify-content: space-between;
   gap: 30px;
   margin-top: 35px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex-wrap: wrap;
+    gap: 20px 0;
+  }
 `;
 
-export const AdvantageCart = styled.div`
+export const AdvantageCart = styled(Link)`
   width: 25%;
   border: 2px solid;
-  border-color: var(--dark);
+  border-color: ${({ theme }) => theme.colors.dark};
   border-radius: 10px;
   padding: 15px;
   background-color: white;
+  color: ${({ theme }) => theme.colors.dark};
 
-  &:hover {
-    transform: scale(1.05);
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    flex: 0 0 48%;
+    padding: 20px;
+    width: auto;
   }
 
-  & .advantage-icon {
-    width: 70px;
-    height: 70px;
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    flex: 0 0 100%;
+  }
 
-    &:hover {
-      transition: 0.5s;
-      transform: rotate(180deg);
-    }
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(1.05);
   }
 `;
 
@@ -177,6 +266,17 @@ export const AdvantageIcon = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 44px;
+  height: 70px;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+
+  svg {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const AdvantageCartDescription = styled.p`

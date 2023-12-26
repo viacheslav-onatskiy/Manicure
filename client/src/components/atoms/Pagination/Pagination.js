@@ -13,7 +13,7 @@ const Pagination = ({
   setPaginationReset
 }) => {
   const [pagerState, setPagerState] = useState({});
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
 
   const setPage = useCallback(
     (page, size) => {
@@ -128,7 +128,7 @@ const Pagination = ({
 
   return (
     <PaginationWrapper>
-      {!isMobile && (
+      {!isTablet && (
         <>
           <PaginationButton
             variant="outlined"
@@ -164,7 +164,7 @@ const Pagination = ({
         </PaginationButton>
       ))}
 
-      {!isMobile && (
+      {!isTablet && (
         <>
           <PaginationButton
             variant="outlined"

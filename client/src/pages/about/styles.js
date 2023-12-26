@@ -6,6 +6,10 @@ export const AboutTopSectionWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary5};
   margin: 20px;
   height: 450px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    height: auto;
+  }
 `;
 
 export const AboutSection = styled.div`

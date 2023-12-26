@@ -138,7 +138,7 @@ export const images = [
 
 const ImageGallery = () => {
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
 
   const [imageToShow, setImageToShow] = useState(undefined);
   const [lightboxDisplay, setLightBoxDisplay] = useState(false);
@@ -181,7 +181,7 @@ const ImageGallery = () => {
   };
 
   const galleryImageClasses = (index) => {
-    const positionClass = !isMobile ? (index % 2 === 0 ? 'from-left' : 'from-right') : '';
+    const positionClass = !isTablet ? (index % 2 === 0 ? 'from-left' : 'from-right') : '';
     const itemNumberClass = `gallery__item--${index + 1}`;
 
     return `gallery__item ${positionClass} ${itemNumberClass}`;
@@ -207,9 +207,9 @@ const ImageGallery = () => {
             isOpen={lightboxDisplay}
             modalId="lightbox-modal"
             onClose={hideLightBox}
-            showNext={!isMobile && showNext}
-            showPrev={!isMobile && showPrev}
-            hasCloseBtn={!isMobile}
+            showNext={!isTablet && showNext}
+            showPrev={!isTablet && showPrev}
+            hasCloseBtn={!isTablet}
           >
             <LightBoxWrapper
               onTouchStart={onTouchStart}

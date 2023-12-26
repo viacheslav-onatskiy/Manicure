@@ -16,9 +16,11 @@ export const useDimension = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const isMobile = windowDimension <= 1024;
+  const isTablet = windowDimension <= 1024;
+  const isMobile = windowDimension <= 768;
 
   return {
+    isTablet,
     isMobile,
     windowDimension
   };

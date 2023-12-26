@@ -114,10 +114,6 @@ export const Heading3 = styled.h3`
 export const Heading4 = styled.h4`
   font-size: 24px;
   line-height: 1.25;
-
-  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
-    font-size: 18px;
-  }
 `;
 
 export const Heading5 = styled.h5`

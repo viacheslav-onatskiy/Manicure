@@ -6,7 +6,7 @@ import { useDimension } from '../../../helpers/useDimension';
 import { toast } from 'react-toastify';
 
 const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
   const { description, rating, isDescriptionInvalid } = formData;
   const toastId = 'custom-id-toastify';
 
@@ -26,7 +26,7 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
       <Textarea
         value={description}
         onChange={handleDescription}
-        rowsNumber={isMobile ? '7' : '5'}
+        rowsNumber={isTablet ? '7' : '5'}
         placeholder="Description"
       />
       {isDescriptionInvalid && <StyledAlert>Please fill description.</StyledAlert>}

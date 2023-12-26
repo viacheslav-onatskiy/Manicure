@@ -19,7 +19,7 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
   const [numberOfLines, setNumberOfLines] = useState(0);
   const [isTextHidden, setIsTextHidden] = useState(false);
   const [isHideButtonAvailable, setIsHideButtonAvailable] = useState(false);
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
   const elementRef = useRef(null);
 
   const showFullText = () => {
@@ -59,19 +59,19 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
             <>
               <Button
                 size="small"
-                variant={isMobile ? '' : 'outlined'}
+                variant={isTablet ? '' : 'outlined'}
                 onClick={() => updateReviewFn(review._id)}
                 title="Update review"
               >
-                {isMobile ? renderIcon('update') : 'Update'}
+                {isTablet ? renderIcon('update') : 'Update'}
               </Button>
               <Button
                 size="small"
-                variant={isMobile ? '' : 'primary'}
+                variant={isTablet ? '' : 'primary'}
                 onClick={() => deleteReview(review._id)}
                 title="Remove review"
               >
-                {isMobile ? renderIcon('remove') : 'Remove'}
+                {isTablet ? renderIcon('remove') : 'Remove'}
               </Button>
             </>
           )}

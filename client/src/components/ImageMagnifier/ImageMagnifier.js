@@ -12,7 +12,7 @@ function ImageMagnifier({
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
 
   const onMouseEnter = (e) => {
     // update image size and turn-on magnifier
@@ -46,7 +46,7 @@ function ImageMagnifier({
         alt={alt}
       />
 
-      {showMagnifier && !isMobile && (
+      {showMagnifier && !isTablet && (
         <div
           style={{
             display: showMagnifier ? '' : 'none',

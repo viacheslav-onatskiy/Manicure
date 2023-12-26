@@ -15,7 +15,7 @@ import { useDimension } from '../../helpers/useDimension';
 
 const Header = () => {
   const { isAuthenticated, logoutUser, user, loading } = useAuth();
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -40,7 +40,7 @@ const Header = () => {
   let RAF;
 
   const onScroll = () => {
-    if (isMobile) {
+    if (isTablet) {
       return;
     }
 
@@ -64,7 +64,7 @@ const Header = () => {
 
   return (
     <header>
-      {isMobile ? (
+      {isTablet ? (
         <MobileHeader
           isVisible={visible}
           links={navigationLinks}

@@ -15,7 +15,7 @@ const Reviews = () => {
   const { review, reviews, addReview, getReviews, updateReview, deleteReview, loading } =
     useReview();
   const { user, isAuthenticated, token } = useAuth();
-  const { isMobile } = useDimension();
+  const { isTablet } = useDimension();
   const {
     activePage,
     pageSize,
@@ -113,7 +113,7 @@ const Reviews = () => {
       <PageHeading>Reviews</PageHeading>
 
       <ReviewsWrapper>
-        <ReviewsContentWrapper className={isMobile ? 'container' : ''}>
+        <ReviewsContentWrapper className={isTablet ? 'container' : ''}>
           <ReviewsButtonWrapper>
             <Button
               size="large"
