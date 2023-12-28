@@ -5,8 +5,8 @@ export const ScrollToTopButtonElement = styled.div`
   bottom: 20px;
   right: 20px;
   display: none;
-  background-color: var(--dark);
-  color: var(--light);
+  background-color: ${({ theme }) => theme.colors.dark};
+  color: ${({ theme }) => theme.colors.primary4};
   padding: 5px;
   border-radius: 50%;
   transition: opacity 0.2s ease-in-out;

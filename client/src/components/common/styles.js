@@ -55,6 +55,12 @@ export const GlobalStyle = createGlobalStyle`
     isolation: isolate;
   }
 
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   .container {
     max-width: 72rem;
     margin-left: auto;

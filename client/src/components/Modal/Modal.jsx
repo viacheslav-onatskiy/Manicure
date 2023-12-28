@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ModalCloseButton, ModalMain, ModalWrapper } from './styles';
 import { useSwipe } from '../../helpers/useSwipe';
 import Button from '../atoms/Button';
+import { useDimension } from '../../helpers/useDimension';
 
 const Modal = ({
   isOpen = false,
@@ -17,6 +18,7 @@ const Modal = ({
   const leftButtonRef = useRef(null);
   const rightButtonRef = useRef(null);
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
+  const { isMobile } = useDimension();
 
   const handleCloseModal = useCallback(() => {
     if (onClose) {
@@ -118,7 +120,10 @@ const Modal = ({
         </Button>
       )}
       {hasCloseBtn && (
-        <ModalCloseButton variant="outlined" onClick={handleCloseModal}>
+        <ModalCloseButton
+          variant={isMobile ? 'primary' : 'outlined'}
+          onClick={handleCloseModal}
+        >
           x
         </ModalCloseButton>
       )}

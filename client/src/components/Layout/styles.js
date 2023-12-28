@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const MainOutlet = styled.div`
+export const MainOutlet = styled.main`
   margin-top: 40px;
+  flex: 1;
 
   .container {
     max-width: 72rem;

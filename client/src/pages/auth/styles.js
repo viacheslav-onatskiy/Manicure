@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const AuthWrapper = styled.div`
-  background-color: var(--light);
-  color: var(--darker);
+  background-color: ${({ theme }) => theme.colors.primary4};
+  color: ${({ theme }) => theme.colors.primary5};
 
   & .auth-redirect-paragraph {
     margin: 20px 0;

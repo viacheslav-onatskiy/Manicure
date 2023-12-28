@@ -22,7 +22,7 @@ export const CarouselArrow = styled.div`
   transform: translateY(-50%);
   font-size: 24px;
   background-color: transparent;
-  color: var(--light);
+  color: ${({ theme }) => theme.colors.primary4};
   cursor: pointer;
   outline: none;
 

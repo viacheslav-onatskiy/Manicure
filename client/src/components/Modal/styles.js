@@ -48,6 +48,7 @@ export const ModalWrapper = styled.div.attrs((props) => ({
       width: fit-content;
       background: transparent;
       padding: 0;
+      justify-content: center;
     }
   }
 
@@ -59,6 +60,14 @@ export const ModalWrapper = styled.div.attrs((props) => ({
     ${modalButtonStyles}
     left: unset;
     right: 40px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    &#reviews-modal {
+      .modal-main-content {
+        height: 100%;
+      }
+    }
   }
 `;
 
@@ -78,7 +87,9 @@ export const ModalMain = styled.div`
   padding: 55px 25px;
   max-height: 80vh;
 
-  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    max-height: 100%;
+    width: 100%;
   }
 `;
 
@@ -92,10 +103,9 @@ export const ModalCloseButton = styled(Button)`
   padding: 20px;
   z-index: 1;
 
-  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     right: 25px;
-    top: 25px;
-    font-size: 20px;
     padding: 15px;
+    color: ${({ theme }) => theme.colors.grey};
   }
 `;

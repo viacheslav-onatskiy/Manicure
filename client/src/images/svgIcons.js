@@ -311,45 +311,6 @@ export const renderIcon = (type) => {
         </svg>
       );
 
-    case 'nav-hamburger':
-      return (
-        <svg
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      );
-
-    case 'ellipsis-dots':
-      return (
-        <svg
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
-          />
-        </svg>
-      );
-
     case 'home':
       return (
         <svg

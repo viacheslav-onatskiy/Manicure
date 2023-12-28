@@ -19,8 +19,16 @@ export const useSwipe = () => {
     const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
     const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
 
-    if (isRightSwipe && typeof showNext === 'function') showNext(e);
-    if (isLeftSwipe && typeof showPrev === 'function') showPrev(e);
+    if (isRightSwipe && typeof showNext === 'function') {
+      showNext(e);
+    }
+
+    if (isLeftSwipe && typeof showPrev === 'function') {
+      showPrev(e);
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
   };
 
   return {

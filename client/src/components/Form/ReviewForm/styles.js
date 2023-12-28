@@ -5,14 +5,14 @@ export const StyledForm = styled.form`
   padding: 20px;
   border-radius: 5px;
   text-align: center;
+  justify-content: center;
 
-  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     width: 100%;
     height: 100%;
     padding: 30% 20px;
 
     display: flex;
-    justify-content: end;
     flex-direction: column;
     align-items: center;
     gap: 5%;

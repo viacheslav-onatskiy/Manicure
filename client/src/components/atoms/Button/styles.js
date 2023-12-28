@@ -41,7 +41,7 @@ const commonButtonStyles = css`
 const primaryButtonStyles = css`
   background-color: ${({ theme }) => theme.colors.primary2};
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-  color: var(--white);
+  color: ${({ theme }) => theme.colors.white};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary3};
@@ -53,7 +53,7 @@ const primaryButtonStyles = css`
   }
 
   &:active {
-    background-color: var(--red1);
+    background-color: ${({ theme }) => theme.colors.primary1};
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
   }
 `;
@@ -72,7 +72,7 @@ const outlinedButtonStyles = css`
   }
 
   &:active {
-    outline: 2px solid var(--red1);
+    outline: 2px solid ${({ theme }) => theme.colors.primary1};
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
   }
 `;

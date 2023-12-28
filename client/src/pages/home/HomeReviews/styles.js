@@ -62,14 +62,14 @@ export const HomeReviewsSlide = styled.div`
 
   & .quote-icon {
     svg {
-      fill: var(--darker);
-      stroke: var(--darker);
+      fill: ${({ theme }) => theme.colors.primary5};
+      stroke: ${({ theme }) => theme.colors.primary5};
     }
   }
 
   .slide__user {
     margin-top: 20px;
-    color: var(--darker);
+    color: ${({ theme }) => theme.colors.primary5};
   }
 
   .star__rating {

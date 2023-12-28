@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Heading3, Heading4 } from '../../components/common/styles';
+import { Heading2, Heading3, Heading4 } from '../../components/common/styles';
 
 export const FirstImageWrapper = styled.div`
   background-image: url(../../images/IMG_7952.jpeg);
@@ -16,7 +16,6 @@ export const FirstImageWrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
     flex-wrap: wrap-reverse;
-    margin: 25px 0;
     position: relative;
     background-position: center;
   }
@@ -48,6 +47,7 @@ export const ImageMiddleWrapper = styled.div`
     position: initial;
     transform: none;
     background: rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
     border-radius: 10px;
     padding-bottom: 30px;
   }
@@ -210,9 +210,8 @@ export const SectionWrapper = styled.div`
   }
 `;
 
-export const SectionHeader = styled.div`
+export const SectionHeader = styled(Heading2)`
   text-align: center;
-  font-size: 40px;
 `;
 
 export const AdvantageCartsWrapper = styled.div`

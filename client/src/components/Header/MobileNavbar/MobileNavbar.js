@@ -60,7 +60,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
               setIsNavExpanded(!isNavExpanded);
             }}
           >
-            {renderIcon('nav-hamburger')}
+            <MobileNavbar.HamburgerIcon className={isNavExpanded && 'active'} />
           </MobileNavbar.HamburgerButton>
         </div>
         <div>
@@ -76,7 +76,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
               setIsNavExtraExpanded(!isNavExtraExpanded);
             }}
           >
-            {renderIcon('ellipsis-dots')}
+            <MobileNavbar.DotsIcon className={isNavExtraExpanded && 'active'} />
           </MobileNavbar.DotsButton>
         </div>
       </MobileNavbar.Wrapper>
