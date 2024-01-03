@@ -50,7 +50,6 @@ const Header = () => {
         RAF = null;
       });
     }
-    console.log('onScroll:', onScroll);
   };
 
   useEffect(() => {

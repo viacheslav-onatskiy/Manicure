@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../../helpers/axios';
 import {
   GET_REVIEWS,
   GET_REVIEWS_SUCCESS,
@@ -25,7 +25,7 @@ export const getReviews = () => async (dispatch) => {
     dispatch({
       type: GET_REVIEWS
     });
-    const res = await axios.get('/reviews');
+    const res = await axiosInstance.get('/reviews');
 
     dispatch({
       type: GET_REVIEWS_SUCCESS,
@@ -45,7 +45,7 @@ export const getReview = (id) => async (dispatch) => {
     dispatch({
       type: GET_REVIEW
     });
-    const res = await axios.get(`/reviews/${id}`);
+    const res = await axiosInstance.get(`/reviews/${id}`);
 
     dispatch({
       type: GET_REVIEW_SUCCESS,
@@ -71,7 +71,7 @@ export const addReview = (formData) => async (dispatch) => {
     dispatch({
       type: ADD_REVIEW
     });
-    const res = await axios.post('/reviews', formData, config);
+    const res = await axiosInstance.post('/reviews', formData, config);
 
     dispatch({
       type: ADD_REVIEW_SUCCESS,
@@ -102,7 +102,7 @@ export const deleteReview = (id) => async (dispatch) => {
     dispatch({
       type: DELETE_REVIEW
     });
-    await axios.delete(`/reviews/${id}`);
+    await axiosInstance.delete(`/reviews/${id}`);
 
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
@@ -129,7 +129,7 @@ export const updateReview = (formData, id) => async (dispatch) => {
     dispatch({
       type: UPDATE_REVIEW
     });
-    const res = await axios.put(`/reviews/${id}`, formData, config);
+    const res = await axiosInstance.put(`/reviews/${id}`, formData, config);
 
     dispatch({
       type: UPDATE_REVIEW_SUCCESS,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ServiceFormItem, ServiceFromWrapper } from './styles';
-import axios from 'axios';
+import axiosInstance from '../../../helpers/axios';
 import Input from '../../Input';
 import { toast } from 'react-toastify';
 import Textarea from '../../Textarea';
@@ -25,7 +25,7 @@ const ServiceForm = () => {
   const sendEmail = (event) => {
     event.preventDefault();
 
-    axios
+    axiosInstance
       .post('/send', { ...inputs })
       .then((response) => {
         toast.success('Email data: ', response.data);
