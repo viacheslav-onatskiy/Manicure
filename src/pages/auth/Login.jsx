@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../redux/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SectionHeader } from '../home/styles';
 import { PageHeading } from '../../components/common/styles';
 import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
@@ -9,6 +9,7 @@ import Button from '../../components/atoms/Button';
 
 const Login = () => {
   const { loginUser, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -28,9 +29,11 @@ const Login = () => {
     loginUser(email, password);
   };
 
-  if (isAuthenticated) {
-    return <Link to="/" />;
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <AuthWrapper>

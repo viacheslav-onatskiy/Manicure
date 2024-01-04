@@ -85,7 +85,6 @@ export const login = (email, password) => async (dispatch) => {
     dispatch(loadUser());
 
     toast.success('You have logged in successfully');
-    window.location.href = '/';
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -103,4 +102,6 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   // dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
+
+  toast.success('You have logged out successfully');
 };
