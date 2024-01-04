@@ -29,7 +29,7 @@ const Footer = () => {
                 title="Find me on Google maps"
               >
                 <ContactIcon>{renderIcon('contactAddress')}</ContactIcon>
-                Our Location on Google Map
+                3355 North Rd Burnaby, BC V3J 7T9
               </ContactLink>
             </ContactDescription>
           </FooterLink>

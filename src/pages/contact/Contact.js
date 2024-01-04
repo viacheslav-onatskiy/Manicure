@@ -79,8 +79,10 @@ const Contact = () => {
                 <ContactDescription>
                   <ContactLink className="contact-hours">
                     <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
-                    <p>Mon-Sat: 9am - 5pm</p>
-                    <p>Sunday: Closed</p>
+                    <div>
+                      <p>Mon-Sat: 9am - 5pm</p>
+                      <p>Sunday: Closed</p>
+                    </div>
                   </ContactLink>
                 </ContactDescription>
               </ContactListItem>

@@ -29,7 +29,9 @@ export const ImageGalleryWrapper = styled.div`
         border-radius: 8px;
 
         .gallery__img {
-          transform: scale(1.1);
+          @media (min-width: ${({ theme }) => theme.screenSizes.mobile}) {
+            transform: scale(1.1);
+          }
 
           @media screen and (min-width: ${({ theme }) => theme.screenSizes.laptop}) {
             -webkit-filter: brightness(100%);

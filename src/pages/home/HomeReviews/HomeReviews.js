@@ -12,10 +12,6 @@ import {
 const HomeReviews = () => {
   const { reviews, getReviews } = useReview();
 
-  if (!reviews.length) {
-    return;
-  }
-
   const firstTenReviews = reviews.slice(0, 10);
 
   return (

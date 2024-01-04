@@ -5,19 +5,17 @@ import { Heading2, Heading3, Heading4 } from '../../components/common/styles';
 export const FirstImageWrapper = styled.div`
   background-image: url(../../images/IMG_7952.jpeg);
   background-size: cover;
-  background-attachment: fixed;
-  background-position: center -333px;
+  background-position: center;
   background-repeat: no-repeat;
 
   overflow: hidden;
   height: 550px;
   min-height: 300px;
   width: 100%;
+  position: relative;
 
-  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
-    flex-wrap: wrap-reverse;
-    position: relative;
-    background-position: center;
+  @media (min-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    background-attachment: fixed;
   }
 `;
 
