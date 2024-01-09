@@ -33,7 +33,7 @@ export const NavLogoWrapper = styled(NavLink)`
 `;
 
 export const NavLogo = styled.div`
-  background-image: url(../../images/IMG_7720.jpeg);
+  background-image: url(../../images/IMG_7720.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

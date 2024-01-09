@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Heading2, Heading3, Heading4 } from '../../components/common/styles';
+import { Heading2, Heading3 } from '../../components/common/styles';
 
 export const FirstImageWrapper = styled.div`
-  background-image: url(../../images/IMG_7952.jpeg);
+  background-image: url(../../images/IMG_7952.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -51,11 +51,11 @@ export const ImageMiddleWrapper = styled.div`
   }
 `;
 
-export const ImageTextHeader = styled(Heading3)`
+export const ImageTextHeader = styled(Heading2)`
   text-transform: uppercase;
 `;
 
-export const ImageTextDescription = styled(Heading4)`
+export const ImageTextDescription = styled(Heading3)`
   margin-top: 20px;
   color: #fd4d99;
 `;
@@ -108,9 +108,13 @@ export const AboutMeSectionWrapper = styled.div`
     margin: 25px 0;
   }
 
+  & .about__button {
+    text-align: center;
+  }
+
   & .about__button,
   & .about__description {
-    margin-top: 20px;
+    margin-top: 30px;
     display: block;
 
     @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
@@ -132,7 +136,7 @@ export const AboutMePictureWrapper = styled.div`
 `;
 
 export const AboutMePicture = styled.div`
-  background-image: url(../../images/IMG_6796.jpeg);
+  background-image: url(../../images/IMG_6796.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

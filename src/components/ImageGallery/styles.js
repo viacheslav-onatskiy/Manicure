@@ -5,6 +5,7 @@ export const ImageGalleryWrapper = styled.div`
   text-align: center;
   padding: 25px 0;
   transition: all 2s ease;
+  overflow: hidden;
 
   &.gallery {
     display: grid;

@@ -1,9 +1,11 @@
-import { LoaderWrapper } from './styles';
+import { LoaderBody, LoaderWrapper } from './styles';
 
 const Loader = () => {
   return (
     <LoaderWrapper>
-      <span className="loader" />
+      <LoaderBody>
+        <span className="loader" />
+      </LoaderBody>
     </LoaderWrapper>
   );
 };

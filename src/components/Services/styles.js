@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ManicureImg from '../../images/IMG_8937.jpeg';
+import ManicureImg from '../../images/IMG_8937.jpg';
 
 export const SectionContainer = styled.section.attrs((props) => ({
   $bgColor: props.$bgColor || ''

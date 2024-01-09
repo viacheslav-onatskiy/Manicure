@@ -108,6 +108,10 @@ const Reviews = () => {
     }
   }, [getReviews, reviews.length]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <PageHeading>Reviews</PageHeading>
@@ -124,8 +128,6 @@ const Reviews = () => {
               Leave review
             </Button>
           </ReviewsButtonWrapper>
-
-          {loading && <Loader />}
 
           {reviews && reviews.length === 0 && !loading ? (
             <Heading2>

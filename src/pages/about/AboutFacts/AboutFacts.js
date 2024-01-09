@@ -26,7 +26,9 @@ const AboutFacts = () => {
           <AboutFactsItem>
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
-                <AboutFactsItemImageIcon>{renderIcon('message')}</AboutFactsItemImageIcon>
+                <AboutFactsItemImageIcon>
+                  {renderIcon('time-experience')}
+                </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
             <AboutFactsItemHeading>Более 7 лет опыта</AboutFactsItemHeading>
@@ -34,7 +36,7 @@ const AboutFacts = () => {
               {isVisible ? <AnimatedCount number="7" duration="11" /> : '7'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Уверенно создаю красивые маникюры с 2015 года.
+              Работаю в бьюти индустрии с 2016 года.
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -42,16 +44,16 @@ const AboutFacts = () => {
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
-                  {renderIcon('contactClock')}
+                  {renderIcon('services-experience')}
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>Свыше 1200 счастливых клиентов</AboutFactsItemHeading>
+            <AboutFactsItemHeading>Более 5000 выполненных услуг</AboutFactsItemHeading>
             <AboutFactsItemNumber>
-              {isVisible ? <AnimatedCount number="1200" duration="15" /> : '1200'}
+              {isVisible ? <AnimatedCount number="5000" duration="7" /> : '5000'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Радую своих клиентов и делаю их дни ярче.
+              Успешно провела 5000+ маникюрных процедур.
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -59,16 +61,18 @@ const AboutFacts = () => {
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
-                  {renderIcon('contactAddress')}
+                  {renderIcon('reset-experience')}
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>Более 2000 рабочих часов</AboutFactsItemHeading>
+            <AboutFactsItemHeading>
+              90% клиентов возвращаются после первого визита
+            </AboutFactsItemHeading>
             <AboutFactsItemNumber>
-              {isVisible ? <AnimatedCount number="2000" duration="20" /> : '2000'}
+              {isVisible ? <AnimatedCount number="90" duration="18" /> : '90'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Посвящаю время каждой детали, чтобы достичь идеального результата.
+              Качество и индивидуальный подход – ключевые моменты возврата клиентов.
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -76,16 +80,17 @@ const AboutFacts = () => {
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
-                  {renderIcon('userName')}
+                  {renderIcon('care-experience')}
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>Тысячи ногтей, сотни улыбок</AboutFactsItemHeading>
+            <AboutFactsItemHeading>100% стерильность</AboutFactsItemHeading>
             <AboutFactsItemNumber>
-              {isVisible ? <AnimatedCount number="1000" duration="18" /> : '1000'}+
+              {isVisible ? <AnimatedCount number="100" duration="20" /> : '100'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Моя страсть - создавать красивые ногти и вызывать у вас улыбки.
+              Гарантирую безопасность каждого клиента, используя только стерильные
+              инструменты.
             </AboutFactsItemDescription>
           </AboutFactsItem>
         </AboutFactsList>

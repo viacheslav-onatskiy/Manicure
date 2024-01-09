@@ -57,7 +57,7 @@ export const AboutFactsItemImageIcon = styled.div`
 
 export const AboutFactsItemHeading = styled(Heading4)`
   margin-top: 20px;
-  height: 50px;
+  min-height: 50px;
 `;
 
 export const AboutFactsItemNumber = styled(Heading2)`

@@ -58,7 +58,7 @@ export const AboutPresentTopPictureWrapper = styled.div`
 export const AboutPresentTopPicture = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screenSizes.mobile}) {
     background-position: center;
-    background-image: url('../../images/IMG_7720.jpeg');
+    background-image: url('../../images/IMG_7720.jpg');
     background-position: top -155px right -1px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -76,7 +76,7 @@ export const AboutPresentTopPicture = styled.div`
 `;
 
 export const AboutPresentPicture = styled.div`
-  background-image: url('../../images/IMG_6796.jpeg');
+  background-image: url('../../images/IMG_6796.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 70%;
@@ -95,7 +95,6 @@ export const AboutPresentDescription = styled.div`
   margin-top: 30px;
   font-size: 28px;
   text-align: end;
-  font-style: italic;
 
   @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     text-align: center;
@@ -103,6 +102,11 @@ export const AboutPresentDescription = styled.div`
 
   &.info {
     text-align: justify;
+
+    .about-info_description {
+      margin-top: 20px;
+      font-style: italic;
+    }
 
     @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
       font-size: 15px;

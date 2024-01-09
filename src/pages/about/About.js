@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { images } from '../../components/ImageGallery/ImageGallery.js';
+// import { images } from '../../components/ImageGallery/ImageGallery.js';
 import { renderIcon } from '../../images/svgIcons.js';
 import {
   AboutInstaItem,
@@ -22,8 +22,11 @@ import {
 import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
 import AboutFacts from './AboutFacts/AboutFacts.js';
 import Button from '../../components/atoms/Button/Button.js';
+import useImageLoader from '../../helpers/useImageLoader.js';
 
 const About = () => {
+  const { images } = useImageLoader();
+
   return (
     <>
       <AboutWrapper>
@@ -61,19 +64,17 @@ const About = () => {
           </AboutSectionItem>
 
           <AboutSectionItem>
-            <AboutPresentHeading>Немного о себе</AboutPresentHeading>
-
             <AboutPresentDescription className="info">
-              <Heading2>🌸 Добро пожаловать в мир красоты и ухоженности! 🌸</Heading2>
-              <Heading3>
-                Привет! Меня зовут Яна, и я - профессиональный сертифицированный мастер
-                маникюра с 7 лет опыта. Мое призвание - создавать произведения искусства
-                на ваших ногтях. Я стремлюсь к индивидуальному подходу к каждому клиенту,
-                предоставляя высококачественные услуги и используя только лучшие
-                материалы.
+              <Heading2>Добро пожаловать в мир красоты и ухоженности!</Heading2>
+              <Heading3 className="about-info_description">
+                Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016
+                года. Мое призвание - создавать произведения искусства на ваших ногтях.
+                <br /> Я стремлюсь к индивидуальному подходу к каждому клиенту,
+                предоставляя высококачественные услуги c использованием лучших материалов.
                 <br />
-                С моими услугами ваши руки станут настоящим произведением искусства,
-                отражающим вашу индивидуальность и стиль. <br />
+                Все используемые инструменты проходят тщательную обработку и стерилизацию,
+                чтобы обеспечить вашу безопасность.
+                <br />
                 Давайте вместе создадим неповторимый облик ваших ногтей!
               </Heading3>
             </AboutPresentDescription>
@@ -93,15 +94,15 @@ const About = () => {
 
           <AboutInstaWrapper>
             <AboutInstaList>
-              {images.slice(0, 6).map((image, index) => {
+              {images?.slice(0, 6).map((image, index) => {
                 return (
-                  <AboutInstaItem key={`${image.imageUrl} + index`}>
+                  <AboutInstaItem key={`${image.src} + index`}>
                     <div className="img">
                       <Link target="_blank" to="https://www.instagram.com/yana_nails_/">
                         <AboutInstaPicture
                           alt={image.alt}
                           className={`insta__img-${index}`}
-                          src={image.imageUrl}
+                          src={image.src}
                         />
                         <AboutInstaPictureOverlay className="overlay">
                           <AboutInstagramIcon>
