@@ -12,6 +12,7 @@ import {
 } from './styles';
 import MobileHeader from './MobileNavbar';
 import { useDimension } from '../../helpers/useDimension';
+import { PAGES } from '../../constants';
 
 const Header = () => {
   const { isAuthenticated, logoutUser, user, loading } = useAuth();
@@ -20,12 +21,12 @@ const Header = () => {
   const [visible, setVisible] = useState(true);
 
   const navigationLinks = [
-    { linkTo: '', text: 'HOME', iconName: 'home' },
-    { linkTo: 'about', text: 'ABOUT', iconName: 'about' },
-    { linkTo: 'portfolio', text: 'PORTFOLIO', iconName: 'portfolio' },
-    { linkTo: 'reviews', text: 'REVIEWS', iconName: 'reviews' },
-    { linkTo: 'services', text: 'SERVICES', iconName: 'services' },
-    { linkTo: 'contact', text: 'CONTACT', iconName: 'contact' }
+    { linkTo: PAGES.HOME, text: 'HOME', iconName: 'home' },
+    { linkTo: PAGES.ABOUT, text: 'ABOUT', iconName: 'about' },
+    { linkTo: PAGES.PORTFOLIO, text: 'PORTFOLIO', iconName: 'portfolio' },
+    { linkTo: PAGES.REVIEWS, text: 'REVIEWS', iconName: 'reviews' },
+    { linkTo: PAGES.SERVICES, text: 'SERVICES', iconName: 'services' },
+    { linkTo: PAGES.CONTACT, text: 'CONTACT', iconName: 'contact' }
   ];
 
   const handleScroll = () => {
@@ -74,7 +75,7 @@ const Header = () => {
       ) : (
         <NavigationHeaderWrapper $isVisible={visible}>
           <NavButtons>
-            <NavLogoWrapper to="/" title="Home page">
+            <NavLogoWrapper to={PAGES.HOME} title="Home page">
               <NavLogo />
               <i>YANA</i>
             </NavLogoWrapper>
@@ -102,10 +103,10 @@ const Header = () => {
                 </p>
                 {!isAuthenticated && (
                   <>
-                    <NavigationLink to="/register">
+                    <NavigationLink to={PAGES.REGISTER}>
                       <Button formType="squared">Register</Button>
                     </NavigationLink>
-                    <NavigationLink to="/login">
+                    <NavigationLink to={PAGES.LOGIN}>
                       <Button formType="squared">Login</Button>
                     </NavigationLink>
                   </>

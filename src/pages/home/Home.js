@@ -26,6 +26,7 @@ import { renderIcon } from '../../images/svgIcons';
 import { useDimension } from '../../helpers/useDimension';
 import { useReview } from '../../redux/hooks';
 import Loader from '../../components/Loader/Loader';
+import { PAGES } from '../../constants';
 
 export const Home = () => {
   const { isMobile, isTablet } = useDimension();
@@ -46,12 +47,12 @@ export const Home = () => {
       </ImageMiddleTextWrapper>
 
       <ImageButtonsWrapper>
-        <Link to="/services">
+        <Link to={PAGES.SERVICES}>
           <Button size="large" variant="outlined">
             SERVICES
           </Button>
         </Link>
-        <Link to="/services">
+        <Link to={PAGES.APPOINTMENT}>
           <Button size="large" variant="outlined">
             MAKE AN APPOINTMENT
           </Button>
@@ -88,7 +89,7 @@ export const Home = () => {
               индивидуальность и красоту.
             </p>
 
-            <Link to="/about" className="about__button">
+            <Link to={PAGES.ABOUT} className="about__button">
               <Button size="large" variant="outlined">
                 Read more
               </Button>
@@ -111,22 +112,22 @@ export const Home = () => {
           <div className="container">
             <Heading2>Преимущества работы со мной</Heading2>
             <AdvantageCartsWrapper>
-              <AdvantageCart to="/about">
+              <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('nail')}</AdvantageIcon>
                 <AdvantageCartDescription>Украинское качество</AdvantageCartDescription>
               </AdvantageCart>
 
-              <AdvantageCart to="/about">
+              <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('skin-care-service')}</AdvantageIcon>
                 <AdvantageCartDescription>Индивидуальный подход</AdvantageCartDescription>
               </AdvantageCart>
 
-              <AdvantageCart to="/about">
+              <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('coffee')}</AdvantageIcon>
                 <AdvantageCartDescription>Уютная атмосфера</AdvantageCartDescription>
               </AdvantageCart>
 
-              <AdvantageCart to="/about">
+              <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('health-check')}</AdvantageIcon>
                 <AdvantageCartDescription>Стерильный инструмент</AdvantageCartDescription>
               </AdvantageCart>
@@ -141,7 +142,7 @@ export const Home = () => {
 
           <HomeReviews />
 
-          <Link to="/reviews" className="all-reviews-btn">
+          <Link to={PAGES.REVIEWS} className="all-reviews-btn">
             <Button size="large" variant="primary" formType="squared">
               See all reviews
             </Button>

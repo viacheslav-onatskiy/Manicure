@@ -13,6 +13,7 @@ import {
   FooterWrapper
 } from './styles';
 import Button from '../atoms/Button';
+import { PAGES, REDIRECTS } from '../../constants';
 
 const Footer = () => {
   return (
@@ -24,7 +25,7 @@ const Footer = () => {
               <ContactLink
                 className="footer__link"
                 target="_blank"
-                href="https://www.google.com/maps/place/3355+North+Rd+%23265,+Burnaby,+BC+V3J+7T9/@49.253893,-122.893541,16z/data=!4m6!3m5!1s0x54867839d8143fd1:0xbdf0efdc7768a81a!8m2!3d49.2538925!4d-122.893541!16s%2Fg%2F11kqc223mh?hl=ru&entry=ttu"
+                href={REDIRECTS.GOOGLE_MAP}
                 rel="noreferrer"
                 title="Find me on Google maps"
               >
@@ -39,7 +40,7 @@ const Footer = () => {
               <ContactLink
                 className="footer__link"
                 target="_blank"
-                href="mailto:email@example.com"
+                href={REDIRECTS.FACEBOOK}
                 rel="noreferrer"
                 title="My Facebook link"
               >
@@ -49,9 +50,7 @@ const Footer = () => {
             <ContactDescription>
               <ContactLink
                 className="footer__link"
-                target="_blank"
-                href="mailto:email@example.com"
-                rel="noreferrer"
+                href={`mailto:${REDIRECTS.GMAIL}`}
                 title="Text me a message"
               >
                 {renderIcon('contactEmail')}
@@ -62,7 +61,7 @@ const Footer = () => {
           <FooterLink>
             <ContactDescription>
               <ContactLink
-                href="tel:+1672-272-14-17"
+                href={`tel:${REDIRECTS.PHONE_NUMBER}`}
                 title="Call me"
                 className="footer__link"
               >
@@ -76,29 +75,29 @@ const Footer = () => {
         <FooterLine />
 
         <FooterNavList>
-          <FooterNavLink to="/">
+          <FooterNavLink to={PAGES.HOME}>
             <Button>HOME</Button>
           </FooterNavLink>
-          <FooterNavLink to="/about">
+          <FooterNavLink to={PAGES.ABOUT}>
             <Button>ABOUT</Button>
           </FooterNavLink>
-          <FooterNavLink to="/portfolio">
+          <FooterNavLink to={PAGES.PORTFOLIO}>
             <Button>PORTFOLIO</Button>
           </FooterNavLink>
-          <FooterNavLink to="/reviews">
+          <FooterNavLink to={PAGES.REVIEWS}>
             <Button>REVIEWS</Button>
           </FooterNavLink>
-          <FooterNavLink to="/services">
+          <FooterNavLink to={PAGES.SERVICES}>
             <Button>SERVICES</Button>
           </FooterNavLink>
-          <FooterNavLink to="/contact">
+          <FooterNavLink to={PAGES.CONTACT}>
             <Button>CONTACT</Button>
           </FooterNavLink>
         </FooterNavList>
       </FooterWrapper>
       <FooterRightsWrapper>
         <FooterRights className="container">
-          Yana Nails © 2023 All Rights Reserved. Design by Viacheslav Onatskyi.
+          Yana Nails © 2024 All Rights Reserved. Design by Viacheslav Onatskyi.
         </FooterRights>
       </FooterRightsWrapper>
     </FooterSection>

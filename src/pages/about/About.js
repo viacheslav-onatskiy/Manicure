@@ -23,6 +23,7 @@ import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js'
 import AboutFacts from './AboutFacts/AboutFacts.js';
 import Button from '../../components/atoms/Button/Button.js';
 import useImageLoader from '../../helpers/useImageLoader.js';
+import { REDIRECTS } from '../../constants.js';
 
 const About = () => {
   const { images } = useImageLoader();
@@ -98,7 +99,7 @@ const About = () => {
                 return (
                   <AboutInstaItem key={`${image.src} + index`}>
                     <div className="img">
-                      <Link target="_blank" to="https://www.instagram.com/yana_nails_/">
+                      <Link target="_blank" to={REDIRECTS.INSTAGRAM}>
                         <AboutInstaPicture
                           alt={image.alt}
                           className={`insta__img-${index}`}

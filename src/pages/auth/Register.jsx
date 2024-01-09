@@ -7,6 +7,7 @@ import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
 import { PageHeading } from '../../components/common/styles';
 import Input from '../../components/Input';
 import Button from '../../components/atoms/Button';
+import { PAGES } from '../../constants';
 
 const Register = () => {
   const { registerUser, isAuthenticated } = useAuth();
@@ -32,7 +33,7 @@ const Register = () => {
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to={PAGES.HOME} />;
   }
 
   return (
@@ -104,7 +105,7 @@ const Register = () => {
 
           <p className="auth-redirect-paragraph">
             Already have an account?{' '}
-            <Link to="/login">
+            <Link to={PAGES.LOGIN}>
               <Button>Sign In</Button>
             </Link>
           </p>

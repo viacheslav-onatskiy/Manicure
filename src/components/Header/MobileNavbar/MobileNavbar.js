@@ -4,6 +4,7 @@ import { renderIcon } from '../../../images/svgIcons';
 import { HeaderUserName, NavLogo, NavLogoWrapper, NavigationLink } from '../styles';
 import Button from '../../atoms/Button';
 import { Heading5 } from '../../common/styles';
+import { PAGES, REDIRECTS } from '../../../constants';
 
 const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -64,7 +65,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
           </MobileNavbar.HamburgerButton>
         </div>
         <div>
-          <NavLogoWrapper to="/" title="Home page">
+          <NavLogoWrapper to={PAGES.HOME} title="Home page">
             <NavLogo />
             <i>YANA</i>
           </NavLogoWrapper>
@@ -106,7 +107,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
           </p>
           {!isAuthenticated && (
             <>
-              <NavigationLink to="/register">
+              <NavigationLink to={PAGES.REGISTER}>
                 <Button
                   formType="filled"
                   onClick={() => {
@@ -117,7 +118,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
                   Register
                 </Button>
               </NavigationLink>
-              <NavigationLink to="/login">
+              <NavigationLink to={PAGES.LOGIN}>
                 <Button
                   formType="filled"
                   onClick={() => {
@@ -153,7 +154,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
         <MobileNavbar.ExtraSidebarItems>
           <MobileNavbar.ExtraSidebarItem>
             <Heading5>Call me: </Heading5>
-            <MobileNavbar.ContactLink href="tel:+1672-272-14-17">
+            <MobileNavbar.ContactLink href={`tel:${REDIRECTS.PHONE_NUMBER}`}>
               <Button>+1-672-272-14-17</Button>
             </MobileNavbar.ContactLink>
           </MobileNavbar.ExtraSidebarItem>
@@ -165,23 +166,19 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
           <MobileNavbar.ExtraSidebarItem className="extra-links">
             <MobileNavbar.ContactLink
               target="_blank"
-              href="mailto:email@example.com"
+              href={REDIRECTS.FACEBOOK}
               rel="noreferrer"
               title="My Facebook link"
             >
               {renderIcon('facebook')}
             </MobileNavbar.ContactLink>
-            <MobileNavbar.ContactLink
-              target="_blank"
-              href="mailto:email@example.com"
-              rel="noreferrer"
-            >
+            <MobileNavbar.ContactLink href={`mailto:${REDIRECTS.GMAIL}`}>
               {renderIcon('contactEmail')}
             </MobileNavbar.ContactLink>
             <MobileNavbar.ContactLink
               target="_blank"
               rel="noreferrer"
-              href="https://www.instagram.com/yana_nails_/"
+              href={REDIRECTS.INSTAGRAM}
             >
               {renderIcon('instagram')}
             </MobileNavbar.ContactLink>
