@@ -1,58 +1,26 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { PaginationButton, PaginationWrapper } from './styles';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useDimension } from '../../../helpers/useDimension';
+import { PaginationButton, PaginationWrapper } from './styles';
 
-const Pagination = ({
-  items,
-  pageSize,
-  initialPage = 1,
-  onChangePage,
-  setActivePage,
-  activePage,
-  paginationReset,
-  setPaginationReset
-}) => {
-  const [pagerState, setPagerState] = useState({});
+const Pagination = React.memo(({ totalItems, getItems }) => {
   const { isTablet } = useDimension();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [pagerState, setPagerState] = useState({});
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const pageSize = Number(searchParams.get('pageSize')) || 10;
+  const { pages, totalPages } = pagerState;
 
-  const setPage = useCallback(
-    (page, size) => {
-      const pager = getPager(items.length, page, size);
-
-      if (page < 1 || page > pager.totalPages) {
-        return;
-      }
-      const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-      setActivePage(page);
-      setPagerState(pager);
-
-      onChangePage(pageOfItems);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items]
-  );
-
-  useEffect(() => {
-    if (items && items.length) {
-      if (paginationReset) {
-        setPage(initialPage, pageSize);
-      } else {
-        setPage(activePage, pageSize);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialPage, items, pageSize, setPage]);
-
-  const getPager = (totalItems, currentPage = 1, pageSize) => {
+  const getPager = () => {
     const totalPages = Math.ceil(totalItems / pageSize);
 
     let startPage, endPage;
     if (totalPages <= 6) {
-      // less than 10 total pages so show all
+      // less than 6 total pages so show all
       startPage = 1;
       endPage = totalPages;
     } else {
-      // more than 10 total pages so calculate start and end pages
+      // more than 6 total pages so calculate start and end pages
       if (currentPage <= 4) {
         startPage = 1;
         endPage = 7;
@@ -101,30 +69,45 @@ const Pagination = ({
     });
 
     return {
-      totalItems: totalItems,
-      currentPage: currentPage,
-      pageSize: pageSize,
-      totalPages: totalPages,
-      startPage: startPage,
-      endPage: endPage,
-      startIndex: startIndex,
-      endIndex: endIndex,
-      pages: pages
+      totalItems,
+      currentPage,
+      totalPages,
+      startPage,
+      endPage,
+      startIndex,
+      endIndex,
+      pages
     };
   };
 
-  if (!pagerState.pages || pagerState.pages.length <= 1) {
+  const isActivePage = (page) => page.value && currentPage === page.page;
+
+  const getInitialPages = () => {
+    setSearchParams({ page: currentPage, pageSize });
+    const pager = getPager(currentPage);
+
+    setPagerState(pager);
+  };
+
+  const setPage = (page) => {
+    setSearchParams({ page, pageSize });
+    const pager = getPager(page);
+
+    if (page < 1 || page > pager.totalItems) {
+      return;
+    }
+    setPagerState(pager);
+    getItems(page, pageSize);
+  };
+
+  useEffect(() => {
+    getInitialPages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!pages || pages.length <= 1) {
     return null;
   }
-
-  const isActivePage = (page) => {
-    if (page.value) {
-      if (pagerState.currentPage === page.page) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   return (
     <PaginationWrapper>
@@ -132,7 +115,8 @@ const Pagination = ({
         <>
           <PaginationButton
             variant="outlined"
-            onClick={() => setPage(1, pagerState.pageSize)}
+            onClick={() => setPage(1)}
+            disabled={currentPage === 1}
           >
             First
           </PaginationButton>
@@ -140,24 +124,23 @@ const Pagination = ({
           <PaginationButton
             variant="outlined"
             onClick={() => {
-              setPaginationReset(true);
-              setPage(pagerState.currentPage - 1, pagerState.pageSize);
+              setPage(currentPage - 1);
             }}
+            disabled={currentPage === 1}
           >
             &#11207;
           </PaginationButton>
         </>
       )}
-      {pagerState.pages.map((page, i) => (
+
+      {pagerState?.pages?.map((page, i) => (
         <PaginationButton
           key={`page-${i}`}
           onClick={() => {
-            setPaginationReset(true);
-            page.value && setPage(page.page, pagerState.pageSize);
+            page.value && setPage(page.page);
           }}
-          className={`${!page.value ? 'disabled' : ''} ${
-            isActivePage(page) ? 'active' : ''
-          }`}
+          className={`${!page.value ? 'disabled' : ''}
+          ${isActivePage(page) ? 'active' : ''}`}
           variant={page.value ? 'outlined' : ''}
         >
           {page.value ? page.page : '...'}
@@ -169,15 +152,16 @@ const Pagination = ({
           <PaginationButton
             variant="outlined"
             onClick={() => {
-              setPaginationReset(true);
-              setPage(pagerState.currentPage + 1, pagerState.pageSize);
+              setPage(currentPage + 1);
             }}
+            disabled={currentPage === totalPages}
           >
             &#11208;
           </PaginationButton>
           <PaginationButton
             variant="outlined"
-            onClick={() => setPage(pagerState.totalPages, pagerState.pageSize)}
+            onClick={() => setPage(totalPages)}
+            disabled={currentPage === totalPages}
           >
             Last
           </PaginationButton>
@@ -185,6 +169,6 @@ const Pagination = ({
       )}
     </PaginationWrapper>
   );
-};
+});
 
 export default Pagination;

@@ -1,25 +1,27 @@
 import {
-  GET_REVIEWS,
-  GET_REVIEWS_SUCCESS,
-  GET_REVIEWS_ERROR,
-  GET_REVIEW,
-  GET_REVIEW_SUCCESS,
-  GET_REVIEW_ERROR,
   ADD_REVIEW,
-  ADD_REVIEW_SUCCESS,
   ADD_REVIEW_ERROR,
+  ADD_REVIEW_SUCCESS,
+  CLEAR_PROFILE,
   DELETE_REVIEW,
-  DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_ERROR,
+  DELETE_REVIEW_SUCCESS,
+  GET_REVIEW,
+  GET_REVIEWS,
+  GET_REVIEWS_ERROR,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEW_ERROR,
+  GET_REVIEW_SUCCESS,
   UPDATE_REVIEW,
-  UPDATE_REVIEW_SUCCESS,
   UPDATE_REVIEW_ERROR,
-  CLEAR_PROFILE
+  UPDATE_REVIEW_SUCCESS
 } from './../actions/types';
 
 const initialState = {
   reviews: [],
   review: {},
+  totalPages: 0,
+  totalItems: 0,
   loading: false,
   error: {}
 };
@@ -46,7 +48,9 @@ const reviewReducer = (state = initialState, action) => {
     case GET_REVIEWS_SUCCESS:
       return {
         ...state,
-        reviews: payload,
+        reviews: payload.reviews,
+        totalPages: payload.totalPages,
+        totalItems: payload.totalItems,
         loading: false
       };
     case GET_REVIEW_SUCCESS:

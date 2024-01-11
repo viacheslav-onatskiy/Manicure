@@ -1,30 +1,34 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Modal from '../../components/Modal/index.js';
-import { Heading2, PageHeading } from '../../components/common/styles.js';
-import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
-import { useAuth, usePagination, useReview } from '../../redux/hooks.js';
-import Review from '../../components/Reviews/Review/Review.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
-import Pagination from '../../components/atoms/Pagination/Pagination.js';
+import Modal from '../../components/Modal/index.js';
+import Review from '../../components/Reviews/Review/Review.jsx';
 import Button from '../../components/atoms/Button';
+import Pagination from '../../components/atoms/Pagination/Pagination.js';
+import { Heading2, PageHeading } from '../../components/common/styles.js';
 import { useDimension } from '../../helpers/useDimension.js';
+import { useAuth, useReview } from '../../redux/hooks.js';
+import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
 
 const Reviews = () => {
-  const { review, reviews, addReview, getReviews, updateReview, deleteReview, loading } =
-    useReview();
+  const [searchParams] = useSearchParams();
+  const currentPage = searchParams.get('page') || 1;
+  const pageSize = searchParams.get('pageSize') || 10;
+
+  const {
+    review,
+    reviews,
+    totalItems,
+    addReview,
+    getReviews,
+    updateReview,
+    deleteReview,
+    loading
+  } = useReview();
   const { user, isAuthenticated, token } = useAuth();
   const { isTablet } = useDimension();
-  const {
-    activePage,
-    pageSize,
-    pageOfItems,
-    setPageItems,
-    setPage,
-    pageReset,
-    setPageReset
-  } = usePagination();
 
   const [modal, setModal] = useState({
     isOpen: false,
@@ -104,9 +108,9 @@ const Reviews = () => {
 
   useEffect(() => {
     if (!reviews.length) {
-      getReviews();
+      getReviews(currentPage, pageSize);
     }
-  }, [getReviews, reviews.length]);
+  }, [currentPage, getReviews, pageSize, reviews.length]);
 
   if (loading) {
     return <Loader />;
@@ -135,7 +139,7 @@ const Reviews = () => {
             </Heading2>
           ) : (
             <>
-              {pageOfItems.map((review) => (
+              {reviews.map((review) => (
                 <Review
                   key={review._id}
                   review={review}
@@ -148,12 +152,8 @@ const Reviews = () => {
               <Pagination
                 id={'reviews-pagination'}
                 items={reviews}
-                onChangePage={setPageItems}
-                setActivePage={setPage}
-                pageSize={pageSize}
-                activePage={activePage}
-                paginationReset={pageReset}
-                setPaginationReset={setPageReset}
+                totalItems={totalItems}
+                getItems={getReviews}
               />
             </>
           )}

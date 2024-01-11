@@ -1,43 +1,45 @@
+import { toast } from 'react-toastify';
 import axiosInstance from '../../helpers/axios';
 import {
-  GET_REVIEWS,
-  GET_REVIEWS_SUCCESS,
-  GET_REVIEWS_ERROR,
-  GET_REVIEW,
-  GET_REVIEW_SUCCESS,
-  GET_REVIEW_ERROR,
   ADD_REVIEW,
-  ADD_REVIEW_SUCCESS,
   ADD_REVIEW_ERROR,
+  ADD_REVIEW_SUCCESS,
   DELETE_REVIEW,
-  DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_ERROR,
+  DELETE_REVIEW_SUCCESS,
+  GET_REVIEW,
+  GET_REVIEWS,
+  GET_REVIEWS_ERROR,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEW_ERROR,
+  GET_REVIEW_SUCCESS,
   UPDATE_REVIEW,
-  UPDATE_REVIEW_SUCCESS,
-  UPDATE_REVIEW_ERROR
+  UPDATE_REVIEW_ERROR,
+  UPDATE_REVIEW_SUCCESS
 } from './types';
-import { toast } from 'react-toastify';
 
 // Get All reviews
-export const getReviews = () => async (dispatch) => {
-  try {
-    // dispatch(loadUser());
-    dispatch({
-      type: GET_REVIEWS
-    });
-    const res = await axiosInstance.get('/reviews');
+export const getReviews =
+  (page = 1, pageSize = 10) =>
+  async (dispatch) => {
+    try {
+      // dispatch(loadUser());
+      dispatch({
+        type: GET_REVIEWS
+      });
+      const res = await axiosInstance.get(`/reviews?page=${page}&pageSize=${pageSize}`);
 
-    dispatch({
-      type: GET_REVIEWS_SUCCESS,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: GET_REVIEWS_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
+      dispatch({
+        type: GET_REVIEWS_SUCCESS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_REVIEWS_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  };
 
 // Get Review
 export const getReview = (id) => async (dispatch) => {

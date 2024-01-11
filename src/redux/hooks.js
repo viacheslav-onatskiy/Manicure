@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
-import { useDispatch, shallowEqual, useSelector } from 'react-redux';
-import { loadUser, register, login, logout } from './actions/auth';
-import {
-  getReview,
-  addReview,
-  deleteReview,
-  updateReview,
-  getReviews
-} from './actions/review';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { loadUser, login, logout, register } from './actions/auth';
 import {
   setPageAction,
   setPageItemsAction,
   setPageResetAction,
   setPageSizeAction
 } from './actions/pagination';
+import {
+  addReview,
+  deleteReview,
+  getReview,
+  getReviews,
+  updateReview
+} from './actions/review';
 
 export function useAuth() {
   const dispatch = useDispatch();
@@ -68,10 +68,12 @@ export function useAuth() {
 
 export function useReview() {
   const dispatch = useDispatch();
-  const { reviews, review, loading, error } = useSelector(
+  const { reviews, review, totalPages, totalItems, loading, error } = useSelector(
     (state) => ({
       reviews: state.review.reviews,
       review: state.review.review,
+      totalPages: state.review.totalPages,
+      totalItems: state.review.totalItems,
       loading: state.review.loading,
       error: state.review.error
     }),
@@ -118,6 +120,8 @@ export function useReview() {
     review,
     loading,
     error,
+    totalItems,
+    totalPages,
     getReviews: boundGetReviews,
     getReview: boundGetReview,
     addReview: boundAddReview,
