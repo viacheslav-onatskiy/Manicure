@@ -5,8 +5,8 @@ import { renderIcon } from '../../../images/svgIcons';
 import { useReview } from '../../../redux/hooks';
 import {
   HomeReviewsSlide,
-  HomeReviewsSlideWrapper,
-  HomeReviewsSlideDescription
+  HomeReviewsSlideDescription,
+  HomeReviewsSlideWrapper
 } from './styles';
 
 const HomeReviews = () => {

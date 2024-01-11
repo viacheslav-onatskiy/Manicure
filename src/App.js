@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import setAuthToken from './helpers/setAuthToken.js';
-import store from './redux/store';
 import { loadUser } from './redux/actions/auth.js';
+import store from './redux/store';
 
-import Contact from './pages/contact/Contact.js';
-import About from './pages/about/About.js';
-import Layout from './components/Layout/Layout';
-import { Home } from './pages/home/Home.js';
-import Services from './components/Services';
-import Reviews from './pages/reviews/index.js';
-import Register from './pages/auth/Register.jsx';
-import Login from './pages/auth/Login.jsx';
-import NotFound from './pages/NotFound.js';
-import Portfolio from './pages/portfolio/Portfolio.jsx';
 import { Theme } from './ThemeContext.js';
+import Layout from './components/Layout/Layout';
+import Services from './components/Services';
 import { PAGES } from './constants.js';
+import NotFound from './pages/NotFound';
+import About from './pages/about/About.js';
+import Login from './pages/auth/Login.jsx';
+import Register from './pages/auth/Register.jsx';
+import Contact from './pages/contact/Contact.js';
+import { Home } from './pages/home/Home.js';
+import Portfolio from './pages/portfolio/Portfolio.jsx';
+import Reviews from './pages/reviews/index.js';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
