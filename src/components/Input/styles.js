@@ -11,7 +11,8 @@ export const InputWrapper = styled.div`
 
   & .field__wrapper {
     position: relative;
-    background: linear-gradient(21deg, #10abff, #1beabd);
+    background: ${(props) =>
+      props.$error ? 'red' : 'linear-gradient(21deg, #10abff, #1beabd)'};
 
     // the width of the input border
     padding: 1px;
@@ -60,11 +61,16 @@ export const InputWrapper = styled.div`
       pointer-events: none;
       border: none;
 
-      box-shadow:
-        inset 0 0 0 3px #fff,
+      box-shadow: ${(props) =>
+        props.$error
+          ? `inset 0 0 0 3px #fff,
+        0 0 0 4px #fff,
+        3px -3px 10px orangered,
+        -3px 3px 10px red`
+          : `inset 0 0 0 3px #fff,
         0 0 0 4px #fff,
         3px -3px 10px #1beabd,
-        -3px 3px 10px #10abff;
+        -3px 3px 10px #10abff`};
     }
   }
 `;

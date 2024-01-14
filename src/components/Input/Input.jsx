@@ -13,10 +13,12 @@ export const Input = ({
   label = '',
   type = 'text',
   placeholder = '',
-  disabled = false
+  disabled = false,
+  required = false,
+  error
 }) => {
   return (
-    <InputWrapper>
+    <InputWrapper $error={error}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <div className="field__wrapper">
         <InputStyle
@@ -30,7 +32,9 @@ export const Input = ({
           onClick={onClick}
           onBlur={onBlur}
           onKeyDown={onKeyDown}
+          required={required}
           $iconType={iconType}
+          $error={error}
         />
         <span className="scaled__field" />
         {iconType && <InputIcon>{renderIcon(iconType)}</InputIcon>}

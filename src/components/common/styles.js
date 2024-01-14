@@ -59,6 +59,10 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
+  .toast-errors {
+    white-space : pre-line;
+  }
   }
 
   .container {

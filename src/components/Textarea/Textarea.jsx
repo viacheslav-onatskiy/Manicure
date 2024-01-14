@@ -13,10 +13,12 @@ export const Textarea = ({
   rowsNumber = 3,
   type = 'text',
   placeholder = '',
-  disabled = false
+  disabled = false,
+  required = false,
+  error
 }) => {
   return (
-    <TextareaWrapper>
+    <TextareaWrapper $error={error}>
       {label && <TextareaLabel htmlFor={id}>{label}</TextareaLabel>}
       <div className="field__wrapper">
         <TextareaStyle
@@ -30,7 +32,9 @@ export const Textarea = ({
           onBlur={onBlur}
           onKeyDown={onKeyDown}
           rows={rowsNumber}
+          $required={required}
           $iconType={iconType}
+          $error={error}
         />
         <span className="scaled__field" />
         {iconType && <TextareaIcon>{renderIcon(iconType)}</TextareaIcon>}
