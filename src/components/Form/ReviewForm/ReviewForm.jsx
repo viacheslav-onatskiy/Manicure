@@ -1,11 +1,13 @@
-import { StyledAlert, StyledForm } from './styles';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { useDimension } from '../../../helpers/useDimension';
 import StarRating from '../../StarRating';
 import Textarea from '../../Textarea';
 import Button from '../../atoms/Button';
-import { useDimension } from '../../../helpers/useDimension';
-import { toast } from 'react-toastify';
+import { StyledAlert, StyledForm } from './styles';
 
 const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
+  const { t } = useTranslation();
   const { isTablet } = useDimension();
   const { description, rating, isDescriptionInvalid } = formData;
   const toastId = 'custom-id-toastify';
@@ -14,7 +16,7 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
     const inputValue = event.target.value;
 
     if (inputValue.length >= 400) {
-      toast('Max length is 400 symbols', { toastId });
+      toast(t('common.maxLength', { count: 400 }), { toastId });
       return;
     }
 
@@ -27,9 +29,9 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
         value={description}
         onChange={handleDescription}
         rowsNumber={isTablet ? '7' : '5'}
-        placeholder="Description"
+        placeholder={t('modals.description')}
       />
-      {isDescriptionInvalid && <StyledAlert>Please fill description.</StyledAlert>}
+      {isDescriptionInvalid && <StyledAlert>{t('modals.fillDescription')}</StyledAlert>}
 
       <StarRating
         className="modal__rating"
@@ -38,7 +40,7 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
       />
 
       <Button className="modal__button" size="large" variant="outlined" type="submit">
-        {modalType === 'Add' ? 'Leave review' : 'Update review'}
+        {modalType === 'Add' ? t('reviews.leaveReview') : t('reviews.updateReview')}
       </Button>
     </StyledForm>
   );

@@ -66,6 +66,12 @@ export const FooterLinkList = styled.ul`
 
 export const FooterLink = styled.li`
   color: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    .footer__link {
+      font-size: 16px;
+    }
+  }
 `;
 
 export const FooterNavList = styled.nav`
@@ -75,6 +81,7 @@ export const FooterNavList = styled.nav`
 
   @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 
@@ -113,6 +120,12 @@ export const FooterNavLink = styled(Link)`
   @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
     width: 30%;
     text-align: center;
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    button {
+      padding: 5px;
+    }
   }
 `;
 

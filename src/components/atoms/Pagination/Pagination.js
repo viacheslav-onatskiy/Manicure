@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { useDimension } from '../../../helpers/useDimension';
 import { PaginationButton, PaginationWrapper } from './styles';
 
 const Pagination = React.memo(({ totalItems, getItems }) => {
+  const { t } = useTranslation();
   const { isTablet } = useDimension();
   const [searchParams, setSearchParams] = useSearchParams();
   const [pagerState, setPagerState] = useState({});
@@ -118,7 +120,7 @@ const Pagination = React.memo(({ totalItems, getItems }) => {
             onClick={() => setPage(1)}
             disabled={currentPage === 1}
           >
-            First
+            {t('pagination.first')}
           </PaginationButton>
 
           <PaginationButton
@@ -163,7 +165,7 @@ const Pagination = React.memo(({ totalItems, getItems }) => {
             onClick={() => setPage(totalPages)}
             disabled={currentPage === totalPages}
           >
-            Last
+            {t('pagination.last')}
           </PaginationButton>
         </>
       )}

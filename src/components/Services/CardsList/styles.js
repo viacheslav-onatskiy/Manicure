@@ -10,7 +10,6 @@ export const CardsListWrapper = styled.div`
 
 export const CardItemWrapper = styled.div`
   width: calc(100% / 3);
-  padding: 40px 32px;
   position: relative;
   transition: transform 0.2s ease-in-out;
 
@@ -37,12 +36,10 @@ export const CardItemWrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     width: calc(100% / 2);
-    padding: 30px 22px;
   }
 
   @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
     width: 100%;
-    padding: 20px 15px;
     border-right: 1px solid transparent;
   }
 
@@ -65,6 +62,15 @@ export const CardItem = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 0 0 auto;
+  padding: 40px 32px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 30px 22px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    padding: 20px 15px;
+  }
 `;
 
 export const CardItemImage = styled.div`

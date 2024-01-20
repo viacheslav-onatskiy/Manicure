@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const AboutWrapper = styled.div``;
+export const AboutWrapper = styled.div`
+  white-space: pre-line;
+`;
 
 export const AboutTopSectionWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary5};
@@ -18,6 +20,10 @@ export const AboutSection = styled.div`
   gap: 35px;
   padding: 35px 0;
   color: ${({ theme }) => theme.colors.dark};
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+    padding: 15px 0;
+  }
 
   &.about-me {
     @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
@@ -88,6 +94,11 @@ export const AboutPresentHeading = styled.div`
   font-size: 48px;
   text-align: center;
   margin-top: 25px;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    font-size: 36px;
+    margin-top: 0;
+  }
 `;
 
 export const AboutPresentDescription = styled.div`
@@ -95,9 +106,11 @@ export const AboutPresentDescription = styled.div`
   margin-top: 30px;
   font-size: 28px;
   text-align: end;
+  font-style: italic;
 
   @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     text-align: center;
+    margin-top: 10px;
   }
 
   &.info {
@@ -136,6 +149,10 @@ export const AboutPresentButtonWrapper = styled.div`
   margin: 40px 0 0;
   text-align: center;
 
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    margin: 15px 0 0;
+  }
+
   .presentation__button {
     font-size: 25px;
   }
@@ -143,6 +160,10 @@ export const AboutPresentButtonWrapper = styled.div`
 
 export const AboutInstaWrapper = styled.div`
   margin-top: 20px;
+
+  .about-gratitude {
+    margin-top: 15px;
+  }
 `;
 
 export const AboutInstaList = styled.div`

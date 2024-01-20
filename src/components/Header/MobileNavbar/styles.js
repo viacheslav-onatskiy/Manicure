@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { NavigationHeaderWrapper, NavigationLink } from '../styles';
 import Button from '../../atoms/Button';
+import { NavigationHeaderWrapper, NavigationLink } from '../styles';
 
 const mobileNavButtonStyles = css`
   padding: 10px;
@@ -250,12 +250,17 @@ export const MobileNavbar = {
     transition: 0.5s ease-in-out;
 
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.15);
+
+    & .header-language {
+      align-self: center;
+    }
   `,
 
   ExtraSidebarItems: styled.div`
     display: flex;
     flex: 1;
     padding: 10px;
+    gap: 5px;
     flex-direction: column;
   `,
 

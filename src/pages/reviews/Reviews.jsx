@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
@@ -14,6 +15,8 @@ import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './s
 
 const Reviews = () => {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
+
   const currentPage = searchParams.get('page') || 1;
   const pageSize = searchParams.get('pageSize') || 10;
 
@@ -47,7 +50,7 @@ const Reviews = () => {
     e.preventDefault();
 
     if (!token || !isAuthenticated) {
-      toast.warning('Please log in to leave a review');
+      toast.warning(t('toast.loginToLeaveReview'));
       setFormData({ isDescriptionInvalid: false });
       clearModalData();
       closeModal();
@@ -82,7 +85,7 @@ const Reviews = () => {
 
   const openModal = (type = 'Add', id = 'reviews-modal') => {
     if (!isAuthenticated) {
-      toast.warning('Please log in to leave review');
+      toast.warning(t('modals.logInToLeaveReview'));
       return;
     }
     setModal({ isOpen: true, type: type, id });
@@ -118,7 +121,7 @@ const Reviews = () => {
 
   return (
     <>
-      <PageHeading>Reviews</PageHeading>
+      <PageHeading>{t('pages.reviews')}</PageHeading>
 
       <ReviewsWrapper>
         <ReviewsContentWrapper className={isTablet ? 'container' : ''}>
@@ -129,14 +132,12 @@ const Reviews = () => {
               formType="rounded2"
               onClick={() => openModal()}
             >
-              Leave review
+              {t('reviews.leaveReview')}
             </Button>
           </ReviewsButtonWrapper>
 
           {reviews && reviews.length === 0 && !loading ? (
-            <Heading2>
-              You don't have any reviews. Click the button to add a review!
-            </Heading2>
+            <Heading2>{t('reviews.noReviews')}</Heading2>
           ) : (
             <>
               {reviews.map((review) => (

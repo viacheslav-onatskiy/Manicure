@@ -1,5 +1,9 @@
+import { useTranslation } from 'react-i18next';
+import { REDIRECTS } from '../../constants';
+import useNavigationLinks from '../../helpers/useNavigationLinks';
 import { renderIcon } from '../../images/svgIcons';
 import { ContactDescription, ContactIcon, ContactLink } from '../../pages/contact/styles';
+import Button from '../atoms/Button';
 import {
   FooterIconsLinkList,
   FooterLine,
@@ -12,10 +16,11 @@ import {
   FooterSection,
   FooterWrapper
 } from './styles';
-import Button from '../atoms/Button';
-import { PAGES, REDIRECTS } from '../../constants';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const { navigationLinks } = useNavigationLinks();
+
   return (
     <FooterSection>
       <FooterWrapper className="container">
@@ -66,7 +71,7 @@ const Footer = () => {
                 className="footer__link"
               >
                 <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
-                Call me: +1-672-272-14-17
+                {t('common.callMe')}: +1-672-272-14-17
               </ContactLink>
             </ContactDescription>
           </FooterLink>
@@ -75,29 +80,17 @@ const Footer = () => {
         <FooterLine />
 
         <FooterNavList>
-          <FooterNavLink to={PAGES.HOME}>
-            <Button>HOME</Button>
-          </FooterNavLink>
-          <FooterNavLink to={PAGES.ABOUT}>
-            <Button>ABOUT</Button>
-          </FooterNavLink>
-          <FooterNavLink to={PAGES.PORTFOLIO}>
-            <Button>PORTFOLIO</Button>
-          </FooterNavLink>
-          <FooterNavLink to={PAGES.REVIEWS}>
-            <Button>REVIEWS</Button>
-          </FooterNavLink>
-          <FooterNavLink to={PAGES.SERVICES}>
-            <Button>SERVICES</Button>
-          </FooterNavLink>
-          <FooterNavLink to={PAGES.CONTACT}>
-            <Button>CONTACT</Button>
-          </FooterNavLink>
+          {navigationLinks.map((link, index) => (
+            <FooterNavLink to={link.linkTo} key={link.linkTo + index}>
+              <Button>{link.text}</Button>
+            </FooterNavLink>
+          ))}
         </FooterNavList>
       </FooterWrapper>
       <FooterRightsWrapper>
         <FooterRights className="container">
-          Yana Nails © 2024 All Rights Reserved. Design by Viacheslav Onatskyi.
+          Yana Nails © {new Date().getFullYear()} All Rights Reserved. Design by
+          Viacheslav Onatskyi.
         </FooterRights>
       </FooterRightsWrapper>
     </FooterSection>

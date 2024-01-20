@@ -1,6 +1,9 @@
 import { useRef } from 'react';
-import { AboutSection } from '../styles.js';
+import { useTranslation } from 'react-i18next';
+import AnimatedCount from '../../../components/AnimatedCount/AnimatedCount.js';
 import { useIsVisible } from '../../../helpers/useIsVisible.js';
+import { renderIcon } from '../../../images/svgIcons';
+import { AboutSection } from '../styles.js';
 import {
   AboutFactsItem,
   AboutFactsItemDescription,
@@ -12,11 +15,10 @@ import {
   AboutFactsList,
   AboutFactsWrapper
 } from './styles.js';
-import { renderIcon } from '../../../images/svgIcons';
-import AnimatedCount from '../../../components/AnimatedCount/AnimatedCount.js';
 
 const AboutFacts = () => {
   const ref = useRef();
+  const { t } = useTranslation();
   const isVisible = useIsVisible(ref);
 
   return (
@@ -31,12 +33,12 @@ const AboutFacts = () => {
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>Более 7 лет опыта</AboutFactsItemHeading>
+            <AboutFactsItemHeading>{t('about.facts.1.heading')}</AboutFactsItemHeading>
             <AboutFactsItemNumber>
               {isVisible ? <AnimatedCount number="7" duration="11" /> : '7'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Работаю в бьюти индустрии с 2016 года.
+              {t('about.facts.1.description')}
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -48,12 +50,12 @@ const AboutFacts = () => {
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>Более 5000 выполненных услуг</AboutFactsItemHeading>
+            <AboutFactsItemHeading>{t('about.facts.2.heading')}</AboutFactsItemHeading>
             <AboutFactsItemNumber>
               {isVisible ? <AnimatedCount number="5000" duration="7" /> : '5000'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Успешно провела 5000+ маникюрных процедур.
+              {t('about.facts.2.description')}
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -65,14 +67,12 @@ const AboutFacts = () => {
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>
-              90% клиентов возвращаются после первого визита
-            </AboutFactsItemHeading>
+            <AboutFactsItemHeading>{t('about.facts.3.heading')}</AboutFactsItemHeading>
             <AboutFactsItemNumber>
               {isVisible ? <AnimatedCount number="90" duration="18" /> : '90'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Качество и индивидуальный подход – ключевые моменты возврата клиентов.
+              {t('about.facts.3.description')}
             </AboutFactsItemDescription>
           </AboutFactsItem>
 
@@ -84,13 +84,12 @@ const AboutFacts = () => {
                 </AboutFactsItemImageIcon>
               </AboutFactsItemImageWrapper>
             </AboutFactsItemImage>
-            <AboutFactsItemHeading>100% стерильность</AboutFactsItemHeading>
+            <AboutFactsItemHeading>{t('about.facts.4.heading')}</AboutFactsItemHeading>
             <AboutFactsItemNumber>
               {isVisible ? <AnimatedCount number="100" duration="20" /> : '100'}
             </AboutFactsItemNumber>
             <AboutFactsItemDescription>
-              Гарантирую безопасность каждого клиента, используя только стерильные
-              инструменты.
+              {t('about.facts.4.description')}
             </AboutFactsItemDescription>
           </AboutFactsItem>
         </AboutFactsList>

@@ -1,13 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import ServiceForm from '../../components/Services/ServiceForm/ServiceForm';
 import {
+  SectionContainer,
   SectionHeading,
   ServiceSection,
-  SectionContainer,
   ServiceSectionItem
 } from '../../components/Services/styles';
 import { PageHeading } from '../../components/common/styles';
-import { renderIcon } from '../../images/svgIcons';
 import { REDIRECTS } from '../../constants.js';
+import { renderIcon } from '../../images/svgIcons';
 import {
   ContactDescription,
   ContactIcon,
@@ -18,9 +19,11 @@ import {
 } from './styles';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <ContactWrapper>
-      <PageHeading>Contact</PageHeading>
+      <PageHeading>{t('pages.contact')}</PageHeading>
 
       <ServiceForm />
 
@@ -41,7 +44,7 @@ const Contact = () => {
           <ServiceSectionItem>
             <ContactList>
               <ContactListItem>
-                <SectionHeading>Address</SectionHeading>
+                <SectionHeading>{t('contact.contactList.address')}</SectionHeading>
                 <ContactDescription>
                   <ContactLink
                     title="Find me"
@@ -56,7 +59,7 @@ const Contact = () => {
               </ContactListItem>
 
               <ContactListItem>
-                <SectionHeading>Phone</SectionHeading>
+                <SectionHeading>{t('contact.contactList.phone')}</SectionHeading>
                 <ContactDescription>
                   <ContactLink href={`tel:${REDIRECTS.PHONE_NUMBER}`} title="Call me">
                     <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
@@ -79,13 +82,19 @@ const Contact = () => {
               </ContactListItem>
 
               <ContactListItem>
-                <SectionHeading>Opening Hours</SectionHeading>
+                <SectionHeading>{t('contact.contactList.openingHours')}</SectionHeading>
                 <ContactDescription>
                   <ContactLink className="contact-hours">
                     <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
                     <div>
-                      <p>Mon-Sat: 9am - 5pm</p>
-                      <p>Sunday: Closed</p>
+                      <p>
+                        {t('contact.contactList.monSat')}:{' '}
+                        {t('contact.contactList.openTime')}
+                      </p>
+                      <p>
+                        {t('contact.contactList.sunday')}:{' '}
+                        {t('contact.contactList.closed')}
+                      </p>
                     </div>
                   </ContactLink>
                 </ContactDescription>

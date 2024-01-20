@@ -1,36 +1,38 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Heading2, Heading3 } from '../../components/common/styles';
-import {
-  FirstImageWrapper,
-  ImageMiddleTextWrapper,
-  ImageTextHeader,
-  ImageTextDescription,
-  ImageButtonsWrapper,
-  ImageMiddleWrapper,
-  AboutMeSectionWrapper,
-  AboutMePictureWrapper,
-  AboutMePicture,
-  AboutMeDescriptionWrapper,
-  AdvantageCartsWrapper,
-  AdvantageCart,
-  SectionWrapper,
-  AdvantageCartDescription,
-  AdvantageIcon,
-  OrderSectionWrapper,
-  HomeSection,
-  ReviewsHomeWrapper
-} from './styles';
-import Button from '../../components/atoms/Button';
-import HomeReviews from './HomeReviews/HomeReviews';
-import { renderIcon } from '../../images/svgIcons';
-import { useDimension } from '../../helpers/useDimension';
-import { useReview } from '../../redux/hooks';
 import Loader from '../../components/Loader/Loader';
+import Button from '../../components/atoms/Button';
+import { Heading2, Heading3 } from '../../components/common/styles';
 import { PAGES } from '../../constants';
+import { useDimension } from '../../helpers/useDimension';
+import { renderIcon } from '../../images/svgIcons';
+import { useReview } from '../../redux/hooks';
+import HomeReviews from './HomeReviews/HomeReviews';
+import {
+  AboutMeDescriptionWrapper,
+  AboutMePicture,
+  AboutMePictureWrapper,
+  AboutMeSectionWrapper,
+  AdvantageCart,
+  AdvantageCartDescription,
+  AdvantageCartsWrapper,
+  AdvantageIcon,
+  FirstImageWrapper,
+  HomeSection,
+  ImageButtonsWrapper,
+  ImageMiddleTextWrapper,
+  ImageMiddleWrapper,
+  ImageTextDescription,
+  ImageTextHeader,
+  OrderSectionWrapper,
+  ReviewsHomeWrapper,
+  SectionWrapper
+} from './styles';
 
 export const Home = () => {
   const { isMobile, isTablet } = useDimension();
   const { loading } = useReview();
+  const { t } = useTranslation();
 
   if (loading) {
     return <Loader />;
@@ -39,22 +41,23 @@ export const Home = () => {
   const firstImageText = (
     <ImageMiddleWrapper className={`first-image-text ${isTablet && 'container'}`}>
       <ImageMiddleTextWrapper>
-        <ImageTextHeader>YANA IVAKHNENKO</ImageTextHeader>
+        <ImageTextHeader>{t('common.yanaNameSurname').toUpperCase()}</ImageTextHeader>
         <ImageTextDescription>
-          Best Nails for <br />
-          Best Moments
+          {t('home.imageTextDescription1')}
+          <br />
+          {t('home.imageTextDescription2')}
         </ImageTextDescription>
       </ImageMiddleTextWrapper>
 
       <ImageButtonsWrapper>
         <Link to={PAGES.SERVICES}>
           <Button size="large" variant="outlined">
-            SERVICES
+            {t('pages.services').toUpperCase()}
           </Button>
         </Link>
         <Link to={PAGES.APPOINTMENT}>
           <Button size="large" variant="outlined">
-            MAKE AN APPOINTMENT
+            {t('common.makeAnAppointment').toUpperCase()}
           </Button>
         </Link>
       </ImageButtonsWrapper>
@@ -81,17 +84,12 @@ export const Home = () => {
             <AboutMePicture />
           </AboutMePictureWrapper>
           <AboutMeDescriptionWrapper>
-            <Heading2>About me</Heading2>
-            <p className="about__description">
-              Приветствую вас в мире красоты и элегантности. Я – мастер маникюра с
-              преданностью к красоте и стилю, где каждая деталь имеет значение. Давайте
-              вместе создадим уникальный облик ваших рук, чтобы подчеркнуть вашу
-              индивидуальность и красоту.
-            </p>
+            <Heading2>{t('home.aboutMeHeading')}</Heading2>
+            <p className="about__description">{t('home.aboutMeDescription')}</p>
 
             <Link to={PAGES.ABOUT} className="about__button">
               <Button size="large" variant="outlined">
-                Read more
+                {t('home.aboutMeButton')}
               </Button>
             </Link>
           </AboutMeDescriptionWrapper>
@@ -100,9 +98,9 @@ export const Home = () => {
 
       <HomeSection className="order">
         <OrderSectionWrapper className="container">
-          <Heading3>Хотите идеальный макикюр?</Heading3>
+          <Heading3>{t('home.orderHeading')}</Heading3>
           <Button size="large" variant="outlined" color="white">
-            ЗАКАЗАТЬ
+            {t('common.writeMe')}
           </Button>
         </OrderSectionWrapper>
       </HomeSection>
@@ -110,26 +108,34 @@ export const Home = () => {
       <section about="advantages">
         <SectionWrapper>
           <div className="container">
-            <Heading2>Преимущества работы со мной</Heading2>
+            <Heading2>{t('home.advantages.heading')}</Heading2>
             <AdvantageCartsWrapper>
               <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('nail')}</AdvantageIcon>
-                <AdvantageCartDescription>Украинское качество</AdvantageCartDescription>
+                <AdvantageCartDescription>
+                  {t('home.advantages.advantage1')}
+                </AdvantageCartDescription>
               </AdvantageCart>
 
               <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('skin-care-service')}</AdvantageIcon>
-                <AdvantageCartDescription>Индивидуальный подход</AdvantageCartDescription>
+                <AdvantageCartDescription>
+                  {t('home.advantages.advantage2')}
+                </AdvantageCartDescription>
               </AdvantageCart>
 
               <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('coffee')}</AdvantageIcon>
-                <AdvantageCartDescription>Уютная атмосфера</AdvantageCartDescription>
+                <AdvantageCartDescription>
+                  {t('home.advantages.advantage3')}
+                </AdvantageCartDescription>
               </AdvantageCart>
 
               <AdvantageCart to={PAGES.ABOUT}>
                 <AdvantageIcon>{renderIcon('health-check')}</AdvantageIcon>
-                <AdvantageCartDescription>Стерильный инструмент</AdvantageCartDescription>
+                <AdvantageCartDescription>
+                  {t('home.advantages.advantage4')}
+                </AdvantageCartDescription>
               </AdvantageCart>
             </AdvantageCartsWrapper>
           </div>
@@ -138,13 +144,13 @@ export const Home = () => {
 
       <HomeSection className="reviews">
         <ReviewsHomeWrapper className="container">
-          <Heading2>Reviews</Heading2>
+          <Heading2>{t('pages.reviews')}</Heading2>
 
           <HomeReviews />
 
           <Link to={PAGES.REVIEWS} className="all-reviews-btn">
             <Button size="large" variant="primary" formType="squared">
-              See all reviews
+              {t('home.reviews.seeAllReviews')}
             </Button>
           </Link>
         </ReviewsHomeWrapper>

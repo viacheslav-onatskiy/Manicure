@@ -1,6 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-// import { images } from '../../components/ImageGallery/ImageGallery.js';
+import Button from '../../components/atoms/Button/Button.js';
+import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
+import { REDIRECTS } from '../../constants.js';
+import useImageLoader from '../../helpers/useImageLoader.js';
 import { renderIcon } from '../../images/svgIcons.js';
+import AboutFacts from './AboutFacts/AboutFacts.js';
 import {
   AboutInstaItem,
   AboutInstaList,
@@ -19,14 +24,10 @@ import {
   AboutTopSectionWrapper,
   AboutWrapper
 } from './styles.js';
-import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
-import AboutFacts from './AboutFacts/AboutFacts.js';
-import Button from '../../components/atoms/Button/Button.js';
-import useImageLoader from '../../helpers/useImageLoader.js';
-import { REDIRECTS } from '../../constants.js';
 
 const About = () => {
   const { images } = useImageLoader();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -35,9 +36,13 @@ const About = () => {
           <AboutSection className="container">
             <AboutSectionItem>
               <AboutPresentHeading>
-                YANA <br /> IVAKHNENKO
+                {t('common.name').toUpperCase()}
+                <br />
+                {t('common.surname').toUpperCase()}
               </AboutPresentHeading>
-              <AboutPresentDescription>The best nail master</AboutPresentDescription>
+              <AboutPresentDescription>
+                {t('about.presentDescription')}
+              </AboutPresentDescription>
 
               <AboutPresentButtonWrapper>
                 <Button
@@ -46,7 +51,7 @@ const About = () => {
                   variant="primary"
                   formType="rounded1"
                 >
-                  BOOK NOW
+                  {t('common.book').toUpperCase()}
                 </Button>
               </AboutPresentButtonWrapper>
             </AboutSectionItem>
@@ -66,23 +71,15 @@ const About = () => {
 
           <AboutSectionItem>
             <AboutPresentDescription className="info">
-              <Heading2>Добро пожаловать в мир красоты и ухоженности!</Heading2>
+              <Heading2>{t('about.infoHeading')}</Heading2>
               <Heading3 className="about-info_description">
-                Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016
-                года. Мое призвание - создавать произведения искусства на ваших ногтях.
-                <br /> Я стремлюсь к индивидуальному подходу к каждому клиенту,
-                предоставляя высококачественные услуги c использованием лучших материалов.
-                <br />
-                Все используемые инструменты проходят тщательную обработку и стерилизацию,
-                чтобы обеспечить вашу безопасность.
-                <br />
-                Давайте вместе создадим неповторимый облик ваших ногтей!
+                {t('about.infoDescription')}
               </Heading3>
             </AboutPresentDescription>
 
             <AboutPresentButtonWrapper>
               <Button size="large" variant="outlined" formType="rounded2">
-                BOOK NOW
+                {t('common.book')}
               </Button>
             </AboutPresentButtonWrapper>
           </AboutSectionItem>
@@ -91,7 +88,7 @@ const About = () => {
         <AboutFacts />
 
         <AboutSection className="container insta">
-          <AboutPresentHeading>Подписывайся на мой инстаграм</AboutPresentHeading>
+          <AboutPresentHeading>{t('about.subscribeInstagram')}</AboutPresentHeading>
 
           <AboutInstaWrapper>
             <AboutInstaList>
@@ -116,10 +113,8 @@ const About = () => {
                 );
               })}
             </AboutInstaList>
-            <Heading3>Спасибо за просмотр!</Heading3>
-            <Heading5>
-              Буду рада вашим лайкам❤️, подпискам ✅ и комментариям &#128519;
-            </Heading5>
+            <Heading3 className="about-gratitude">{t('about.gratitude1')}</Heading3>
+            <Heading5>{t('about.gratitude2')}&#128519;</Heading5>
           </AboutInstaWrapper>
         </AboutSection>
       </AboutWrapper>

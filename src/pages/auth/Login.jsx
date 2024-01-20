@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../../redux/hooks';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { SectionHeader } from '../home/styles';
-import { PageHeading } from '../../components/common/styles';
-import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/atoms/Button';
+import { PageHeading } from '../../components/common/styles';
 import { PAGES } from '../../constants';
+import { useAuth } from '../../redux/hooks';
+import { SectionHeader } from '../home/styles';
+import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
 
 const Login = () => {
   const { loginUser, isAuthenticated } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -38,31 +40,31 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <PageHeading>Login</PageHeading>
+      <PageHeading>{t('login.title')}</PageHeading>
 
       <AuthContainer className="container">
-        <SectionHeader>Sign Into Your Account</SectionHeader>
+        <SectionHeader>{t('login.header')}</SectionHeader>
         <AuthForm>
           <Input
-            label="Email"
+            label={t('login.fields.email.label')}
             id="login-email"
             type="email"
             value={email}
             name="email"
             onChange={onChange}
-            placeholder="Email Address"
+            placeholder={t('login.fields.email.placeholder')}
             required
             autoComplete="off"
           />
 
           <Input
-            label="Password"
+            label={t('login.fields.password.label')}
             id="login-password"
             type="password"
             value={password}
             name="password"
             onChange={onChange}
-            placeholder="Enter your password"
+            placeholder={t('login.fields.password.placeholder')}
             autoComplete="off"
             minLength="6"
           />
@@ -75,14 +77,14 @@ const Login = () => {
               type="submit"
               id="user-login-button"
             >
-              Login
+              {t('login.loginButton')}
             </Button>
           </AuthButton>
 
           <p className="auth-redirect-paragraph">
-            Don't have an account?{' '}
+            {t('login.noAccount')}?{' '}
             <Link to={PAGES.REGISTER}>
-              <Button>Sign Up</Button>
+              <Button>{t('login.signUp')}</Button>
             </Link>
           </p>
         </AuthForm>

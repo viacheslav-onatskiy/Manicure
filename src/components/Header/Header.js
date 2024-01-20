@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { PAGES } from '../../constants';
+import { useDimension } from '../../helpers/useDimension';
+import useNavigationLinks from '../../helpers/useNavigationLinks';
 import { useAuth } from '../../redux/hooks';
+import Select from '../Select/Select';
 import Button from '../atoms/Button';
+import MobileHeader from './MobileNavbar';
 import {
   HeaderUserName,
   NavButtons,
@@ -10,24 +16,19 @@ import {
   NavigationLink,
   NavigationRightButtons
 } from './styles';
-import MobileHeader from './MobileNavbar';
-import { useDimension } from '../../helpers/useDimension';
-import { PAGES } from '../../constants';
+
+const languages = [
+  { value: 'en', label: 'English' },
+  { value: 'ru', label: 'Russian' }
+];
 
 const Header = () => {
-  const { isAuthenticated, logoutUser, user, loading } = useAuth();
+  const { t, i18n } = useTranslation();
+  const { isAuthenticated, logoutUser, user } = useAuth();
   const { isTablet } = useDimension();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-
-  const navigationLinks = [
-    { linkTo: PAGES.HOME, text: 'HOME', iconName: 'home' },
-    { linkTo: PAGES.ABOUT, text: 'ABOUT', iconName: 'about' },
-    { linkTo: PAGES.PORTFOLIO, text: 'PORTFOLIO', iconName: 'portfolio' },
-    { linkTo: PAGES.REVIEWS, text: 'REVIEWS', iconName: 'reviews' },
-    { linkTo: PAGES.SERVICES, text: 'SERVICES', iconName: 'services' },
-    { linkTo: PAGES.CONTACT, text: 'CONTACT', iconName: 'contact' }
-  ];
+  const { navigationLinks } = useNavigationLinks();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -67,17 +68,17 @@ const Header = () => {
       {isTablet ? (
         <MobileHeader
           isVisible={visible}
-          links={navigationLinks}
           isAuthenticated={isAuthenticated}
           user={user}
           logoutUser={logoutUser}
+          languages={languages}
         />
       ) : (
         <NavigationHeaderWrapper $isVisible={visible}>
           <NavButtons>
             <NavLogoWrapper to={PAGES.HOME} title="Home page">
               <NavLogo />
-              <i>YANA</i>
+              <i> {t('common.name')}</i>
             </NavLogoWrapper>
 
             {navigationLinks
@@ -90,34 +91,33 @@ const Header = () => {
                 </NavigationLink>
               ))}
 
-            {loading ? (
-              <></>
-            ) : (
-              <NavigationRightButtons>
-                <p>
-                  {user?.name && (
-                    <>
-                      Logged in as <HeaderUserName>{user.name}</HeaderUserName>
-                    </>
-                  )}
-                </p>
-                {!isAuthenticated && (
-                  <>
-                    <NavigationLink to={PAGES.REGISTER}>
-                      <Button formType="squared">Register</Button>
-                    </NavigationLink>
-                    <NavigationLink to={PAGES.LOGIN}>
-                      <Button formType="squared">Login</Button>
-                    </NavigationLink>
-                  </>
-                )}
-                {isAuthenticated && (
-                  <Button variant="outlined" onClick={() => logoutUser()}>
-                    Logout
-                  </Button>
-                )}
-              </NavigationRightButtons>
-            )}
+            <NavigationRightButtons>
+              {user?.name && <HeaderUserName>{user.name}</HeaderUserName>}
+              {!isAuthenticated && (
+                <>
+                  <NavigationLink to={PAGES.REGISTER}>
+                    <Button formType="squared">{t('pages.register')}</Button>
+                  </NavigationLink>
+                  <NavigationLink to={PAGES.LOGIN}>
+                    <Button formType="squared">{t('pages.login')}</Button>
+                  </NavigationLink>
+                </>
+              )}
+              {isAuthenticated && (
+                <Button variant="outlined" size="small" onClick={() => logoutUser()}>
+                  {t('pages.logout')}
+                </Button>
+              )}
+
+              <Select
+                className="header-language"
+                options={languages}
+                onSelect={(value) => i18n.changeLanguage(value.value)}
+                initialValue={i18n.language}
+                isVisibleHeader={visible}
+                label="Select language"
+              />
+            </NavigationRightButtons>
           </NavButtons>
         </NavigationHeaderWrapper>
       )}

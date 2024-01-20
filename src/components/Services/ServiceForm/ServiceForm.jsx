@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../../helpers/axios';
 import Input from '../../Input';
@@ -15,6 +16,7 @@ import {
 import { ServiceFormItem, ServiceFromWrapper } from './styles';
 
 const ServiceForm = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -135,17 +137,11 @@ const ServiceForm = () => {
       <SectionContainer $bgColor="#f1f2b4" color="#001515">
         <ServiceSection className="container">
           <ServiceSectionItem>
-            <SectionHeading>Contact me</SectionHeading>
-            <SectionDescription>
-              You can contact me in any way convenient for you. I am available 24/7 by
-              email.
-              <br />
-              You can also use the quick contact form and I will contact you within 24
-              hours or visit our salon in person.
-            </SectionDescription>
+            <SectionHeading>{t('contact.contactMe')}</SectionHeading>
+            <SectionDescription>{t('contact.contactMeDescription')}</SectionDescription>
             <SectionButtonContainer>
               <Button variant="outlined" size="large" formType="rounded2">
-                Make an appointment!
+                {t('common.makeAnAppointment')}
               </Button>
             </SectionButtonContainer>
           </ServiceSectionItem>
@@ -156,7 +152,7 @@ const ServiceForm = () => {
                   id="name"
                   name="name"
                   // label="Enter your name:"
-                  placeholder="Name"
+                  placeholder={t('contact.contactForm.name')}
                   value={name}
                   onChange={onChangeName}
                   iconType="userName"
@@ -170,7 +166,7 @@ const ServiceForm = () => {
                   name="email"
                   type="email"
                   // label="Enter your email:"
-                  placeholder="Email"
+                  placeholder={t('contact.contactForm.email')}
                   value={email}
                   onChange={onChangeEmail}
                   iconType="contactEmail"
@@ -183,7 +179,7 @@ const ServiceForm = () => {
                   name="phoneNumber"
                   type="tel"
                   // label="Enter your phone number:"
-                  placeholder="Phone number"
+                  placeholder={t('contact.contactForm.phoneNumber')}
                   value={phoneNumber}
                   onChange={onChangePhoneNumber}
                   iconType="contactPhone"
@@ -195,7 +191,7 @@ const ServiceForm = () => {
                   id="review"
                   name="review"
                   // label="Enter your review:"
-                  placeholder="Review"
+                  placeholder={t('contact.contactForm.review')}
                   value={review}
                   onChange={onChangeReview}
                   iconType="message"
@@ -210,7 +206,7 @@ const ServiceForm = () => {
                 formType="rounded1"
                 disabled={!isTouchedForm}
               >
-                Contact me!
+                {t('contact.contactMe')}!
               </Button>
             </ServiceFromWrapper>
           </ServiceSectionItem>

@@ -17,6 +17,14 @@ export const AuthContainer = styled.div`
 export const AuthForm = styled.form`
   width: 50%;
   margin: 0 auto;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+    width: 80%;
+
+    label {
+      text-align: center;
+    }
+  }
 `;
 
 export const AuthButton = styled.div`

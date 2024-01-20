@@ -77,7 +77,6 @@ export const ImageButtonsWrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
       color: ${({ theme }) => theme.colors.primary4};
       outline-color: ${({ theme }) => theme.colors.primary4};
-      font-size: 24px;
     }
 
     &:hover {
@@ -292,6 +291,7 @@ export const ReviewsHomeWrapper = styled.div`
     margin: 15px auto 0;
     display: block;
     text-align: center;
+    width: fit-content;
 
     button {
       font-size: 18px;

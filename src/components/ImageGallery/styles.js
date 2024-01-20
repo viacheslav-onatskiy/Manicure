@@ -16,11 +16,6 @@ export const ImageGalleryWrapper = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
     & .gallery__item {
       overflow: hidden;
 

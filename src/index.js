@@ -5,6 +5,7 @@ import store from './redux/store';
 
 import App from './App';
 import { GlobalStyle } from './components/common/styles';
+import './i18n';
 import './index.css';
 
 const root = createRoot(document.getElementById('root'));

@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { useAuth } from '../../redux/hooks';
-import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { Link, Navigate } from 'react-router-dom';
-import { SectionHeader } from '../home/styles';
-import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
-import { PageHeading } from '../../components/common/styles';
+import { toast } from 'react-toastify';
 import Input from '../../components/Input';
 import Button from '../../components/atoms/Button';
+import { PageHeading } from '../../components/common/styles';
 import { PAGES } from '../../constants';
+import { useAuth } from '../../redux/hooks';
+import { SectionHeader } from '../home/styles';
+import { AuthButton, AuthContainer, AuthForm, AuthWrapper } from './styles';
 
 const Register = () => {
   const { registerUser, isAuthenticated } = useAuth();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -26,7 +28,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      toast.error('Passwords do not match');
+      toast.error(t('toast.passwordDontMatch'));
     } else {
       registerUser({ name, email, password });
     }
@@ -38,55 +40,55 @@ const Register = () => {
 
   return (
     <AuthWrapper>
-      <PageHeading>Sign Up</PageHeading>
+      <PageHeading>{t('register.title')}</PageHeading>
 
       <AuthContainer className="container">
-        <SectionHeader>Create Your Account</SectionHeader>
+        <SectionHeader>{t('register.createAccount')}</SectionHeader>
 
         <AuthForm>
           <Input
-            label="Name"
+            label={t('register.fields.name.label')}
             id="register-name"
             type="text"
             value={name}
             name="name"
             onChange={onChange}
-            placeholder="Enter your name"
+            placeholder={t('register.fields.name.placeholder')}
             autoComplete="off"
           />
 
           <Input
-            label="Email"
+            label={t('register.fields.email.label')}
             id="register-email"
             type="email"
             value={email}
             name="email"
             onChange={onChange}
-            placeholder="Email Address"
+            placeholder={t('register.fields.email.placeholder')}
             required
             autoComplete="off"
           />
 
           <Input
-            label="Password"
+            label={t('register.fields.password.label')}
             id="register-password"
             type="password"
             value={password}
             name="password"
             onChange={onChange}
-            placeholder="Create a password"
+            placeholder={t('register.fields.password.placeholder')}
             autoComplete="off"
             minLength="6"
           />
 
           <Input
-            label="Password"
+            label={t('register.fields.password2.label')}
             id="register-password-2"
             type="password"
             value={password2}
             name="password2"
             onChange={onChange}
-            placeholder="Confirm Password"
+            placeholder={t('register.fields.password2.placeholder')}
             autoComplete="off"
             minLength="6"
           />
@@ -99,14 +101,14 @@ const Register = () => {
               type="submit"
               id="user-register-button"
             >
-              Register
+              {t('register.registerButton')}
             </Button>
           </AuthButton>
 
           <p className="auth-redirect-paragraph">
-            Already have an account?{' '}
+            {t('register.alreadyHaveAnAccount')}?{' '}
             <Link to={PAGES.LOGIN}>
-              <Button>Sign In</Button>
+              <Button>{t('register.signIn')}</Button>
             </Link>
           </p>
         </AuthForm>

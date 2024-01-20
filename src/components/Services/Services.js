@@ -1,141 +1,147 @@
+import { useTranslation } from 'react-i18next';
+import { useDimension } from '../../helpers/useDimension';
+import pedicureImage from '../../images/portfolio/11.JPG';
+import nailExtensionImage from '../../images/portfolio/17.JPG';
+import nailArtImage from '../../images/portfolio/26.JPG';
+import manicureImage from '../../images/portfolio/4.jpg';
+import servicesImage from '../../images/services_hand.jpg';
+import Button from '../atoms/Button';
+import { Heading2, Heading3, PageHeading } from '../common/styles';
+import CardsList from './CardsList';
+import ServiceForm from './ServiceForm/ServiceForm';
 import {
+  PricingImage,
+  PricingItemBox,
+  PricingList,
+  PricingListItem,
+  PricingWrapper,
   SectionButtonContainer,
+  SectionContainer,
   SectionDescription,
   SectionHeading,
   ServiceImage,
   ServiceSection,
-  SectionContainer,
-  ServiceSectionItem,
-  PricingWrapper,
-  PricingItemBox,
-  PricingList,
-  PricingListItem,
-  PricingImage
+  ServiceSectionItem
 } from './styles';
-import { Heading2, Heading3, PageHeading } from '../common/styles';
-import ServiceForm from './ServiceForm/ServiceForm';
-import servicesImage from '../../images/services_hand.jpg';
-import Button from '../atoms/Button';
-import CardsList from './CardsList';
 
 const Services = () => {
+  const { t } = useTranslation();
+  const { isTablet } = useDimension();
+
   const servicesList = [
     {
-      heading: 'Manicure',
+      id: 'manicure',
+      heading: t('services.cards.1.heading'),
       iconName: 'manicure-service',
-      description: `
-      -Classic Manicure
-      -European Manicure
-      -Spa Manicure`
+      shortDescription: t('services.cards.1.shortDescription'),
+      description: t('services.cards.1.description'),
+      bgColor: '#bef1f1',
+      imageSrc: manicureImage
     },
     {
-      heading: 'Pedicure',
+      id: 'pedicure',
+      heading: t('services.cards.2.heading'),
       iconName: 'pedicure-service',
-      description: `
-      -Classic Pedicure
-      -Spa Pedicure`
+      shortDescription: t('services.cards.2.shortDescription'),
+      description: t('services.cards.2.description'),
+      imageSrc: pedicureImage
     },
     {
-      heading: 'Nail Art',
+      id: 'nail-art',
+      heading: t('services.cards.3.heading'),
       iconName: 'nail-art-service',
-      description: `
-      -French Manicure
-      -Artistic Design`
+      shortDescription: t('services.cards.3.shortDescription'),
+      description: t('services.cards.3.description'),
+      imageSrc: nailArtImage
     },
     {
-      heading: 'Nail Extensions',
+      id: 'nail-extensions',
+      heading: t('services.cards.4.heading'),
       iconName: 'nail-extensions-service',
-      description: `-Gel Extensions`
+      shortDescription: t('services.cards.4.shortDescription'),
+      description: t('services.cards.4.description'),
+      imageSrc: nailExtensionImage
     },
     {
-      heading: 'Skin Care',
+      id: 'skin-care',
+      heading: t('services.cards.5.heading'),
       iconName: 'skin-care-service',
-      description: `
-      -Skin care description`
+      shortDescription: t('services.cards.5.shortDescription'),
+      description: t('services.cards.5.description'),
+      imageSrc: manicureImage
     },
     {
-      heading: 'Massage',
+      id: 'massage',
+      heading: t('services.cards.6.heading'),
       iconName: 'massage-service',
-      description: `Massage description`
+      shortDescription: t('services.cards.6.shortDescription'),
+      description: t('services.cards.6.description'),
+      imageSrc: manicureImage
     }
   ];
 
   return (
     <>
-      <PageHeading>My Services</PageHeading>
+      <PageHeading>{t('services.heading')}</PageHeading>
 
       <SectionContainer className="my-services">
         <CardsList items={servicesList} />
       </SectionContainer>
 
-      <SectionContainer>
-        <ServiceSection className="container">
-          <ServiceSectionItem>
-            <ServiceImage />
-          </ServiceSectionItem>
-          <ServiceSectionItem>
-            <SectionHeading>Маникюр</SectionHeading>
-            <SectionDescription>
-              Ногти отрастают? А хочется норм выглядеть??!
-              <p>
-                Закажи маникюр и я отпилю тебе лишнее, дорощу нехватающее, будешь,
-                наконец, норм выглядеть и чувствовать себя уверенее!
-              </p>
-            </SectionDescription>
-            <SectionButtonContainer>
-              <Button formType="rounded2" variant="primary" size="large">
-                Записаться
-              </Button>
-            </SectionButtonContainer>
-          </ServiceSectionItem>
-        </ServiceSection>
-      </SectionContainer>
+      <div id="service-sections-list">
+        {servicesList.map((serviceItem, index) => (
+          <SectionContainer
+            $bgColor={serviceItem.bgColor}
+            id={serviceItem.id}
+            key={serviceItem.id}
+          >
+            <ServiceSection className="container">
+              {!isTablet && (
+                <ServiceSectionItem
+                  style={{ order: `${!isTablet && (index % 2 === 0 ? 1 : 0)}` }}
+                >
+                  <ServiceImage $imageSrc={serviceItem.imageSrc} />
+                </ServiceSectionItem>
+              )}
+              <ServiceSectionItem>
+                <SectionHeading>
+                  {t(`services.cards.${index + 1}.heading`)}
+                </SectionHeading>
+                <SectionDescription>
+                  {t(`services.cards.${index + 1}.description`)}
+                  {isTablet && <ServiceImage $imageSrc={serviceItem.imageSrc} />}
+                </SectionDescription>
 
-      <SectionContainer $bgColor="#bef1f1" color="#001515">
-        <ServiceSection className="container">
-          <ServiceSectionItem>
-            <SectionHeading>Педикюр</SectionHeading>
-            <SectionDescription>
-              Ногти отрастают? А хочется норм выглядеть??!
-              <p>
-                Закажи маникюр и я отпилю тебе лишнее, дорощу нехватающее, будешь,
-                наконец, норм выглядеть и чувствовать себя уверенее!
-              </p>
-            </SectionDescription>
-            <SectionButtonContainer>
-              <Button formType="rounded2" variant="outlined" size="large">
-                Записаться!
-              </Button>
-            </SectionButtonContainer>
-          </ServiceSectionItem>
-          <ServiceSectionItem>
-            <ServiceImage />
-          </ServiceSectionItem>
-        </ServiceSection>
-      </SectionContainer>
-
+                <SectionButtonContainer>
+                  <Button formType="rounded2" variant="primary" size="large">
+                    {t('common.makeAnAppointment')}
+                  </Button>
+                </SectionButtonContainer>
+              </ServiceSectionItem>
+            </ServiceSection>
+          </SectionContainer>
+        ))}
+      </div>
       <ServiceForm />
 
       <SectionContainer $bgColor="#fff" color="#001515" className="pricing container">
         <PricingWrapper>
           <PricingItemBox>
-            <Heading2>Schedule</Heading2>
+            <Heading2>{t('services.schedule.heading')}</Heading2>
 
             <PricingList>
               <PricingListItem>
-                <Heading3>Monday-Saturday</Heading3>
-                <p>9AM - 5PM</p>
+                <Heading3>{t('services.schedule.mondaySaturday')}</Heading3>
+                <p>{t('services.schedule.time')}</p>
               </PricingListItem>
               <PricingListItem>
-                <Heading3>Sunday</Heading3>
-                <p>CLOSED</p>
+                <Heading3>{t('services.schedule.sunday')}</Heading3>
+                <p>{t('services.schedule.closed')}</p>
               </PricingListItem>
             </PricingList>
-            <p className="schedule-description">
-              I will be glad to see you anytime at our salon.
-            </p>
+            <p className="schedule-description">{t('services.schedule.description')}</p>
             <Button variant="primary" className="btn-appointment">
-              MAKE AN APPOINTMENT
+              {t('common.writeMe')}
             </Button>
           </PricingItemBox>
 
@@ -144,28 +150,28 @@ const Services = () => {
           </PricingItemBox>
 
           <PricingItemBox className="pricing-price">
-            <Heading2>Pricing</Heading2>
+            <Heading2>{t('services.pricing.heading')}</Heading2>
 
             <PricingList>
               <PricingListItem>
-                <Heading3>Manicure</Heading3>
-                <p>FROM $60.00</p>
+                <Heading3>{t('services.pricing.1.heading')}</Heading3>
+                <p>{t('services.pricing.1.description')}</p>
               </PricingListItem>
               <PricingListItem>
-                <Heading3>Pedicure</Heading3>
-                <p>FROM $50.00</p>
+                <Heading3>{t('services.pricing.2.heading')}</Heading3>
+                <p>{t('services.pricing.2.description')}</p>
               </PricingListItem>
               <PricingListItem>
-                <Heading3>Nail Extension</Heading3>
-                <p>FROM $70.00</p>
+                <Heading3>{t('services.pricing.3.heading')}</Heading3>
+                <p>{t('services.pricing.3.description')}</p>
               </PricingListItem>
               <PricingListItem>
-                <Heading3>Gel Pedicure</Heading3>
-                <p>FROM $80.00</p>
+                <Heading3>{t('services.pricing.4.heading')}</Heading3>
+                <p>{t('services.pricing.4.description')}</p>
               </PricingListItem>
               <PricingListItem>
-                <Heading3>Nail Design</Heading3>
-                <p>FROM $70.00</p>
+                <Heading3>{t('services.pricing.5.heading')}</Heading3>
+                <p>{t('services.pricing.5.description')}</p>
               </PricingListItem>
             </PricingList>
           </PricingItemBox>

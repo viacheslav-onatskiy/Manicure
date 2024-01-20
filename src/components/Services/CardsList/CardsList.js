@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { renderIcon } from '../../../images/svgIcons';
 import {
   CardItem,
@@ -20,16 +22,27 @@ const CardsList = ({ items = [] }) => {
 };
 
 const CardItemComponent = ({ cardItem }) => {
-  const { iconName, heading, description } = cardItem;
+  const location = useLocation();
+  const { id, iconName, heading, shortDescription } = cardItem;
+  const [anchorTarget, setAnchorTarget] = useState(null);
+
+  const handleAnchorClick = (id) => {
+    anchorTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    location.hash = '#' + id;
+  };
+
+  useEffect(() => {
+    setAnchorTarget(document.getElementById(id));
+  }, [id]);
 
   return (
-    <CardItemWrapper>
+    <CardItemWrapper onClick={() => handleAnchorClick(id)}>
       <CardItem>
         <CardItemImage className="card__item-image">
           <CardItemImageIcon>{renderIcon(iconName)}</CardItemImageIcon>
         </CardItemImage>
         <CardItemHeading>{heading}</CardItemHeading>
-        <CardItemDescription>{description}</CardItemDescription>
+        <CardItemDescription>{shortDescription}</CardItemDescription>
       </CardItem>
     </CardItemWrapper>
   );

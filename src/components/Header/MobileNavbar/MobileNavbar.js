@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
-import { MobileNavbar } from './styles';
+import { useTranslation } from 'react-i18next';
+import { PAGES, REDIRECTS } from '../../../constants';
+import useNavigationLinks from '../../../helpers/useNavigationLinks';
 import { renderIcon } from '../../../images/svgIcons';
-import { HeaderUserName, NavLogo, NavLogoWrapper, NavigationLink } from '../styles';
+import Select from '../../Select/Select';
 import Button from '../../atoms/Button';
 import { Heading5 } from '../../common/styles';
-import { PAGES, REDIRECTS } from '../../../constants';
+import { HeaderUserName, NavLogo, NavLogoWrapper, NavigationLink } from '../styles';
+import { MobileNavbar } from './styles';
 
-const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
+const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible }) => {
+  const { t, i18n } = useTranslation();
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isNavExtraExpanded, setIsNavExtraExpanded] = useState(false);
   const sidebarRef = useRef(null);
   const extraSidebarRef = useRef(null);
   const hamburgerButtonRef = useRef(null);
   const dotsButtonRef = useRef(null);
+  const { navigationLinks } = useNavigationLinks();
 
   useEffect(() => {
     const closeSidebar = (event) => {
@@ -88,7 +93,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
         $isVisible={isNavExpanded}
       >
         <MobileNavbar.Items>
-          {links.map((link, index) => (
+          {navigationLinks.map((link, index) => (
             <MobileNavbar.Item key={`${link.linkTo}-${index}`} to={link.linkTo}>
               <Button
                 formType="squared"
@@ -115,7 +120,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
                     setIsNavExtraExpanded(false);
                   }}
                 >
-                  Register
+                  {t('pages.register')}
                 </Button>
               </NavigationLink>
               <NavigationLink to={PAGES.LOGIN}>
@@ -126,7 +131,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
                     setIsNavExtraExpanded(false);
                   }}
                 >
-                  Login
+                  {t('pages.login')}
                 </Button>
               </NavigationLink>
             </>
@@ -140,7 +145,7 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
                 setIsNavExtraExpanded(false);
               }}
             >
-              Logout
+              {t('common.logout')}
             </Button>
           )}
         </MobileNavbar.UserWrapper>
@@ -153,15 +158,25 @@ const MobileHeader = ({ links, isAuthenticated, user, logoutUser }) => {
       >
         <MobileNavbar.ExtraSidebarItems>
           <MobileNavbar.ExtraSidebarItem>
-            <Heading5>Call me: </Heading5>
+            <Heading5>{t('header.callMe')}:</Heading5>
             <MobileNavbar.ContactLink href={`tel:${REDIRECTS.PHONE_NUMBER}`}>
               <Button>+1-672-272-14-17</Button>
             </MobileNavbar.ContactLink>
           </MobileNavbar.ExtraSidebarItem>
 
           <MobileNavbar.ExtraSidebarItem>
-            <Heading5>Opening Hours:</Heading5>Mon-Sat: 9am - 5pm
+            <Heading5>{t('header.schedule')}:</Heading5>
+            {t('header.monSat')}: {t('header.time')}
           </MobileNavbar.ExtraSidebarItem>
+
+          <Select
+            className="header-language"
+            options={languages}
+            onSelect={(value) => i18n.changeLanguage(value.value)}
+            initialValue={i18n.language}
+            isVisibleHeader={isVisible}
+            label="Select language"
+          />
 
           <MobileNavbar.ExtraSidebarItem className="extra-links">
             <MobileNavbar.ContactLink

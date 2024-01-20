@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ManicureImg from '../../images/IMG_8937.jpg';
 
 export const SectionContainer = styled.section.attrs((props) => ({
   $bgColor: props.$bgColor || ''
@@ -45,18 +44,20 @@ export const ServiceSectionItem = styled.div`
 export const SectionHeading = styled.div`
   font-size: 25px;
   font-weight: 600;
+  text-align: center;
 
   @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     font-size: 22px;
-    text-align: center;
   }
 `;
 
-export const ServiceImage = styled.div`
+export const ServiceImage = styled.div.attrs((props) => ({
+  $imageSrc: props.$imageSrc
+}))`
   width: 100%;
   min-height: 400px;
   height: 100%;
-  background: no-repeat center/100% url(${ManicureImg});
+  background: no-repeat center/100% url(${(props) => props.$imageSrc});
 `;
 
 export const SectionDescription = styled.div`
@@ -76,6 +77,7 @@ export const SectionDescription = styled.div`
 export const SectionButtonContainer = styled.div`
   margin: auto 0 0 0;
   width: fit-content;
+  align-self: center;
 
   @media (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
     align-self: center;
@@ -103,7 +105,7 @@ export const PricingItemBox = styled.div`
   padding: 15px 25px;
 
   @media (min-width: ${({ theme }) => theme.screenSizes.laptop}) {
-    padding: 40px 60px;
+    padding: 40px 58px;
   }
 
   &.pricing-price {

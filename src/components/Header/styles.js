@@ -12,10 +12,18 @@ export const NavigationHeaderWrapper = styled.nav.attrs((props) => ({
   padding: 1px 25px;
   box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.15);
   transition: top 0.3s;
+
+  @media (max-width: 1200px) {
+    padding: 1px 15px;
+  }
 `;
 
 export const NavigationLink = styled(NavLink)`
   margin: 0 8px;
+
+  @media (max-width: 1200px) {
+    margin: 0 5px;
+  }
 
   &.active button {
     color: #f0f0f0;
@@ -30,6 +38,10 @@ export const NavLogoWrapper = styled(NavLink)`
   color: #fd4d99;
   font-weight: 600;
   margin-right: 25px;
+
+  @media (max-width: 1200px) {
+    margin-right: 15px;
+  }
 `;
 
 export const NavLogo = styled.div`
@@ -45,6 +57,12 @@ export const NavLogo = styled.div`
 
 export const NavButtons = styled.div`
   display: flex;
+
+  @media (max-width: 1200px) {
+    button {
+      padding: 5px;
+    }
+  }
 `;
 
 export const HeaderUserName = styled.span`
@@ -54,8 +72,8 @@ export const HeaderUserName = styled.span`
 export const NavigationRightButtons = styled.div`
   margin-left: auto;
   display: flex;
-  color: #999999;
-  gap: 15px;
+  gap: 10px;
+  align-items: center;
 
   p {
     align-self: center;

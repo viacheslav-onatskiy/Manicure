@@ -1,6 +1,11 @@
-import formatDate from '../../../helpers/formatDate';
-import StarRating from '../../StarRating';
 import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import formatDate from '../../../helpers/formatDate';
+import { useDimension } from '../../../helpers/useDimension';
+import { renderIcon } from '../../../images/svgIcons';
+import StarRating from '../../StarRating';
+import Button from '../../atoms/Button';
 import {
   ReviewAuthor,
   ReviewButtons,
@@ -10,12 +15,9 @@ import {
   ReviewText,
   ReviewWrapper
 } from './styles';
-import Button from '../../atoms/Button';
-import { useDimension } from '../../../helpers/useDimension';
-import { renderIcon } from '../../../images/svgIcons';
-import { useEffect, useRef, useState } from 'react';
 
 const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
+  const { t } = useTranslation();
   const [numberOfLines, setNumberOfLines] = useState(0);
   const [isTextHidden, setIsTextHidden] = useState(false);
   const [isHideButtonAvailable, setIsHideButtonAvailable] = useState(false);
@@ -61,17 +63,17 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
                 size="small"
                 variant={isTablet ? '' : 'outlined'}
                 onClick={() => updateReviewFn(review._id)}
-                title="Update review"
+                title={t('reviews.updateReview')}
               >
-                {isTablet ? renderIcon('update') : 'Update'}
+                {isTablet ? renderIcon('update') : t('common.update')}
               </Button>
               <Button
                 size="small"
                 variant={isTablet ? '' : 'primary'}
                 onClick={() => deleteReview(review._id)}
-                title="Remove review"
+                title={t('reviews.removeReview')}
               >
-                {isTablet ? renderIcon('remove') : 'Remove'}
+                {isTablet ? renderIcon('remove') : t('common.remove')}
               </Button>
             </>
           )}
@@ -82,12 +84,12 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
       </ReviewText>
       {isTextHidden && (
         <Button className="show-hide-button" onClick={() => showFullText()}>
-          Show more
+          {t('common.showMore')}
         </Button>
       )}
       {isHideButtonAvailable && (
         <Button className="show-hide-button" onClick={() => hideFullText()}>
-          Hide
+          {t('common.hide')}
         </Button>
       )}
     </ReviewWrapper>

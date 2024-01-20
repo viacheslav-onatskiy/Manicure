@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
   
   a {
     text-decoration: none;
+    color: unset;
   }
 
   ul,
@@ -101,6 +102,10 @@ export const Heading1 = styled.h1`
   font-size: 60px;
   line-height: 1.2;
   font-weight: 700;
+
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    font-size: 50px;
+  }
 `;
 
 export const Heading2 = styled.h2`
