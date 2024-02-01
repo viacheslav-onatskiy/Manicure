@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "react-router-dom": "^6.18.0",
     "universal-cookie": "^6.1.1"
