@@ -24,3 +24,8 @@ export const PAGES = {
 export const API = {
   BASE_URL: ''
 };
+
+export const REG_EXP = {
+  VALIDATE_EMAIL:
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+};

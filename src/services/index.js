@@ -1,3 +1,4 @@
 import ImageGalleryService from './ImageGalleryService';
+import useServiceFormService from './useServiceFormService';
 
-export { ImageGalleryService };
+export { ImageGalleryService, useServiceFormService };
