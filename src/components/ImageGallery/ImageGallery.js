@@ -10,11 +10,11 @@ import { ImageGalleryWrapper, LightBoxWrapper } from './styles';
 const COUNT_IMAGES_TO_DISPLAY = 28;
 
 const ImageGallery = () => {
-  const { imageLoading, images } = useImageLoader();
+  const { imageLoading = false, images = [] } = useImageLoader();
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
-  const { isTablet } = useDimension();
+  const { isTablet = false } = useDimension();
 
-  const imageGalleryService = ImageGalleryService(images, isTablet);
+  const imageGalleryService = new ImageGalleryService(images, isTablet);
 
   if (imageLoading) {
     return <Loader />;

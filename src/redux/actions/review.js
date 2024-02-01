@@ -36,7 +36,7 @@ export const getReviews =
     } catch (err) {
       dispatch({
         type: GET_REVIEWS_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        payload: { msg: err.response?.statusText, status: err.response?.status }
       });
     }
   };

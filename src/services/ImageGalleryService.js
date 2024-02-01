@@ -1,46 +1,52 @@
-import { useState } from 'react';
+class ImageGalleryService {
+  constructor(images, isTablet) {
+    this.images = images;
+    this.isTablet = isTablet;
+    this.lightboxDisplay = false;
+    this.imageToShow = null;
+  }
 
-const ImageGalleryService = (images, isTablet) => {
-  const [lightboxDisplay, setLightboxDisplay] = useState(false);
-  const [imageToShow, setImageToShow] = useState(null);
-
-  const showImage = (image) => {
-    setImageToShow(image);
-    setLightboxDisplay(true);
+  showImage = (image) => {
+    this.imageToShow = image;
+    this.lightboxDisplay = true;
   };
 
-  const hideLightBox = () => {
-    setLightboxDisplay(false);
+  hideLightBox = () => {
+    this.lightboxDisplay = false;
   };
 
-  const showNext = (e) => {
+  showNext = (e) => {
     e?.stopPropagation();
-    const currentIndex = images.findIndex((image) => image.src === imageToShow.src);
+    const currentIndex = this.images.findIndex(
+      (image) => image.src === this.imageToShow.src
+    );
 
-    if (currentIndex >= images.length - 1) {
-      setImageToShow(images[0]);
+    if (currentIndex >= this.images.length - 1) {
+      this.imageToShow = this.images[0];
     } else {
-      const nextImage = images[currentIndex + 1];
-      setImageToShow(nextImage);
+      const nextImage = this.images[currentIndex + 1];
+      this.imageToShow = nextImage;
     }
   };
 
-  const showPrev = (e) => {
+  showPrev = (e) => {
     e?.stopPropagation();
-    const currentIndex = images.findIndex((image) => image.src === imageToShow.src);
+    const currentIndex = this.images.findIndex(
+      (image) => image.src === this.imageToShow.src
+    );
 
     if (currentIndex <= 0) {
-      setImageToShow(images[images.length - 1]);
+      this.imageToShow = this.images[this.images.length - 1];
     } else {
-      const prevImage = images[currentIndex - 1];
-      setImageToShow(prevImage);
+      const prevImage = this.images[currentIndex - 1];
+      this.imageToShow = prevImage;
     }
   };
 
-  const galleryImageClasses = (index) => {
+  galleryImageClasses = (index) => {
     let positionClass = '';
 
-    if (!isTablet && index <= 11) {
+    if (!this.isTablet && index <= 11) {
       if (index % 2 === 0) {
         positionClass = 'from-left';
       } else {
@@ -52,18 +58,6 @@ const ImageGalleryService = (images, isTablet) => {
 
     return `gallery__item ${positionClass} ${itemNumberClass}`;
   };
-
-  return {
-    showImage,
-    hideLightBox,
-    showNext,
-    showPrev,
-    galleryImageClasses,
-    imageToShow,
-    get lightboxDisplay() {
-      return lightboxDisplay;
-    }
-  };
-};
+}
 
 export default ImageGalleryService;
