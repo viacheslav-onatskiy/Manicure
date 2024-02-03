@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
@@ -31,12 +32,8 @@ import {
 
 export const Home = () => {
   const { isMobile, isTablet } = useDimension();
-  const { loading } = useReview();
+  const { reviews, getReviews, loading } = useReview();
   const { t } = useTranslation();
-
-  if (loading) {
-    return <Loader />;
-  }
 
   const firstImageText = (
     <ImageMiddleWrapper className={`first-image-text ${isTablet && 'container'}`}>
@@ -63,6 +60,24 @@ export const Home = () => {
       </ImageButtonsWrapper>
     </ImageMiddleWrapper>
   );
+
+  useEffect(() => {
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+
+    async function fetchData() {
+      getReviews();
+    }
+
+    if (!reviews.length && isFirstVisit) {
+      fetchData();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

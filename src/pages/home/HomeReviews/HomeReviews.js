@@ -12,12 +12,12 @@ import {
 
 const HomeReviews = () => {
   const { t } = useTranslation();
-  const { reviews, getReviews } = useReview();
+  const { reviews } = useReview();
 
   const firstTenReviews = reviews.slice(0, 10);
 
   return (
-    <Carousel items={firstTenReviews} getItems={getReviews}>
+    <Carousel items={firstTenReviews}>
       {firstTenReviews?.length &&
         firstTenReviews.map((review, index) => (
           <HomeReviewsSlideWrapper key={index}>

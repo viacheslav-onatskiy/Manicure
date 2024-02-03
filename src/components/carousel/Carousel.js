@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Button from '../atoms/Button';
 import {
   CarouselArrow,
   CarouselIndicator,
@@ -6,9 +7,8 @@ import {
   CarouselSlides,
   CarouselWrapper
 } from './styles';
-import Button from '../atoms/Button';
 
-const Carousel = ({ items, getItems, children }) => {
+const Carousel = ({ items, children }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -30,12 +30,6 @@ const Carousel = ({ items, getItems, children }) => {
 
     return () => clearInterval(interval);
   }, [currentSlide, nextSlide]);
-
-  useEffect(() => {
-    if (!items.length) {
-      getItems();
-    }
-  }, [getItems, items.length]);
 
   return (
     <CarouselWrapper>

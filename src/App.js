@@ -26,6 +26,14 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
+  useEffect(() => {
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+
+    if (!isFirstVisit) {
+      localStorage.setItem('isFirstVisit', 'true');
+    }
+  }, []);
+
   return (
     <>
       <Theme>
