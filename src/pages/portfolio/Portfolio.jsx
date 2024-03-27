@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ImageGallery from '../../components/ImageGallery';
 import { PageHeading } from '../../components/common/styles';
@@ -9,9 +10,13 @@ const Portfolio = () => {
   return (
     <>
       <PageHeading>{t('pages.portfolio')}</PageHeading>
-      <div className="container">
+      <motion.div
+        whileInView={{ y: [-200, 0], opacity: [0.35, 1] }}
+        transition={{ duration: 0.5 }}
+        className="container"
+      >
         <PortfolioHeading>{t('portfolio.description')}</PortfolioHeading>
-      </div>
+      </motion.div>
 
       <ImageGallery />
     </>

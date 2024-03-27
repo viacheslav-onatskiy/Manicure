@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { renderIcon } from '../../../images/svgIcons';
@@ -37,13 +38,18 @@ const CardItemComponent = ({ cardItem }) => {
 
   return (
     <CardItemWrapper onClick={() => handleAnchorClick(id)}>
-      <CardItem>
-        <CardItemImage className="card__item-image">
-          <CardItemImageIcon>{renderIcon(iconName)}</CardItemImageIcon>
-        </CardItemImage>
-        <CardItemHeading>{heading}</CardItemHeading>
-        <CardItemDescription>{shortDescription}</CardItemDescription>
-      </CardItem>
+      <motion.div
+        whileInView={{ x: [-300, 0], opacity: [0, 1] }}
+        transition={{ duration: 0.5, delay: (Math.floor(Math.random() * 10) + 1) / 10 }}
+      >
+        <CardItem>
+          <CardItemImage className="card__item-image">
+            <CardItemImageIcon>{renderIcon(iconName)}</CardItemImageIcon>
+          </CardItemImage>
+          <CardItemHeading>{heading}</CardItemHeading>
+          <CardItemDescription>{shortDescription}</CardItemDescription>
+        </CardItem>
+      </motion.div>
     </CardItemWrapper>
   );
 };

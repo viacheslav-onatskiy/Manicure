@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import AnimatedCount from '../../../components/AnimatedCount/AnimatedCount.js';
@@ -5,7 +6,6 @@ import { useIsVisible } from '../../../helpers/useIsVisible.js';
 import { renderIcon } from '../../../images/svgIcons';
 import { AboutSection } from '../styles.js';
 import {
-  AboutFactsItem,
   AboutFactsItemDescription,
   AboutFactsItemHeading,
   AboutFactsItemImage,
@@ -25,7 +25,11 @@ const AboutFacts = () => {
     <AboutSection className="facts" ref={ref}>
       <AboutFactsWrapper className="container">
         <AboutFactsList>
-          <AboutFactsItem>
+          <motion.div
+            whileInView={{ y: [-150, 0], opacity: [0.35, 1] }}
+            transition={{ duration: 0.55 }}
+            className="about-facts-item"
+          >
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
@@ -40,9 +44,13 @@ const AboutFacts = () => {
             <AboutFactsItemDescription>
               {t('about.facts.1.description')}
             </AboutFactsItemDescription>
-          </AboutFactsItem>
+          </motion.div>
 
-          <AboutFactsItem>
+          <motion.div
+            whileInView={{ y: [150, 0], opacity: [0.35, 1] }}
+            transition={{ duration: 0.55 }}
+            className="about-facts-item"
+          >
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
@@ -57,9 +65,13 @@ const AboutFacts = () => {
             <AboutFactsItemDescription>
               {t('about.facts.2.description')}
             </AboutFactsItemDescription>
-          </AboutFactsItem>
+          </motion.div>
 
-          <AboutFactsItem>
+          <motion.div
+            whileInView={{ y: [-150, 0], opacity: [0.35, 1] }}
+            transition={{ duration: 0.55 }}
+            className="about-facts-item"
+          >
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
@@ -74,9 +86,13 @@ const AboutFacts = () => {
             <AboutFactsItemDescription>
               {t('about.facts.3.description')}
             </AboutFactsItemDescription>
-          </AboutFactsItem>
+          </motion.div>
 
-          <AboutFactsItem>
+          <motion.div
+            whileInView={{ y: [150, 0], opacity: [0.35, 1] }}
+            transition={{ duration: 0.55 }}
+            className="about-facts-item"
+          >
             <AboutFactsItemImage>
               <AboutFactsItemImageWrapper>
                 <AboutFactsItemImageIcon>
@@ -91,7 +107,7 @@ const AboutFacts = () => {
             <AboutFactsItemDescription>
               {t('about.facts.4.description')}
             </AboutFactsItemDescription>
-          </AboutFactsItem>
+          </motion.div>
         </AboutFactsList>
       </AboutFactsWrapper>
     </AboutSection>

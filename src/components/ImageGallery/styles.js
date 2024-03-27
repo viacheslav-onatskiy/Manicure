@@ -74,7 +74,6 @@ export const ImageGalleryWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.5s ease-out allow-discrete;
 
     @media screen and (min-width: ${({ theme }) => theme.screenSizes.laptop}) {
       -webkit-filter: brightness(60%);

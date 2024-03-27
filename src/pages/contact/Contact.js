@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ServiceForm from '../../components/Services/ServiceForm/ServiceForm';
 import {
@@ -44,60 +45,126 @@ const Contact = () => {
           <ServiceSectionItem>
             <ContactList>
               <ContactListItem>
-                <SectionHeading>{t('contact.contactList.address')}</SectionHeading>
-                <ContactDescription>
-                  <ContactLink
-                    title="Find me"
-                    target="_blank"
-                    href={REDIRECTS.GOOGLE_MAP}
-                    rel="noreferrer"
-                  >
-                    <ContactIcon>{renderIcon('contactAddress')}</ContactIcon>
-                    3355 North Rd #265 Burnaby, BC V3J 7T9
-                  </ContactLink>
-                </ContactDescription>
+                <motion.div
+                  whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <SectionHeading>{t('contact.contactList.address')}</SectionHeading>
+                </motion.div>
+
+                <motion.div
+                  whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <ContactDescription>
+                    <ContactLink
+                      title="Find me"
+                      target="_blank"
+                      href={REDIRECTS.GOOGLE_MAP}
+                      rel="noreferrer"
+                    >
+                      <ContactIcon>{renderIcon('contactAddress')}</ContactIcon>
+                      3355 North Rd #265 Burnaby, BC V3J 7T9
+                    </ContactLink>
+                  </ContactDescription>
+                </motion.div>
               </ContactListItem>
 
               <ContactListItem>
-                <SectionHeading>{t('contact.contactList.phone')}</SectionHeading>
-                <ContactDescription>
-                  <ContactLink href={`tel:${REDIRECTS.PHONE_NUMBER}`} title="Call me">
-                    <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
-                    +1-672-272-14-17
-                  </ContactLink>
-                </ContactDescription>
+                <motion.div
+                  whileInView={{ x: [100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <SectionHeading>{t('contact.contactList.phone')}</SectionHeading>
+                </motion.div>
+
+                <motion.div
+                  whileInView={{ x: [100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <ContactDescription>
+                    <ContactLink href={`tel:${REDIRECTS.PHONE_NUMBER}`} title="Call me">
+                      <ContactIcon>{renderIcon('contactPhone')}</ContactIcon>
+                      +1-672-272-14-17
+                    </ContactLink>
+                  </ContactDescription>
+                </motion.div>
               </ContactListItem>
 
               <ContactListItem>
-                <SectionHeading>E-mail</SectionHeading>
-                <ContactDescription>
-                  <ContactLink
-                    href={`mailto:${REDIRECTS.GMAIL}`}
-                    title="Text me a message"
-                  >
-                    <ContactIcon>{renderIcon('contactEmail')}</ContactIcon>
-                    {REDIRECTS.GMAIL}
-                  </ContactLink>
-                </ContactDescription>
+                <motion.div
+                  whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <SectionHeading>E-mail</SectionHeading>
+                </motion.div>
+                <motion.div
+                  whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <ContactDescription>
+                    <ContactLink
+                      href={`mailto:${REDIRECTS.GMAIL}`}
+                      title="Text me a message"
+                    >
+                      <ContactIcon>{renderIcon('contactEmail')}</ContactIcon>
+                      {REDIRECTS.GMAIL}
+                    </ContactLink>
+                  </ContactDescription>
+                </motion.div>
               </ContactListItem>
 
               <ContactListItem>
-                <SectionHeading>{t('contact.contactList.openingHours')}</SectionHeading>
-                <ContactDescription>
-                  <ContactLink className="contact-hours">
-                    <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
-                    <div>
-                      <p>
-                        {t('contact.contactList.monSat')}:{' '}
-                        {t('contact.contactList.openTime')}
-                      </p>
-                      <p>
-                        {t('contact.contactList.sunday')}:{' '}
-                        {t('contact.contactList.closed')}
-                      </p>
-                    </div>
-                  </ContactLink>
-                </ContactDescription>
+                <motion.div
+                  whileInView={{ x: [100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <SectionHeading>{t('contact.contactList.openingHours')}</SectionHeading>
+                </motion.div>
+                <motion.div
+                  whileInView={{ x: [100, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <ContactDescription>
+                    <ContactLink className="contact-hours">
+                      <ContactIcon>{renderIcon('contactClock')}</ContactIcon>
+                      <div>
+                        <p>
+                          {t('contact.contactList.monSat')}:{' '}
+                          {t('contact.contactList.openTime')}
+                        </p>
+                        <p>
+                          {t('contact.contactList.sunday')}:{' '}
+                          {t('contact.contactList.closed')}
+                        </p>
+                      </div>
+                    </ContactLink>
+                  </ContactDescription>
+                </motion.div>
               </ContactListItem>
             </ContactList>
           </ServiceSectionItem>

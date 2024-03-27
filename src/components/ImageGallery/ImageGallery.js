@@ -5,6 +5,7 @@ import { ImageGalleryService } from '../../services';
 import ImageMagnifier from '../ImageMagnifier';
 import Loader from '../Loader/Loader.jsx';
 import Modal from '../Modal';
+import { motion } from 'framer-motion';
 import { ImageGalleryWrapper, LightBoxWrapper } from './styles';
 
 const COUNT_IMAGES_TO_DISPLAY = 28;
@@ -13,6 +14,9 @@ const ImageGallery = () => {
   const { imageLoading = false, images = [] } = useImageLoader();
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
   const { isTablet = false } = useDimension();
+  const min = 100;
+  const max = 350;
+  const randomNumberInRange = Math.floor(Math.random() * (max - min + 1)) + min;
 
   const imageGalleryService = new ImageGalleryService(images, isTablet);
 
@@ -24,13 +28,20 @@ const ImageGallery = () => {
     <>
       <ImageGalleryWrapper className="gallery">
         {images.slice(0, COUNT_IMAGES_TO_DISPLAY).map((image, index) => (
-          <figure
+          <motion.div
+            initial={{ x: [randomNumberInRange], opacity: [0] }}
+            animate={{ x: [0], opacity: [1] }}
+            // whileInView={{ x: [randomNumberInRange, 0], opacity: [0, 1] }}
+            transition={{
+              duration: 0.5,
+              delay: (Math.floor(Math.random() * 10) + 1) / 10
+            }}
             key={`${image + index}`}
             className={imageGalleryService.galleryImageClasses(index)}
             onClick={() => imageGalleryService.showImage(image)}
           >
             <img alt={image.alt} className="gallery__img" src={image.src} />
-          </figure>
+          </motion.div>
         ))}
       </ImageGalleryWrapper>
 

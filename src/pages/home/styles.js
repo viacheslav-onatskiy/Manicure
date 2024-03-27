@@ -9,8 +9,9 @@ export const FirstImageWrapper = styled.div`
   background-repeat: no-repeat;
 
   overflow: hidden;
-  height: 550px;
-  min-height: 300px;
+  min-height: 100vh;
+  height: 100%;
+  margin-top: -40px;
   width: 100%;
   position: relative;
 
@@ -120,17 +121,17 @@ export const AboutMeSectionWrapper = styled.div`
       text-align: center;
     }
   }
-`;
 
-export const AboutMePictureWrapper = styled.div`
-  box-sizing: border-box;
-  max-width: 50%;
-  min-width: 50%;
-  min-height: 450px;
+  .about-picture-wrapper {
+    box-sizing: border-box;
+    max-width: 50%;
+    min-width: 50%;
+    min-height: 450px;
 
-  @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
-    width: 100%;
-    max-width: 100%;
+    @media (max-width: ${({ theme }) => theme.screenSizes.mobile}) {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 `;
 

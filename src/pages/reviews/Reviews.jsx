@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
@@ -136,28 +137,34 @@ const Reviews = () => {
             </Button>
           </ReviewsButtonWrapper>
 
-          {reviews && reviews.length === 0 && !loading ? (
-            <Heading2>{t('reviews.noReviews')}</Heading2>
-          ) : (
-            <>
-              {reviews.map((review) => (
-                <Review
-                  key={review._id}
-                  review={review}
-                  updateReviewFn={updateReviewFn}
-                  deleteReview={deleteReview}
-                  userId={user?._id}
-                />
-              ))}
+          <motion.div
+            whileInView={{ y: [100, 0], opacity: [0.35, 1] }}
+            transition={{ duration: 0.5 }}
+            className="container"
+          >
+            {reviews && reviews.length === 0 && !loading ? (
+              <Heading2>{t('reviews.noReviews')}</Heading2>
+            ) : (
+              <>
+                {reviews.map((review) => (
+                  <Review
+                    key={review._id}
+                    review={review}
+                    updateReviewFn={updateReviewFn}
+                    deleteReview={deleteReview}
+                    userId={user?._id}
+                  />
+                ))}
 
-              <Pagination
-                id={'reviews-pagination'}
-                items={reviews}
-                totalItems={totalItems}
-                getItems={getReviews}
-              />
-            </>
-          )}
+                <Pagination
+                  id={'reviews-pagination'}
+                  items={reviews}
+                  totalItems={totalItems}
+                  getItems={getReviews}
+                />
+              </>
+            )}
+          </motion.div>
         </ReviewsContentWrapper>
       </ReviewsWrapper>
 

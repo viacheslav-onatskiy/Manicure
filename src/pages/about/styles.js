@@ -59,6 +59,9 @@ export const AboutSectionItem = styled.div`
 
 export const AboutPresentTopPictureWrapper = styled.div`
   position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
 `;
 
 export const AboutPresentTopPicture = styled.div`

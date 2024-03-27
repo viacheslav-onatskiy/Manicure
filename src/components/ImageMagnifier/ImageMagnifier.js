@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ImageMagnifierImage, ImageMagnifierWrapper } from './styles';
 import { useDimension } from '../../helpers/useDimension';
+import { ImageMagnifierImage, ImageMagnifierWrapper } from './styles';
 
 function ImageMagnifier({
   src = '',

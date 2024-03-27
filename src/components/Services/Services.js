@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useDimension } from '../../helpers/useDimension';
 import pedicureImage from '../../images/portfolio/11.JPG';
@@ -100,17 +101,33 @@ const Services = () => {
                 <ServiceSectionItem
                   style={{ order: `${!isTablet && (index % 2 === 0 ? 1 : 0)}` }}
                 >
-                  <ServiceImage $imageSrc={serviceItem.imageSrc} />
+                  <motion.div
+                    whileInView={{
+                      x: [index % 2 === 0 ? -200 : 200, 0],
+                      opacity: [0.5, 1]
+                    }}
+                    transition={{ duration: 0.8, ease: 'easeIn' }}
+                  >
+                    <ServiceImage $imageSrc={serviceItem.imageSrc} />
+                  </motion.div>
                 </ServiceSectionItem>
               )}
               <ServiceSectionItem>
-                <SectionHeading>
-                  {t(`services.cards.${index + 1}.heading`)}
-                </SectionHeading>
-                <SectionDescription>
-                  {t(`services.cards.${index + 1}.description`)}
-                  {isTablet && <ServiceImage $imageSrc={serviceItem.imageSrc} />}
-                </SectionDescription>
+                <motion.div
+                  whileInView={{ x: [index % 2 === 0 ? -200 : 200, 0], opacity: [0, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (Math.floor(Math.random() * 10) + 1) / 10
+                  }}
+                >
+                  <SectionHeading>
+                    {t(`services.cards.${index + 1}.heading`)}
+                  </SectionHeading>
+                  <SectionDescription>
+                    {t(`services.cards.${index + 1}.description`)}
+                    {isTablet && <ServiceImage $imageSrc={serviceItem.imageSrc} />}
+                  </SectionDescription>
+                </motion.div>
 
                 <SectionButtonContainer>
                   <Button formType="rounded2" variant="primary" size="large">
@@ -127,22 +144,38 @@ const Services = () => {
       <SectionContainer $bgColor="#fff" color="#001515" className="pricing container">
         <PricingWrapper>
           <PricingItemBox>
-            <Heading2>{t('services.schedule.heading')}</Heading2>
+            <motion.div
+              whileInView={{ x: [-200, 0], opacity: [0, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: (Math.floor(Math.random() * 10) + 1) / 10
+              }}
+            >
+              <Heading2>{t('services.schedule.heading')}</Heading2>
+            </motion.div>
 
-            <PricingList>
-              <PricingListItem>
-                <Heading3>{t('services.schedule.mondaySaturday')}</Heading3>
-                <p>{t('services.schedule.time')}</p>
-              </PricingListItem>
-              <PricingListItem>
-                <Heading3>{t('services.schedule.sunday')}</Heading3>
-                <p>{t('services.schedule.closed')}</p>
-              </PricingListItem>
-            </PricingList>
-            <p className="schedule-description">{t('services.schedule.description')}</p>
-            <Button variant="primary" className="btn-appointment">
-              {t('common.writeMe')}
-            </Button>
+            <motion.div
+              whileInView={{ x: [-200, 0], opacity: [0, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: (Math.floor(Math.random() * 10) + 1) / 10
+              }}
+            >
+              <PricingList>
+                <PricingListItem>
+                  <Heading3>{t('services.schedule.mondaySaturday')}</Heading3>
+                  <p>{t('services.schedule.time')}</p>
+                </PricingListItem>
+                <PricingListItem>
+                  <Heading3>{t('services.schedule.sunday')}</Heading3>
+                  <p>{t('services.schedule.closed')}</p>
+                </PricingListItem>
+              </PricingList>
+              <p className="schedule-description">{t('services.schedule.description')}</p>
+              <Button variant="primary" className="btn-appointment">
+                {t('common.writeMe')}
+              </Button>
+            </motion.div>
           </PricingItemBox>
 
           <PricingItemBox className="pricing-image">
@@ -150,30 +183,46 @@ const Services = () => {
           </PricingItemBox>
 
           <PricingItemBox className="pricing-price">
-            <Heading2>{t('services.pricing.heading')}</Heading2>
+            <motion.div
+              whileInView={{ x: [200, 0], opacity: [0, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: (Math.floor(Math.random() * 10) + 1) / 10
+              }}
+            >
+              <Heading2>{t('services.pricing.heading')}</Heading2>
+            </motion.div>
 
-            <PricingList>
-              <PricingListItem>
-                <Heading3>{t('services.pricing.1.heading')}</Heading3>
-                <p>{t('services.pricing.1.description')}</p>
-              </PricingListItem>
-              <PricingListItem>
-                <Heading3>{t('services.pricing.2.heading')}</Heading3>
-                <p>{t('services.pricing.2.description')}</p>
-              </PricingListItem>
-              <PricingListItem>
-                <Heading3>{t('services.pricing.3.heading')}</Heading3>
-                <p>{t('services.pricing.3.description')}</p>
-              </PricingListItem>
-              <PricingListItem>
-                <Heading3>{t('services.pricing.4.heading')}</Heading3>
-                <p>{t('services.pricing.4.description')}</p>
-              </PricingListItem>
-              <PricingListItem>
-                <Heading3>{t('services.pricing.5.heading')}</Heading3>
-                <p>{t('services.pricing.5.description')}</p>
-              </PricingListItem>
-            </PricingList>
+            <motion.div
+              whileInView={{ x: [200, 0], opacity: [0, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: (Math.floor(Math.random() * 10) + 1) / 10
+              }}
+            >
+              <PricingList>
+                <PricingListItem>
+                  <Heading3>{t('services.pricing.1.heading')}</Heading3>
+                  <p>{t('services.pricing.1.description')}</p>
+                </PricingListItem>
+                <PricingListItem>
+                  <Heading3>{t('services.pricing.2.heading')}</Heading3>
+                  <p>{t('services.pricing.2.description')}</p>
+                </PricingListItem>
+                <PricingListItem>
+                  <Heading3>{t('services.pricing.3.heading')}</Heading3>
+                  <p>{t('services.pricing.3.description')}</p>
+                </PricingListItem>
+                <PricingListItem>
+                  <Heading3>{t('services.pricing.4.heading')}</Heading3>
+                  <p>{t('services.pricing.4.description')}</p>
+                </PricingListItem>
+                <PricingListItem>
+                  <Heading3>{t('services.pricing.5.heading')}</Heading3>
+                  <p>{t('services.pricing.5.description')}</p>
+                </PricingListItem>
+              </PricingList>
+            </motion.div>
           </PricingItemBox>
         </PricingWrapper>
       </SectionContainer>
