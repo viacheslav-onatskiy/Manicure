@@ -39,8 +39,12 @@ i18n
 
           about: {
             presentDescription: 'The best nail master',
-            infoHeading: '123 Добро пожаловать в мир красоты и ухоженности!',
-            infoDescription: `123 Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016 года. Мое призвание - создавать произведения искусства на ваших ногтях. \n Я стремлюсь к индивидуальному подходу к каждому клиенту, предоставляя высококачественные услуги c использованием лучших материалов. \n Все используемые инструменты проходят тщательную обработку и стерилизацию, чтобы обеспечить вашу безопасность. \n Давайте вместе создадим неповторимый облик ваших ногтей!`,
+            infoHeading: 'Welcome to the world of beauty and care!',
+            infoDescription1: `Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016 года. Мое призвание - создавать произведения искусства на ваших ногтях. \n Я стремлюсь к индивидуальному подходу к каждому клиенту, предоставляя высококачественные услуги c использованием лучших материалов. \n Все используемые инструменты проходят тщательную обработку и стерилизацию, чтобы обеспечить вашу безопасность. \n Давайте вместе создадим неповторимый облик ваших ногтей!`,
+            infoDescription: `Hi! My name is Yana, and I have been a certified nail technician since 2016. My passion is creating works of art on your nails.
+            I strive for an individual approach to each client, providing high-quality services using the best materials.
+            All used tools are carefully processed and sterilized to ensure your safety.
+            Let's create a unique look for your nails together!`,
             facts: {
               1: {
                 heading: 'Over 7 years of experience',
@@ -88,39 +92,51 @@ i18n
               - European manicure
               - Spa manicure
               `,
-                description: 'description'
+                description: `I will provide you with a perfect manicure that accentuates the beauty of your hands.
+                  I offer a wide range of manicure services, including classic manicure, European manicure, spa treatments, and nail strengthening, as well as nail design using the latest trends and techniques. Relax and enjoy the care for your hands during the process.`
               },
               2: {
                 heading: 'Pedicure',
                 shortDescription: `
               - Classic Pedicure
               - Spa Pedicure`,
-                description: 'description'
+                description: `I will provide your feet with caring and quality treatment. I will do everything possible to make your feet feel fresh, well-groomed, and beautiful, with relaxing baths and peeling.
+                  Allow yourself to relax and enjoy the pedicure procedure.`
               },
               3: {
                 heading: 'Nail Art',
                 shortDescription: `
               - French
-              - Art design`,
-                description: 'description'
+              - Art design
+              - Ombre
+              - Rhinestones`,
+                description: `I will help you create a unique and distinctive look that highlights your individuality.
+                  I offer a wide range of designer solutions, including decorative elements, French and ombre effects, as well as various thematic and seasonal designs.`
               },
               4: {
                 heading: 'Nail Extension',
-                shortDescription: `Description 
-                -Gel Extensions`,
-                description: 'description'
+                shortDescription: `Gel nail extensions with forms:
+                - Square
+                - Oval
+                - Almond
+                - Stilettos`,
+                description: `Dreaming of long and beautifully shaped nails? I will help you turn your dream into reality.
+                  I use only quality materials and techniques to ensure the strength and reliability of your manicure. Whether creating the perfect shape or simply enhancing their appearance, I will assist you in achieving the desired result.`
               },
               5: {
                 heading: 'Skin Care',
-                shortDescription: `Description
-                 Skin Careeee`,
-                description: 'description'
+                shortDescription: `- Nourishing treatment
+                - Anti-aging treatment
+                - Treatment for sensitive skin`,
+                description: `I will pamper your hands with care and tenderness through skin care services.
+                  I use only high-quality products and professional techniques to improve skin texture, moisturize and nourish it, as well as protect it from negative external influences.`
               },
               6: {
                 heading: 'Massage',
-                shortDescription: `Description
-                Massageeee`,
-                description: 'description'
+                shortDescription: `- Relaxing massage
+                - Stimulating massage`,
+                description:
+                  'Allow your hands to relax and rejuvenate with my professional massage procedures.'
               }
             },
             schedule: {
@@ -339,36 +355,51 @@ i18n
               - Европейский маникюр
               - Спа маникюр
               `,
-                description: 'description'
+                description: `Предоставлю Вам идеальный маникюр, который подчеркнет красоту ваших рук.
+                  Предлагаю широкий спектр услуг маникюра, включая классический и Европейский маникюр, спа и укрепление ногтей, а также дизайн ногтей с использованием самых актуальных тенденций и техник. Расслабьтесь и наслаждайтесь уходом за своими руками во время процесса.`
               },
               2: {
                 heading: 'Педикюр',
                 shortDescription: `
               - Классический Педикюр
               - Спа Педикюр`,
-                description: 'description'
+                description: `Обеспечу Ваши ноги заботливым и качественным уходом. Сделаю все возможное, чтобы ваши ноги почувствовали себя свежими, ухоженными и красивыми, с расслабляющими ванными и пилингом.
+                  Позвольте себе расслабиться и насладиться процедурой педикюра.`
               },
               3: {
                 heading: 'Дизайн ногтей',
                 shortDescription: `
               - Френч-маникюр
-              - Художественный дизайн`,
-                description: 'description'
+              - Художественный дизайн
+              - Омбре
+              - Стразы`,
+                description: `Помогу Вам создать уникальный и неповторимый образ, подчеркивающий вашу индивидуальность.
+                  Предлагаю широкий спектр дизайнерских решений, включая декоративные элементы, френч и омбре-эффекты, а также различные тематические и сезонные дизайны.`
               },
               4: {
                 heading: 'Наращивание ногтей',
-                shortDescription: `Описание -Gel Extensions`,
-                description: 'description'
+                shortDescription: `Гелевое наращивание с формами:
+                - Квадратная
+                - Овльная
+                - Миндалевидная
+                - Стилет`,
+                description: `Мечтаете о длинных и красиво оформленных ногтях? Я помогу Вам воплотить Вашу мечту в реальность.
+                  Использую только качественные материалы и техники, чтобы обеспечить прочность и надежность вашего маникюра. Создам идеальную форму или просто улучшу их внешний вид, чтобы помочь вам достичь желаемого результата.`
               },
               5: {
                 heading: 'Уход за кожей',
-                shortDescription: 'Описание Skin Careeee',
-                description: 'description'
+                shortDescription: `- Питательный уход
+                - Омолаживающий уход
+                - Уход для чувствительной кожи`,
+                description: `Порадую Ваши руки заботой и нежностью с услугами ухода за кожей.
+                  Использую только высококачественные продукты и профессиональные техники, чтобы улучшить текстуру кожи, увлажнить и питать ее, а также защитить от негативных внешних воздействий.`
               },
               6: {
                 heading: 'Массаж',
-                shortDescription: 'Описание Massageeee',
-                description: 'description'
+                shortDescription: `- Расслабляющий массаж
+                - Стимулирующий массаж`,
+                description:
+                  'Позвольте Вашим рукам расслабиться и восстановиться с моими профессиональными массажными процедурами.'
               }
             },
             schedule: {
