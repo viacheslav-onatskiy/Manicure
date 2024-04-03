@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,9 +23,10 @@ const Register = () => {
 
   const { name, email, password, password2 } = formData;
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (password !== password2) {
       toast.error(t('toast.passwordDontMatch'));
@@ -52,9 +53,8 @@ const Register = () => {
             type="text"
             value={name}
             name="name"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('register.fields.name.placeholder')}
-            autoComplete="off"
           />
 
           <Input
@@ -63,10 +63,9 @@ const Register = () => {
             type="email"
             value={email}
             name="email"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('register.fields.email.placeholder')}
             required
-            autoComplete="off"
           />
 
           <Input
@@ -75,10 +74,8 @@ const Register = () => {
             type="password"
             value={password}
             name="password"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('register.fields.password.placeholder')}
-            autoComplete="off"
-            minLength="6"
           />
 
           <Input
@@ -87,10 +84,8 @@ const Register = () => {
             type="password"
             value={password2}
             name="password2"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('register.fields.password2.placeholder')}
-            autoComplete="off"
-            minLength="6"
           />
 
           <AuthButton>

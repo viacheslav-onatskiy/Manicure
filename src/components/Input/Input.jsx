@@ -15,7 +15,7 @@ export const Input = ({
   placeholder = '',
   disabled = false,
   required = false,
-  error
+  error = ''
 }) => {
   return (
     <InputWrapper $error={error}>

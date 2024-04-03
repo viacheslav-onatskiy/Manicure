@@ -14,7 +14,7 @@ const HomeReviews = () => {
   const { t } = useTranslation();
   const { reviews } = useReview();
 
-  const firstTenReviews = reviews.slice(0, 10);
+  const firstTenReviews: [any] = reviews.slice(0, 10);
 
   return (
     <Carousel items={firstTenReviews}>
@@ -29,7 +29,8 @@ const HomeReviews = () => {
               <StarRating
                 rating={review.rating}
                 isEditable={false}
-                className="star__rating"
+                // todo: fix any
+                // className="star__rating" :any
               />
               <Heading4 className="slide__user">{review.name}</Heading4>
               <Heading5>{t('home.reviews.client')}</Heading5>

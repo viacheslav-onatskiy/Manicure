@@ -8,14 +8,16 @@ import { Theme } from './ThemeContext.js';
 import Layout from './components/Layout/Layout';
 import Services from './components/Services';
 import { PAGES } from './constants.js';
-import NotFound from './pages/NotFound';
-import About from './pages/about/About.js';
-import Login from './pages/auth/Login.jsx';
-import Register from './pages/auth/Register.jsx';
-import Contact from './pages/contact/Contact.js';
-import { Home } from './pages/home/Home.js';
-import Portfolio from './pages/portfolio/Portfolio.jsx';
-import Reviews from './pages/reviews/index.js';
+import {
+  About,
+  Contact,
+  Home,
+  Login,
+  NotFound,
+  Portfolio,
+  Register,
+  Reviews
+} from './pages';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

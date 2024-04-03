@@ -36,7 +36,7 @@ const Contact = () => {
               src={REDIRECTS.GOOGLE_MAP_IFRAME}
               max-width="500"
               max-height="400"
-              allowFullScreen=""
+              // allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import AnimatedCount from '../../../components/AnimatedCount/AnimatedCount.js';
 import { useIsVisible } from '../../../helpers/useIsVisible.js';
-import { renderIcon } from '../../../images/svgIcons';
-import { AboutSection } from '../styles.js';
+import { renderIcon } from '../../../images/svgIcons.js';
+import { AboutSection } from '../styles';
 import {
   AboutFactsItemDescription,
   AboutFactsItemHeading,
@@ -14,10 +14,10 @@ import {
   AboutFactsItemNumber,
   AboutFactsList,
   AboutFactsWrapper
-} from './styles.js';
+} from './styles';
 
 const AboutFacts = () => {
-  const ref = useRef();
+  const ref = useRef(null);
   const { t } = useTranslation();
   const isVisible = useIsVisible(ref);
 

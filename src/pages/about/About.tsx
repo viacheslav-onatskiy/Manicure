@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import Button from '../../components/atoms/Button/Button.js';
+import Button from '../../components/atoms/Button/Button';
 import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
 import { REDIRECTS } from '../../constants.js';
 import useImageLoader from '../../helpers/useImageLoader.js';
 import { renderIcon } from '../../images/svgIcons.js';
-import AboutFacts from './AboutFacts/AboutFacts.js';
+import AboutFacts from './AboutFacts';
 import {
   AboutInstaItem,
   AboutInstaList,
@@ -25,15 +25,17 @@ import {
   AboutSectionItem,
   AboutTopSectionWrapper,
   AboutWrapper
-} from './styles.js';
+} from './styles';
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
+const hiddenMask =
+  'repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)';
+const visibleMask =
+  'repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)';
 
 const About = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const { images } = useImageLoader();
+  const { images }: any = useImageLoader();
   const { t } = useTranslation();
 
   return (
@@ -131,7 +133,7 @@ const About = () => {
           <AboutInstaWrapper>
             <motion.div onViewportLeave={() => setIsInView(false)}>
               <AboutInstaList>
-                {images?.slice(0, 6).map((image, index) => (
+                {images?.slice(0, 6).map((image: any, index: any) => (
                   <AboutInstaItem key={`${image.src} + index`}>
                     <div className="img">
                       <Link target="_blank" to={REDIRECTS.INSTAGRAM}>

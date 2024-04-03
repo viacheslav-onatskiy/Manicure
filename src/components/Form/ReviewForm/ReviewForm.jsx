@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useDimension } from '../../../helpers/useDimension';
-import StarRating from '../../StarRating';
 import Textarea from '../../Textarea';
 import Button from '../../atoms/Button';
 import { StyledAlert, StyledForm } from './styles';

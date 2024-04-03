@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { RatingIconWrapper, StarRatingWrapper } from './styles';
 import StarIcon from './StarIcon';
+import { RatingIconWrapper, StarRatingWrapper } from './styles';
 
 export const StarRating = ({
   rating = 4,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
@@ -21,13 +21,13 @@ const Login = () => {
 
   const { email, password } = formData;
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormData((values) => ({ ...values, [name]: value }));
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     loginUser(email, password);
   };
@@ -51,10 +51,9 @@ const Login = () => {
             type="email"
             value={email}
             name="email"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('login.fields.email.placeholder')}
             required
-            autoComplete="off"
           />
 
           <Input
@@ -63,10 +62,8 @@ const Login = () => {
             type="password"
             value={password}
             name="password"
-            onChange={onChange}
+            onChange={onChange as any}
             placeholder={t('login.fields.password.placeholder')}
-            autoComplete="off"
-            minLength="6"
           />
 
           <AuthButton>

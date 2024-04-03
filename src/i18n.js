@@ -40,7 +40,8 @@ i18n
           about: {
             presentDescription: 'The best nail master',
             infoHeading: 'Welcome to the world of beauty and care!',
-            infoDescription1: `Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016 года. Мое призвание - создавать произведения искусства на ваших ногтях. \n Я стремлюсь к индивидуальному подходу к каждому клиенту, предоставляя высококачественные услуги c использованием лучших материалов. \n Все используемые инструменты проходят тщательную обработку и стерилизацию, чтобы обеспечить вашу безопасность. \n Давайте вместе создадим неповторимый облик ваших ногтей!`,
+            infoDescription1: `Привет! Меня зовут Яна, и я - сертифицированный мастер маникюра с 2016 года. Мое призвание - создавать произведения искусства на ваших ногтях.
+            Я стремлюсь к индивидуальному подходу к каждому клиенту, предоставляя высококачественные услуги c использованием лучших материалов. \n Все используемые инструменты проходят тщательную обработку и стерилизацию, чтобы обеспечить вашу безопасность. \n Давайте вместе создадим неповторимый облик ваших ногтей!`,
             infoDescription: `Hi! My name is Yana, and I have been a certified nail technician since 2016. My passion is creating works of art on your nails.
             I strive for an individual approach to each client, providing high-quality services using the best materials.
             All used tools are carefully processed and sterilized to ensure your safety.

@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { useDimension } from '../../../helpers/useDimension';
 import { PaginationButton, PaginationWrapper } from './styles';
 
-const Pagination = React.memo(({ totalItems, getItems }) => {
+interface PaginationProps {
+  totalItems: number;
+  getItems: (page: number, pageSize: number) => void;
+}
+
+const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) => {
   const { t } = useTranslation();
   const { isTablet } = useDimension();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [pagerState, setPagerState] = useState({});
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const [pagerState, setPagerState] = useState({}) as any;
+  const currentPage: any = Number(searchParams.get('page')) || 1;
   const pageSize = Number(searchParams.get('pageSize')) || 10;
   const { pages, totalPages } = pagerState;
 
   const getPager = () => {
     const totalPages = Math.ceil(totalItems / pageSize);
 
-    let startPage, endPage;
+    let startPage: any, endPage;
     if (totalPages <= 6) {
       // less than 6 total pages so show all
       startPage = 1;
@@ -82,18 +87,18 @@ const Pagination = React.memo(({ totalItems, getItems }) => {
     };
   };
 
-  const isActivePage = (page) => page.value && currentPage === page.page;
+  const isActivePage = (page: any) => page.value && currentPage === page.page;
 
   const getInitialPages = () => {
-    setSearchParams({ page: currentPage, pageSize });
-    const pager = getPager(currentPage);
+    setSearchParams({ page: currentPage, pageSize } as any);
+    const pager = getPager();
 
     setPagerState(pager);
   };
 
-  const setPage = (page) => {
-    setSearchParams({ page, pageSize });
-    const pager = getPager(page);
+  const setPage = (page: any) => {
+    setSearchParams({ ...searchParams, page, pageSize } as any);
+    const pager = getPager();
 
     if (page < 1 || page > pager.totalItems) {
       return;
@@ -135,7 +140,7 @@ const Pagination = React.memo(({ totalItems, getItems }) => {
         </>
       )}
 
-      {pagerState?.pages?.map((page, i) => (
+      {pagerState?.pages?.map((page: any, i: any) => (
         <PaginationButton
           key={`page-${i}`}
           onClick={() => {
@@ -172,5 +177,7 @@ const Pagination = React.memo(({ totalItems, getItems }) => {
     </PaginationWrapper>
   );
 });
+
+Pagination.displayName = 'Pagination';
 
 export default Pagination;

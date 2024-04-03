@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -7,12 +7,12 @@ import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import Modal from '../../components/Modal/index.js';
 import Review from '../../components/Reviews/Review/Review.jsx';
-import Button from '../../components/atoms/Button';
-import Pagination from '../../components/atoms/Pagination/Pagination.js';
+import Button from '../../components/atoms/Button/index.js';
+import Pagination from '../../components/atoms/Pagination';
 import { Heading2, PageHeading } from '../../components/common/styles.js';
 import { useDimension } from '../../helpers/useDimension.js';
 import { useAuth, useReview } from '../../redux/hooks.js';
-import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles.js';
+import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles';
 
 const Reviews = () => {
   const [searchParams] = useSearchParams();
@@ -30,7 +30,7 @@ const Reviews = () => {
     updateReview,
     deleteReview,
     loading
-  } = useReview();
+  } = useReview() as any;
   const { user, isAuthenticated, token } = useAuth();
   const { isTablet } = useDimension();
 
@@ -47,12 +47,12 @@ const Reviews = () => {
     reviewId: ''
   });
 
-  const leaveReview = (e) => {
+  const leaveReview = (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     if (!token || !isAuthenticated) {
       toast.warning(t('toast.loginToLeaveReview'));
-      setFormData({ isDescriptionInvalid: false });
+      setFormData({ ...formData, isDescriptionInvalid: false });
       clearModalData();
       closeModal();
 
@@ -75,13 +75,13 @@ const Reviews = () => {
       updateReview(reviewData, formData.reviewId);
     }
 
-    setFormData({ isDescriptionInvalid: false });
+    setFormData({ ...formData, isDescriptionInvalid: false });
     clearModalData();
     closeModal();
   };
 
   const clearModalData = () => {
-    setFormData({ description: '', rating: 4, isDescriptionInvalid: false });
+    setFormData({ ...formData, description: '', rating: 4, isDescriptionInvalid: false });
   };
 
   const openModal = (type = 'Add', id = 'reviews-modal') => {
@@ -97,8 +97,8 @@ const Reviews = () => {
     clearModalData();
   };
 
-  const updateReviewFn = (reviewId) => {
-    const review = reviews.filter((review) => review._id === reviewId);
+  const updateReviewFn = (reviewId: any) => {
+    const review = reviews.filter((review: any) => review._id === reviewId);
 
     setFormData({
       description: review[0].description,
@@ -146,7 +146,7 @@ const Reviews = () => {
               <Heading2>{t('reviews.noReviews')}</Heading2>
             ) : (
               <>
-                {reviews.map((review) => (
+                {reviews.map((review: any) => (
                   <Review
                     key={review._id}
                     review={review}
@@ -157,8 +157,7 @@ const Reviews = () => {
                 ))}
 
                 <Pagination
-                  id={'reviews-pagination'}
-                  items={reviews}
+                  // items={reviews}
                   totalItems={totalItems}
                   getItems={getReviews}
                 />

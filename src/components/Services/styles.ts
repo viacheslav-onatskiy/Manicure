@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-export const SectionContainer = styled.section.attrs((props) => ({
-  $bgColor: props.$bgColor || ''
-}))`
+interface SectionContainerProps {
+  $bgColor?: string;
+  color?: string;
+}
+
+// export const SectionContainer = styled.section.attrs((props) => ({
+//   $bgColor: props.$bgColor || ''
+// }))`
+export const SectionContainer = styled.section<SectionContainerProps>`
   background-color: ${({ $bgColor }) => $bgColor || ''};
   color: ${({ color, theme }) => color || theme.colors.dark};
 
@@ -51,9 +57,12 @@ export const SectionHeading = styled.div`
   }
 `;
 
-export const ServiceImage = styled.div.attrs((props) => ({
-  $imageSrc: props.$imageSrc
-}))`
+interface ServiceImageProps {
+  $imageSrc?: string;
+  color?: string;
+}
+
+export const ServiceImage = styled.div<ServiceImageProps>`
   width: 100%;
   min-height: 400px;
   height: 100%;

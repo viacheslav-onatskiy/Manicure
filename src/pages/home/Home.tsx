@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
@@ -30,7 +30,7 @@ import {
   SectionWrapper
 } from './styles';
 
-export const Home = () => {
+export const Home: FC = () => {
   const { isMobile, isTablet } = useDimension();
   const { reviews, getReviews, loading } = useReview();
   const { t } = useTranslation();
@@ -68,7 +68,7 @@ export const Home = () => {
           transition={{ duration: 0.5 }}
           className="image-buttons-wrapper"
         >
-          <Link to={PAGES.APPOINTMENT}>
+          <Link to={PAGES.CONTACT}>
             <Button size="large" variant="outlined">
               {t('common.makeAnAppointment').toUpperCase()}
             </Button>
@@ -88,8 +88,6 @@ export const Home = () => {
     if (!reviews.length && isFirstVisit) {
       fetchData();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {
@@ -147,7 +145,7 @@ export const Home = () => {
         </OrderSectionWrapper>
       </HomeSection>
 
-      <section about="advantages">
+      <section>
         <motion.div
           whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
           transition={{ duration: 0.8, ease: 'easeIn' }}
