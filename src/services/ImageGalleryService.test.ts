@@ -1,9 +1,9 @@
-import ImageGalleryService from './ImageGalleryService';
+import ImageGalleryService, { ImageType } from './ImageGalleryService';
 
 describe('ImageGalleryService', () => {
   it('should show an image and set lightbox display to true', () => {
     const service = new ImageGalleryService([], false);
-    const image = { src: 'example.jpg' };
+    const image: ImageType = { src: 'example.jpg' };
 
     service.showImage(image);
 
@@ -20,7 +20,11 @@ describe('ImageGalleryService', () => {
   });
 
   it('should show the next image', () => {
-    const images = [{ src: 'image1.jpg' }, { src: 'image2.jpg' }, { src: 'image3.jpg' }];
+    const images: ImageType[] = [
+      { src: 'image1.jpg' },
+      { src: 'image2.jpg' },
+      { src: 'image3.jpg' }
+    ];
     const service = new ImageGalleryService(images, false);
 
     service.showImage(images[0]);
@@ -30,7 +34,11 @@ describe('ImageGalleryService', () => {
   });
 
   it('should show the previous image', () => {
-    const images = [{ src: 'image1.jpg' }, { src: 'image2.jpg' }, { src: 'image3.jpg' }];
+    const images: ImageType[] = [
+      { src: 'image1.jpg' },
+      { src: 'image2.jpg' },
+      { src: 'image3.jpg' }
+    ];
     const service = new ImageGalleryService(images, false);
 
     service.showImage(images[1]);

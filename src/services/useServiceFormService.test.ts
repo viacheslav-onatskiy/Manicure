@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'; // for better assertion messages
 import { renderHook } from '@testing-library/react';
+import { ChangeEvent, FormEvent } from 'react';
 import { act } from 'react-dom/test-utils';
 import axiosInstance from '../helpers/axios';
 import useServiceFormService from './useServiceFormService';
@@ -30,7 +31,9 @@ describe('useServiceFormService', () => {
       const { result } = renderHook(() => useServiceFormService());
 
       act(() => {
-        result.current.onChangeName({ target: { value: 'AA' } });
+        result.current.onChangeName({
+          target: { value: 'AA' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.name).toBe('AA');
@@ -41,7 +44,9 @@ describe('useServiceFormService', () => {
       const { result } = renderHook(() => useServiceFormService());
 
       act(() => {
-        result.current.onChangeName({ target: { value: 'Name' } });
+        result.current.onChangeName({
+          target: { value: 'Name' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.name).toBe('Name');
@@ -54,7 +59,9 @@ describe('useServiceFormService', () => {
       const { result } = renderHook(() => useServiceFormService());
 
       act(() => {
-        result.current.onChangeEmail({ target: { value: 'invalid-email' } });
+        result.current.onChangeEmail({
+          target: { value: 'invalid-email' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.email).toBe('invalid-email');
@@ -65,7 +72,9 @@ describe('useServiceFormService', () => {
       const { result } = renderHook(() => useServiceFormService());
 
       act(() => {
-        result.current.onChangeEmail({ target: { value: 'valid-email@google.com' } });
+        result.current.onChangeEmail({
+          target: { value: 'valid-email@google.com' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.email).toBe('valid-email@google.com');
@@ -82,7 +91,9 @@ describe('useServiceFormService', () => {
       expect(result.current.isPhoneNumberError).toBe(false);
 
       act(() => {
-        result.current.onChangePhoneNumber({ target: { value: '123456789' } });
+        result.current.onChangePhoneNumber({
+          target: { value: '123456789' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.phoneNumber).toBe('123456789');
@@ -90,7 +101,9 @@ describe('useServiceFormService', () => {
       expect(result.current.isPhoneNumberError).toBe(false);
 
       act(() => {
-        result.current.onChangePhoneNumber({ target: { value: '123' } });
+        result.current.onChangePhoneNumber({
+          target: { value: '123' }
+        } as ChangeEvent<HTMLInputElement>);
       });
 
       expect(result.current.phoneNumber).toBe('123');
@@ -108,7 +121,9 @@ describe('useServiceFormService', () => {
       expect(result.current.isReviewError).toBe(false);
 
       act(() => {
-        result.current.onChangeReview({ target: { value: 'Valid review content.' } });
+        result.current.onChangeReview({
+          target: { value: 'Valid review content.' }
+        } as ChangeEvent<HTMLTextAreaElement>);
       });
 
       expect(result.current.review).toBe('Valid review content.');
@@ -116,7 +131,9 @@ describe('useServiceFormService', () => {
       expect(result.current.isReviewError).toBe(false);
 
       act(() => {
-        result.current.onChangeReview({ target: { value: 'Short' } });
+        result.current.onChangeReview({
+          target: { value: 'Short' }
+        } as ChangeEvent<HTMLTextAreaElement>);
       });
 
       expect(result.current.review).toBe('Short');
@@ -129,17 +146,29 @@ describe('useServiceFormService', () => {
     it('should submit form successfully', async () => {
       const { result } = renderHook(() => useServiceFormService());
 
-      axiosInstance.post.mockResolvedValueOnce({ data: 'Submission success' });
+      jest
+        .spyOn(axiosInstance, 'post')
+        .mockResolvedValueOnce({ data: 'Submission success' });
 
       act(() => {
-        result.current.onChangeName({ target: { value: 'Name' } });
-        result.current.onChangeEmail({ target: { value: 'email@example.com' } });
-        result.current.onChangePhoneNumber({ target: { value: '123456789' } });
-        result.current.onChangeReview({ target: { value: 'This is a valid review' } });
+        result.current.onChangeName({
+          target: { value: 'Name' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangeEmail({
+          target: { value: 'email@example.com' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangePhoneNumber({
+          target: { value: '123456789' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangeReview({
+          target: { value: 'This is a valid review' }
+        } as ChangeEvent<HTMLTextAreaElement>);
       });
 
       await act(async () => {
-        result.current.submitForm({ preventDefault: jest.fn() });
+        result.current.submitForm({
+          preventDefault: jest.fn()
+        } as unknown as FormEvent<HTMLFormElement>);
       });
 
       expect(axiosInstance.post).toHaveBeenCalledWith('/send', {
@@ -158,19 +187,31 @@ describe('useServiceFormService', () => {
     });
 
     it('should show error toast on form submission failure', async () => {
-      axiosInstance.post.mockRejectedValueOnce(new Error('Submission failed'));
+      jest
+        .spyOn(axiosInstance, 'post')
+        .mockResolvedValueOnce(new Error('Submission failed'));
 
       const { result } = renderHook(() => useServiceFormService());
 
       act(() => {
-        result.current.onChangeName({ target: { value: 'Name' } });
-        result.current.onChangeEmail({ target: { value: 'email@example.com' } });
-        result.current.onChangePhoneNumber({ target: { value: '123456789' } });
-        result.current.onChangeReview({ target: { value: 'This is a valid review' } });
+        result.current.onChangeName({
+          target: { value: 'Name' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangeEmail({
+          target: { value: 'email@example.com' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangePhoneNumber({
+          target: { value: '123456789' }
+        } as ChangeEvent<HTMLInputElement>);
+        result.current.onChangeReview({
+          target: { value: 'This is a valid review' }
+        } as ChangeEvent<HTMLTextAreaElement>);
       });
 
       await act(async () => {
-        result.current.submitForm({ preventDefault: jest.fn() });
+        result.current.submitForm({
+          preventDefault: jest.fn()
+        } as unknown as FormEvent<HTMLFormElement>);
       });
 
       expect(axiosInstance.post).toHaveBeenCalledWith('/send', {

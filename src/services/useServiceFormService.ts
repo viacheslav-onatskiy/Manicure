@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import { REG_EXP } from '../constants';
 import axiosInstance from '../helpers/axios';
+
+interface ServiceFormValues {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  review: string;
+}
 
 const useServiceFormService = () => {
   const [name, setName] = useState('');
@@ -14,25 +21,25 @@ const useServiceFormService = () => {
   const [isReviewError, setIsReviewError] = useState(false);
   const [isTouchedForm, setIsTouchedForm] = useState(false);
 
-  const validateName = (name) => {
+  const validateName = (name: string) => {
     return name.length >= 3;
   };
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     return REG_EXP.VALIDATE_EMAIL.test(String(email).toLowerCase());
   };
 
-  const validatePhoneNumber = (string) => {
-    const containsAtLeastNineDigits = /(?:\D*\d){9}/.test(string);
+  const validatePhoneNumber = (phoneNumber: string) => {
+    const containsAtLeastNineDigits = /(?:\D*\d){9}/.test(phoneNumber);
 
     return containsAtLeastNineDigits;
   };
 
-  const validateReview = (string) => {
-    return string.length >= 10;
+  const validateReview = (reviewToValidate: string) => {
+    return reviewToValidate.length >= 10;
   };
 
-  const onChangeName = (e) => {
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     setIsTouchedForm(true);
 
@@ -43,7 +50,7 @@ const useServiceFormService = () => {
     }
   };
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setIsTouchedForm(true);
 
@@ -54,7 +61,7 @@ const useServiceFormService = () => {
     }
   };
 
-  const onChangePhoneNumber = (e) => {
+  const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(e.target.value);
     setIsTouchedForm(true);
 
@@ -65,7 +72,7 @@ const useServiceFormService = () => {
     }
   };
 
-  const onChangeReview = (e) => {
+  const onChangeReview = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
     setIsTouchedForm(true);
 
@@ -76,7 +83,7 @@ const useServiceFormService = () => {
     }
   };
 
-  const submitForm = (event) => {
+  const submitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const validationErrors = [];
 
@@ -103,7 +110,7 @@ const useServiceFormService = () => {
       return;
     }
 
-    const formValues = { name, email, phoneNumber, review };
+    const formValues: ServiceFormValues = { name, email, phoneNumber, review };
 
     axiosInstance
       .post('/send', { ...formValues })

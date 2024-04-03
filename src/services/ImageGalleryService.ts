@@ -1,12 +1,24 @@
+import { ChangeEvent } from 'react';
+
+// todo: change type to normal
+export interface ImageType {
+  src: string;
+}
+
 class ImageGalleryService {
-  constructor(images, isTablet) {
+  private images: ImageType[];
+  private isTablet: boolean;
+  public lightboxDisplay: boolean;
+  public imageToShow: ImageType | null;
+
+  constructor(images: ImageType[], isTablet: boolean) {
     this.images = images;
     this.isTablet = isTablet;
     this.lightboxDisplay = false;
     this.imageToShow = null;
   }
 
-  showImage = (image) => {
+  showImage = (image: ImageType) => {
     this.imageToShow = image;
     this.lightboxDisplay = true;
   };
@@ -15,10 +27,10 @@ class ImageGalleryService {
     this.lightboxDisplay = false;
   };
 
-  showNext = (e) => {
+  showNext = (e?: ChangeEvent<HTMLElement>) => {
     e?.stopPropagation();
     const currentIndex = this.images.findIndex(
-      (image) => image.src === this.imageToShow.src
+      (image) => image.src === (this.imageToShow?.src ?? '')
     );
 
     if (currentIndex >= this.images.length - 1) {
@@ -29,10 +41,10 @@ class ImageGalleryService {
     }
   };
 
-  showPrev = (e) => {
+  showPrev = (e?: ChangeEvent<HTMLElement>) => {
     e?.stopPropagation();
     const currentIndex = this.images.findIndex(
-      (image) => image.src === this.imageToShow.src
+      (image) => image.src === (this.imageToShow?.src ?? '')
     );
 
     if (currentIndex <= 0) {
@@ -43,7 +55,7 @@ class ImageGalleryService {
     }
   };
 
-  galleryImageClasses = (index) => {
+  galleryImageClasses = (index: number) => {
     let positionClass = '';
 
     if (!this.isTablet && index <= 11) {
