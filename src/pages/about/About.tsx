@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
 import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
 import { REDIRECTS } from '../../constants.js';
-import useImageLoader from '../../helpers/useImageLoader.js';
+import useImageLoader from '../../helpers/useImageLoader';
 import { renderIcon } from '../../images/svgIcons.js';
 import AboutFacts from './AboutFacts';
 import {

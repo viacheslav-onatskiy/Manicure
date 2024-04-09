@@ -1,6 +1,6 @@
 import axiosInstance from './axios';
 
-const setAuthToken = (token) => {
+const setAuthToken = (token: string | null) => {
   if (token) {
     axiosInstance.defaults.headers.common['x-auth-token'] = token;
   } else {

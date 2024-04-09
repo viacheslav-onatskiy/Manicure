@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import AnimatedCount from '../../../components/AnimatedCount/AnimatedCount.js';
-import { useIsVisible } from '../../../helpers/useIsVisible.js';
+import { useIsVisible } from '../../../helpers/useIsVisible';
 import { renderIcon } from '../../../images/svgIcons.js';
 import { AboutSection } from '../styles';
 import {

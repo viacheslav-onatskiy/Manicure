@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import axiosInstance, { axiosErrorHandler } from '../../helpers/axios';
-import setAuthToken from '../../helpers/setAuthToken.js';
+import setAuthToken from '../../helpers/setAuthToken';
 import { AppThunk } from '../store';
 import { AuthActionTypes } from './types';
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
-export const useIsVisible = (ref, rootMargin = '-200px') => {
+export const useIsVisible = (ref: RefObject<Element>, rootMargin = '-200px'): boolean => {
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
@@ -11,7 +11,9 @@ export const useIsVisible = (ref, rootMargin = '-200px') => {
       { rootMargin }
     );
 
-    observer.observe(ref.current);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => {
       observer.disconnect();

@@ -10,10 +10,10 @@ import Review from '../../components/Reviews/Review/Review.jsx';
 import Button from '../../components/atoms/Button/index.js';
 import Pagination from '../../components/atoms/Pagination';
 import { Heading2, PageHeading } from '../../components/common/styles.js';
-import { useDimension } from '../../helpers/useDimension.js';
+import { useDimension } from '../../helpers/useDimension';
 import { User } from '../../redux/actions/auth.js';
 import { useAuth, useReview } from '../../redux/hooks';
-import { IReview } from '../../redux/reducers/paginationReducer.js';
+import { IReview } from '../../redux/reducers/paginationReducer';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles';
 
 const Reviews = () => {

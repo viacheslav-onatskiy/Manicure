@@ -1,11 +1,11 @@
-import { useDimension } from '../../helpers/useDimension.js';
-import useImageLoader from '../../helpers/useImageLoader.js';
-import { useSwipe } from '../../helpers/useSwipe.js';
+import { motion } from 'framer-motion';
+import { useDimension } from '../../helpers/useDimension';
+import useImageLoader from '../../helpers/useImageLoader';
+import { useSwipe } from '../../helpers/useSwipe';
 import { ImageGalleryService } from '../../services';
 import ImageMagnifier from '../ImageMagnifier';
 import Loader from '../Loader/Loader.jsx';
 import Modal from '../Modal';
-import { motion } from 'framer-motion';
 import { ImageGalleryWrapper, LightBoxWrapper } from './styles';
 
 const COUNT_IMAGES_TO_DISPLAY = 28;

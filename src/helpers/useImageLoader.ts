@@ -1,8 +1,19 @@
 import { useEffect, useState } from 'react';
 
-function useImageLoader() {
+interface ImageData {
+  src: string;
+  alt: string;
+  id: number;
+}
+
+interface ImageLoaderResult {
+  imageLoading: boolean;
+  images: ImageData[];
+}
+
+function useImageLoader(): ImageLoaderResult {
   const [imageLoading, setImageLoading] = useState(true);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<ImageData[]>([]);
 
   useEffect(() => {
     async function importImages() {
@@ -12,11 +23,11 @@ function useImageLoader() {
           false,
           /\.(png|jpe?g|JPG|svg)$/
         );
-        const imagePromises = await imagesContext
+        const imagePromises = imagesContext
           .keys()
           .map(imagesContext)
           .map((image, index) => ({
-            src: image,
+            src: image as string,
             alt: `image${index}`,
             id: index
           }))

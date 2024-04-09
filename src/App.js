@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import setAuthToken from './helpers/setAuthToken.js';
+import setAuthToken from './helpers/setAuthToken';
 import { loadUser } from './redux/actions/auth';
 import store from './redux/store';
 

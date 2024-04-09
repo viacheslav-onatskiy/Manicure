@@ -1,10 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { PAGES } from '../constants';
 
+interface NavigationLink {
+  linkTo: string;
+  text: string;
+  iconName: string;
+}
+
 const useNavigationLinks = () => {
   const { t } = useTranslation();
 
-  const navigationLinks = [
+  const navigationLinks: NavigationLink[] = [
     { linkTo: PAGES.HOME, text: t('pages.home').toUpperCase(), iconName: 'home' },
     { linkTo: PAGES.ABOUT, text: t('pages.about').toUpperCase(), iconName: 'about' },
     {
