@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import formatDate from '../../../helpers/formatDate';
 import { useDimension } from '../../../helpers/useDimension';
 import { renderIcon } from '../../../images/svgIcons';
+import StarRating from '../../StarRating';
 import Button from '../../atoms/Button';
 import {
   ReviewAuthor,
@@ -78,7 +79,7 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
           )}
         </ReviewButtons>
       </ReviewRating>
-      <ReviewText className={!!isTextHidden ? 'line-clamp' : ''} ref={elementRef}>
+      <ReviewText className={isTextHidden ? 'line-clamp' : ''} ref={elementRef}>
         {review.description}
       </ReviewText>
       {isTextHidden && (

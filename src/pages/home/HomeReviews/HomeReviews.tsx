@@ -3,6 +3,7 @@ import StarRating from '../../../components/StarRating';
 import Carousel from '../../../components/carousel';
 import { Heading4, Heading5 } from '../../../components/common/styles';
 import { renderIcon } from '../../../images/svgIcons';
+import { IReview } from '../../../redux/actions/review';
 import { useReview } from '../../../redux/hooks';
 import {
   HomeReviewsSlide,
@@ -14,7 +15,7 @@ const HomeReviews = () => {
   const { t } = useTranslation();
   const { reviews } = useReview();
 
-  const firstTenReviews: [any] = reviews.slice(0, 10);
+  const firstTenReviews = (reviews as IReview[])?.slice(0, 10);
 
   return (
     <Carousel items={firstTenReviews}>

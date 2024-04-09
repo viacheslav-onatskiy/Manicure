@@ -1,3 +1,4 @@
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loadUser, login, logout, register } from './actions/auth';
@@ -14,11 +15,14 @@ import {
   getReviews,
   updateReview
 } from './actions/review';
+import { IReview } from './reducers/paginationReducer';
+import { ReviewFormData } from './reducers/reviews';
+import { RootState } from './store';
 
 export function useAuth() {
   const dispatch = useDispatch();
   const { token, isAuthenticated, loading, user } = useSelector(
-    (state) => ({
+    (state: RootState) => ({
       token: state.auth.token,
       isAuthenticated: state.auth.isAuthenticated,
       loading: state.auth.loading,
@@ -28,29 +32,24 @@ export function useAuth() {
   );
 
   const boundLoadUser = useCallback(
-    (...args) => {
-      return dispatch(loadUser(...args));
-    },
+    () => (dispatch as ThunkDispatch<RootState, null, Action>)(loadUser()),
     [dispatch]
   );
 
   const boundRegisterUser = useCallback(
-    (...args) => {
-      return dispatch(register(...args));
-    },
+    (userData: { name: string; email: string; password: string }) =>
+      (dispatch as ThunkDispatch<RootState, null, Action>)(register(userData)),
     [dispatch]
   );
 
   const boundLoginUser = useCallback(
-    (...args) => {
-      return dispatch(login(...args));
-    },
+    (email: string, password: string) =>
+      (dispatch as ThunkDispatch<RootState, null, Action>)(login(email, password)),
     [dispatch]
   );
+
   const boundLogoutUser = useCallback(
-    (...args) => {
-      return dispatch(logout(...args));
-    },
+    () => (dispatch as ThunkDispatch<RootState, null, Action>)(logout()),
     [dispatch]
   );
 
@@ -68,49 +67,47 @@ export function useAuth() {
 
 export function useReview() {
   const dispatch = useDispatch();
+
   const { reviews, review, totalPages, totalItems, loading, error } = useSelector(
-    (state) => ({
-      reviews: state.review.reviews,
-      review: state.review.review,
-      totalPages: state.review.totalPages,
-      totalItems: state.review.totalItems,
-      loading: state.review.loading,
-      error: state.review.error
-    }),
+    (state: RootState) => state.review,
     shallowEqual
   );
 
   const boundGetReviews = useCallback(
-    (...args) => {
-      return dispatch(getReviews(...args));
-    },
-    [dispatch]
-  );
-
-  const boundAddReview = useCallback(
-    (...args) => {
-      return dispatch(addReview(...args));
-    },
-    [dispatch]
-  );
-
-  const boundDeleteReview = useCallback(
-    (...args) => {
-      return dispatch(deleteReview(...args));
-    },
-    [dispatch]
-  );
-
-  const boundUpdateReview = useCallback(
-    (...args) => {
-      return dispatch(updateReview(...args));
+    (page: number = 1, pageSize: number = 10) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(
+        getReviews(page, pageSize)
+      );
     },
     [dispatch]
   );
 
   const boundGetReview = useCallback(
-    (...args) => {
-      return dispatch(getReview(...args));
+    (id: number) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(getReview(id));
+    },
+    [dispatch]
+  );
+
+  const boundAddReview = useCallback(
+    (formData: ReviewFormData) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(addReview(formData));
+    },
+    [dispatch]
+  );
+
+  const boundDeleteReview = useCallback(
+    (id: number) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(deleteReview(id));
+    },
+    [dispatch]
+  );
+
+  const boundUpdateReview = useCallback(
+    (formData: ReviewFormData, id: string) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(
+        updateReview(formData, id)
+      );
     },
     [dispatch]
   );
@@ -133,7 +130,7 @@ export function useReview() {
 export function usePagination() {
   const dispatch = useDispatch();
   const { activePage, pageSize, pageOfItems, pageReset } = useSelector(
-    (state) => ({
+    (state: RootState) => ({
       activePage: state.pagination.activePage,
       pageSize: state.pagination.pageSize,
       pageOfItems: state.pagination.pageOfItems,
@@ -143,29 +140,35 @@ export function usePagination() {
   );
 
   const boundSetPageSize = useCallback(
-    (...args) => {
-      return dispatch(setPageSizeAction(...args));
+    (size: number) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(
+        setPageSizeAction(size)
+      );
     },
     [dispatch]
   );
 
   const boundSetPage = useCallback(
-    (...args) => {
-      return dispatch(setPageAction(...args));
+    (page: number) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(setPageAction(page));
     },
     [dispatch]
   );
 
   const boundSetPageItems = useCallback(
-    (...args) => {
-      return dispatch(setPageItemsAction(...args));
+    (items: IReview[]) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(
+        setPageItemsAction(items)
+      );
     },
     [dispatch]
   );
 
   const boundSetPageReset = useCallback(
-    (...args) => {
-      return dispatch(setPageResetAction(...args));
+    (reset: boolean) => {
+      return (dispatch as ThunkDispatch<RootState, null, Action>)(
+        setPageResetAction(reset)
+      );
     },
     [dispatch]
   );

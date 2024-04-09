@@ -11,14 +11,16 @@ import Button from '../../components/atoms/Button/index.js';
 import Pagination from '../../components/atoms/Pagination';
 import { Heading2, PageHeading } from '../../components/common/styles.js';
 import { useDimension } from '../../helpers/useDimension.js';
-import { useAuth, useReview } from '../../redux/hooks.js';
+import { User } from '../../redux/actions/auth.js';
+import { useAuth, useReview } from '../../redux/hooks';
+import { IReview } from '../../redux/reducers/paginationReducer.js';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles';
 
 const Reviews = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
-  const currentPage = searchParams.get('page') || 1;
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const pageSize = searchParams.get('pageSize') || 10;
 
   const {
@@ -30,7 +32,7 @@ const Reviews = () => {
     updateReview,
     deleteReview,
     loading
-  } = useReview() as any;
+  } = useReview();
   const { user, isAuthenticated, token } = useAuth();
   const { isTablet } = useDimension();
 
@@ -41,8 +43,8 @@ const Reviews = () => {
   });
 
   const [formData, setFormData] = useState({
-    description: !loading && modal.type === 'Update' ? review.name : '',
-    rating: review?.rating || 4,
+    description: !loading && modal.type === 'Update' ? (review as IReview).name : '',
+    rating: (review as IReview)?.rating || 4,
     isDescriptionInvalid: false,
     reviewId: ''
   });
@@ -97,8 +99,10 @@ const Reviews = () => {
     clearModalData();
   };
 
-  const updateReviewFn = (reviewId: any) => {
-    const review = reviews.filter((review: any) => review._id === reviewId);
+  const updateReviewFn = (reviewId: string) => {
+    const review = (reviews as IReview[]).filter(
+      (review: IReview) => review._id === reviewId
+    );
 
     setFormData({
       description: review[0].description,
@@ -111,10 +115,10 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    if (!reviews.length) {
-      getReviews(currentPage, pageSize);
+    if (!reviews?.length) {
+      getReviews(+currentPage, +pageSize);
     }
-  }, [currentPage, getReviews, pageSize, reviews.length]);
+  }, [currentPage, getReviews, pageSize, reviews?.length]);
 
   if (loading) {
     return <Loader />;
@@ -146,19 +150,19 @@ const Reviews = () => {
               <Heading2>{t('reviews.noReviews')}</Heading2>
             ) : (
               <>
-                {reviews.map((review: any) => (
+                {(reviews as IReview[]).map((review: IReview) => (
                   <Review
                     key={review._id}
                     review={review}
                     updateReviewFn={updateReviewFn}
                     deleteReview={deleteReview}
-                    userId={user?._id}
+                    userId={(user as User)?._id}
                   />
                 ))}
 
                 <Pagination
                   // items={reviews}
-                  totalItems={totalItems}
+                  totalItems={totalItems || 0}
                   getItems={getReviews}
                 />
               </>

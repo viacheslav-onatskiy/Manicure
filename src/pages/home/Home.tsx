@@ -85,7 +85,7 @@ export const Home: FC = () => {
       getReviews();
     }
 
-    if (!reviews.length && isFirstVisit) {
+    if (!reviews?.length && isFirstVisit) {
       fetchData();
     }
   }, []);

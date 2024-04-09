@@ -26,7 +26,6 @@ function useImageLoader() {
         setImages(loadedImages);
         setImageLoading(false);
       } catch (error) {
-        console.error('Image loading error:', error);
         setImageLoading(false);
       }
     }
