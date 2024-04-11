@@ -5,7 +5,7 @@ import { loadUser } from './redux/actions/auth';
 import store from './redux/store';
 
 import { Theme } from './ThemeContext.js';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout';
 import Services from './components/Services';
 import { PAGES } from './constants.js';
 import {

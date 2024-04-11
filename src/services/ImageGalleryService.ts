@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 // todo: change type to normal
 export interface ImageType {
   src: string;
+  alt?: string;
 }
 
 class ImageGalleryService {

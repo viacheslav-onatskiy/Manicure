@@ -1,6 +1,15 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { useDimension } from '../../helpers/useDimension';
 import { ImageMagnifierImage, ImageMagnifierWrapper } from './styles';
+
+interface ImageMagnifierProps {
+  src?: string;
+  alt?: string;
+  magnifierHeight?: number;
+  magnifierWidth?: number;
+  zoomLevel?: number;
+  className?: string;
+}
 
 function ImageMagnifier({
   src = '',
@@ -8,13 +17,13 @@ function ImageMagnifier({
   magnifierHeight = 120,
   magnifierWidth = 120,
   zoomLevel = 1.5
-}) {
-  const [[x, y], setXY] = useState([0, 0]);
-  const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
-  const [showMagnifier, setShowMagnifier] = useState(false);
+}: ImageMagnifierProps) {
+  const [[x, y], setXY] = useState<[number, number]>([0, 0]);
+  const [[imgWidth, imgHeight], setSize] = useState<[number, number]>([0, 0]);
+  const [showMagnifier, setShowMagnifier] = useState<boolean>(false);
   const { isTablet } = useDimension();
 
-  const onMouseEnter = (e) => {
+  const onMouseEnter = (e: MouseEvent<HTMLImageElement>) => {
     // update image size and turn-on magnifier
     const elem = e.currentTarget;
     const { width, height } = elem.getBoundingClientRect();
@@ -22,7 +31,7 @@ function ImageMagnifier({
     setShowMagnifier(true);
   };
 
-  const onMouseMove = (e) => {
+  const onMouseMove = (e: MouseEvent<HTMLImageElement>) => {
     // update cursor position
     const elem = e.currentTarget;
     const { top, left } = elem.getBoundingClientRect();

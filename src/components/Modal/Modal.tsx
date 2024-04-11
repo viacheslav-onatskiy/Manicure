@@ -1,22 +1,32 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { ModalCloseButton, ModalMain, ModalWrapper } from './styles';
+import { ChangeEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { useDimension } from '../../helpers/useDimension';
 import { useSwipe } from '../../helpers/useSwipe';
 import Button from '../atoms/Button';
-import { useDimension } from '../../helpers/useDimension';
+import { ModalCloseButton, ModalMain, ModalWrapper } from './styles';
+
+interface ModalProps {
+  isOpen?: boolean;
+  modalId: string;
+  hasCloseBtn?: boolean;
+  onClose: () => void;
+  showNext?: (e?: KeyboardEvent | ChangeEvent<HTMLElement>) => void | undefined;
+  showPrev?: (e?: KeyboardEvent | ChangeEvent<HTMLElement>) => void | undefined;
+  children: ReactNode;
+}
 
 const Modal = ({
   isOpen = false,
   modalId,
   hasCloseBtn = true,
   onClose,
-  showPrev = null,
-  showNext = null,
+  showNext,
+  showPrev,
   children
-}) => {
-  const [isModalOpen, setModalOpen] = useState(isOpen);
-  const modalRef = useRef(null);
-  const leftButtonRef = useRef(null);
-  const rightButtonRef = useRef(null);
+}: ModalProps) => {
+  const [isModalOpen, setModalOpen] = useState<boolean>(isOpen);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const leftButtonRef = useRef<HTMLButtonElement>(null);
+  const rightButtonRef = useRef<HTMLButtonElement>(null);
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe();
   const { isMobile } = useDimension();
 
@@ -34,8 +44,8 @@ const Modal = ({
   }, [isModalOpen]);
 
   useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
+    const checkIfClickedOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         if (leftButtonRef.current === e.target || rightButtonRef.current === e.target) {
           return;
         }
@@ -50,7 +60,7 @@ const Modal = ({
   }, [onClose]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 27 || e.key === 'Escape') {
         handleCloseModal();
       }
@@ -62,7 +72,7 @@ const Modal = ({
   }, [handleCloseModal]);
 
   useEffect(() => {
-    const handleKeyRight = (e) => {
+    const handleKeyRight = (e: KeyboardEvent) => {
       if (!showNext) return;
       if (e.keyCode === 39) {
         showNext();
@@ -75,7 +85,7 @@ const Modal = ({
   }, [showNext]);
 
   useEffect(() => {
-    const handleKeyLeft = (e) => {
+    const handleKeyLeft = (e: KeyboardEvent) => {
       if (!showPrev) return;
       if (e.keyCode === 37) {
         showPrev(e);

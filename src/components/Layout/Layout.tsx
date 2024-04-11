@@ -3,10 +3,10 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PAGES } from '../../constants.js';
-import Footer from '../Footer';
-import Header from '../Header';
+import Footer from '../Footer/index.js';
+import Header from '../Header/index.js';
 import ScrollToTopButton from '../atoms/ScrollToTop/ScrollToTop.js';
-import { MainOutlet } from './styles.js';
+import { MainOutlet } from './styles';
 
 const Layout = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ const Layout = () => {
 
   useEffect(() => {
     const defineDocumentTitle = (name = '') => {
-      document.title = `${name && name + ' | '}Yana Nails`;
+      document.title = `${name && name + ' | '}Yana Nails Vancouver`;
     };
 
     switch (location.pathname) {

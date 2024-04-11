@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const InputWrapper = styled.div`
+interface InputWrapperProps {
+  $error: boolean;
+}
+export const InputWrapper = styled.div<InputWrapperProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -79,8 +82,13 @@ export const InputLabel = styled.label`
   white-space: nowrap;
   cursor: pointer;
 `;
+interface InputStyleProps {
+  $iconType: string;
+  $required?: boolean;
+  $error?: boolean;
+}
 
-export const InputStyle = styled.input.attrs((props) => ({
+export const InputStyle = styled.input.attrs<InputStyleProps>((props) => ({
   $iconType: props.$iconType
 }))`
   padding: ${(props) => (props.$iconType ? '5px 10px 5px 40px' : '5px 10px')};

@@ -30,7 +30,11 @@ const modalButtonStyles = css`
   }
 `;
 
-export const ModalWrapper = styled.div.attrs((props) => ({
+interface ModalWrapperProps {
+  $isShowModal: boolean;
+}
+
+export const ModalWrapper = styled.div.attrs<ModalWrapperProps>((props) => ({
   $isShowModal: props.$isShowModal
 }))`
   position: fixed;

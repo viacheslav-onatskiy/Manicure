@@ -74,7 +74,7 @@ const Register = () => {
             type="password"
             value={password}
             name="password"
-            onChange={onChange as any}
+            onChange={onChange}
             placeholder={t('register.fields.password.placeholder')}
           />
 
@@ -84,7 +84,7 @@ const Register = () => {
             type="password"
             value={password2}
             name="password2"
-            onChange={onChange as any}
+            onChange={onChange}
             placeholder={t('register.fields.password2.placeholder')}
           />
 

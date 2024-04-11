@@ -1,13 +1,32 @@
+import { ChangeEvent } from 'react';
 import { renderIcon } from '../../images/svgIcons';
 import { InputIcon, InputLabel, InputStyle, InputWrapper } from './styles';
+
+interface InputProps {
+  id: string;
+  value: string;
+  name: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  onBlur?: () => void;
+  onKeyDown?: () => void;
+  iconType?: string;
+  label?: string;
+  rowsNumber?: number;
+  type?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+}
 
 export const Input = ({
   id,
   value,
-  onChange = undefined,
-  onClick = undefined,
-  onBlur = undefined,
-  onKeyDown = undefined,
+  onChange,
+  onClick,
+  onBlur,
+  onKeyDown,
   iconType = '',
   name = '',
   label = '',
@@ -15,8 +34,8 @@ export const Input = ({
   placeholder = '',
   disabled = false,
   required = false,
-  error = ''
-}) => {
+  error = false
+}: InputProps) => {
   return (
     <InputWrapper $error={error}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
