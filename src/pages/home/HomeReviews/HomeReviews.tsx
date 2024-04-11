@@ -30,8 +30,7 @@ const HomeReviews = () => {
               <StarRating
                 rating={review.rating}
                 isEditable={false}
-                // todo: fix any
-                // className="star__rating" :any
+                className="star__rating"
               />
               <Heading4 className="slide__user">{review.name}</Heading4>
               <Heading5>{t('home.reviews.client')}</Heading5>

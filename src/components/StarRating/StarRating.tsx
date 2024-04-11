@@ -2,15 +2,32 @@ import { useMemo, useState } from 'react';
 import StarIcon from './StarIcon';
 import { RatingIconWrapper, StarRatingWrapper } from './styles';
 
+interface RatingIconProps {
+  index: number;
+  rating: number;
+  isEditable: boolean;
+  hoverRating: number;
+  onMouseEnter: (value: number) => void;
+  onMouseLeave: () => void;
+  onSaveRating: (value: number) => void;
+}
+
+interface StarRatingProps {
+  rating?: number;
+  isEditable?: boolean;
+  onSaveRating?: (value: number) => void;
+  className?: string;
+}
+
 export const StarRating = ({
   rating = 4,
   onSaveRating = () => {},
   isEditable = true,
-  className = null
-}) => {
-  const [hoverRating, setHoverRating] = useState(0);
+  className = ''
+}: StarRatingProps) => {
+  const [hoverRating, setHoverRating] = useState<number>(0);
 
-  const onMouseEnter = (value) => {
+  const onMouseEnter = (value: number) => {
     setHoverRating(value);
   };
 
@@ -46,7 +63,7 @@ function RatingIcon({
   onMouseEnter,
   onMouseLeave,
   onSaveRating
-}) {
+}: RatingIconProps) {
   const fill = useMemo(() => {
     if (hoverRating >= index) {
       return '#d8babc';

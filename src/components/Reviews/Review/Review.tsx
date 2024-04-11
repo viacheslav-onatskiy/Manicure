@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import formatDate from '../../../helpers/formatDate';
 import { useDimension } from '../../../helpers/useDimension';
 import { renderIcon } from '../../../images/svgIcons';
+import { IReview } from '../../../redux/reducers/paginationReducer';
 import StarRating from '../../StarRating';
 import Button from '../../atoms/Button';
 import {
@@ -16,13 +16,20 @@ import {
   ReviewWrapper
 } from './styles';
 
-const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
+interface ReviewProps {
+  review: IReview;
+  updateReviewFn: (id: string) => void;
+  deleteReview: (id: string) => void;
+  userId: string;
+}
+
+const Review = ({ review, updateReviewFn, deleteReview, userId }: ReviewProps) => {
   const { t } = useTranslation();
-  const [numberOfLines, setNumberOfLines] = useState(0);
-  const [isTextHidden, setIsTextHidden] = useState(false);
-  const [isHideButtonAvailable, setIsHideButtonAvailable] = useState(false);
+  const [numberOfLines, setNumberOfLines] = useState<number>(0);
+  const [isTextHidden, setIsTextHidden] = useState<boolean>(false);
+  const [isHideButtonAvailable, setIsHideButtonAvailable] = useState<boolean>(false);
   const { isTablet } = useDimension();
-  const elementRef = useRef(null);
+  const elementRef = useRef<HTMLElement>(null);
 
   const showFullText = () => {
     setIsTextHidden(false);
@@ -42,10 +49,11 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
 
   useEffect(() => {
     const element = elementRef.current;
-    const height = element.clientHeight;
-    const lineHeight = parseInt(window.getComputedStyle(element).lineHeight);
-
-    setNumberOfLines(Math.floor(height / lineHeight));
+    if (element) {
+      const height = element.clientHeight;
+      const lineHeight = parseInt(window.getComputedStyle(element).lineHeight || '0');
+      setNumberOfLines(Math.floor(height / lineHeight));
+    }
   }, []);
 
   return (
@@ -79,7 +87,10 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
           )}
         </ReviewButtons>
       </ReviewRating>
-      <ReviewText className={isTextHidden ? 'line-clamp' : ''} ref={elementRef}>
+      <ReviewText
+        className={isTextHidden ? 'line-clamp' : ''}
+        ref={elementRef as React.RefObject<HTMLPreElement>}
+      >
         {review.description}
       </ReviewText>
       {isTextHidden && (
@@ -97,10 +108,3 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }) => {
 };
 
 export default Review;
-
-Review.propTypes = {
-  review: PropTypes.object,
-  updateReviewFn: PropTypes.func,
-  deleteReview: PropTypes.func,
-  userId: PropTypes.string
-};

@@ -98,7 +98,7 @@ export const addReview =
         'Content-Type': 'application/json'
       }
     };
-    console.log('addReview formData:', formData);
+
     try {
       dispatch({
         type: ReviewActionTypes.ADD_REVIEW
@@ -137,7 +137,7 @@ export const addReview =
 
 // Delete Review
 export const deleteReview =
-  (id: number): AppThunk =>
+  (id: string): AppThunk =>
   async (dispatch) => {
     try {
       dispatch({
@@ -167,10 +167,6 @@ export const deleteReview =
   };
 
 // Update Review
-interface UpdateReviewData extends IReview {
-  date: string;
-  user: string;
-}
 export const updateReview =
   (formData: ReviewFormData, id: string): AppThunk =>
   async (dispatch) => {
@@ -183,11 +179,7 @@ export const updateReview =
       dispatch({
         type: ReviewActionTypes.UPDATE_REVIEW
       });
-      const res = await axiosInstance.put<UpdateReviewData>(
-        `/reviews/${id}`,
-        formData,
-        config
-      );
+      const res = await axiosInstance.put<IReview>(`/reviews/${id}`, formData, config);
 
       dispatch({
         type: ReviewActionTypes.UPDATE_REVIEW_SUCCESS,

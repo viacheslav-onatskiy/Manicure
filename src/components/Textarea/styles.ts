@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const TextareaWrapper = styled.div`
+interface TextareaWrapperProps {
+  $error: boolean;
+}
+
+export const TextareaWrapper = styled.div<TextareaWrapperProps>`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -78,9 +82,16 @@ export const TextareaLabel = styled.label`
   cursor: pointer;
 `;
 
-export const TextareaStyle = styled.textarea.attrs((props) => ({
-  $iconType: props.$iconType
-}))`
+interface TextareaStyleProps {
+  $iconType: string;
+  $required?: boolean;
+  $error?: boolean;
+}
+
+// export const TextareaStyle = styled.textarea<TextareaStyleProps>.attrs((props) => ({
+//   $iconType: props.$iconType
+// }))`
+export const TextareaStyle = styled.textarea<TextareaStyleProps>`
   padding: ${(props) => (props.$iconType ? '5px 10px 5px 40px' : '5px 10px')};
   width: 100%;
   border-radius: 5px;

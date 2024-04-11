@@ -12,9 +12,12 @@ export const DropdownContainer = styled.div`
   }
 `;
 
-export const DropdownHeader = styled.div.attrs((props) => ({
-  $isOpen: props.$isOpen
-}))`
+interface DropdownHeaderProps {
+  $isOpen: boolean;
+}
+
+// export const DropdownHeader: IStyledComponent<'div', any, DropdownHeaderProps, never> = styled.div<DropdownHeaderProps>`
+export const DropdownHeader = styled.div<DropdownHeaderProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -84,8 +87,13 @@ export const DropdownList = styled.ul`
   ${scrollBar}
 `;
 
-export const DropdownItem = styled.li.attrs((props) => ({
-  $isSelected: props.$isSelected
+interface DropdownItemProps {
+  $isSelected: boolean | null;
+}
+
+// export const DropdownItem = styled.li<DropdownItemProps>`
+export const DropdownItem = styled.li.attrs<DropdownItemProps>((props) => ({
+  $isSelected: props.$isSelected ?? false
 }))`
   padding: 8px;
   cursor: pointer;

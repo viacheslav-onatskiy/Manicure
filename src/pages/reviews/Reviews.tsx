@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import Modal from '../../components/Modal/index.js';
-import Review from '../../components/Reviews/Review/Review.jsx';
+import Review from '../../components/Reviews/Review';
 import Button from '../../components/atoms/Button/index.js';
 import Pagination from '../../components/atoms/Pagination';
 import { Heading2, PageHeading } from '../../components/common/styles.js';

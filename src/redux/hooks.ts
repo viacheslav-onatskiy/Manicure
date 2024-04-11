@@ -97,7 +97,7 @@ export function useReview() {
   );
 
   const boundDeleteReview = useCallback(
-    (id: number) => {
+    (id: string) => {
       return (dispatch as ThunkDispatch<RootState, null, Action>)(deleteReview(id));
     },
     [dispatch]

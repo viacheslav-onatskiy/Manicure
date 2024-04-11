@@ -1,11 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   DropdownContainer,
   DropdownHeader,
   DropdownIcon,
   DropdownItem,
   DropdownList
-} from './styles.js';
+} from './styles';
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface SelectProps {
+  options?: Option[];
+  onSelect?: (option: Option) => void;
+  initialValue?: string;
+  className?: string;
+  label?: string;
+  isVisibleHeader?: boolean;
+}
 
 const Select = ({
   options = [],
@@ -14,18 +28,17 @@ const Select = ({
   className = '',
   label = 'Select an option',
   ...rest
-}) => {
+}: SelectProps) => {
   const { isVisibleHeader } = rest;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const dropdownRef = useRef(null);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (initialValue) {
       setSelectedOption(options.find((option) => option.value === initialValue) || null);
     }
   }, [initialValue, options]);
-
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -34,15 +47,15 @@ const Select = ({
     setIsOpen(false);
   }, []);
 
-  const handleSelectOption = (option) => {
+  const handleSelectOption = (option: Option) => {
     setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);
   };
 
   useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    const checkIfClickedOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         closeDropdown();
       }
     };

@@ -1,10 +1,12 @@
 import { PaginationActionTypes } from '../actions/types';
 
 export interface IReview {
-  _id: string;
   name: string;
+  date: string;
   rating: number;
   description: string;
+  _id: string;
+  user: string;
 }
 
 export interface PaginationState {
