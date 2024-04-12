@@ -4,7 +4,7 @@ import setAuthToken from './helpers/setAuthToken';
 import { loadUser } from './redux/actions/auth';
 import store from './redux/store';
 
-import { Theme } from './ThemeContext.js';
+import { Theme } from './ThemeContext';
 import Layout from './components/Layout';
 import Services from './components/Services';
 import { PAGES } from './constants.js';

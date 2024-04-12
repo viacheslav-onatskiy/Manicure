@@ -1,13 +1,14 @@
+import { ChangeEvent } from 'react';
 import { renderIcon } from '../../images/svgIcons';
 import { TextareaIcon, TextareaLabel, TextareaStyle, TextareaWrapper } from './styles';
 
 interface TextareaProps {
   id: string;
   value: string;
-  onChange: () => void;
-  onClick: () => void;
-  onBlur: () => void;
-  onKeyDown: () => void;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onClick?: () => void;
+  onBlur?: () => void;
+  onKeyDown?: () => void;
   iconType?: string;
   label?: string;
   rowsNumber?: number;

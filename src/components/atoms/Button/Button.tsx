@@ -1,8 +1,8 @@
 import { FC, forwardRef } from 'react';
-import { StyledButton } from './styles';
+import { ButtonProps, StyledButton } from './styles';
 
-const Button: FC<any> = forwardRef(
-  ({ variant, size, formType, children, ...props }, ref) => {
+const Button: FC<ButtonProps> = forwardRef(
+  ({ variant, size, formType, children, onClick, ...props }, ref: any) => {
     return (
       <StyledButton
         $variant={variant}
@@ -10,6 +10,7 @@ const Button: FC<any> = forwardRef(
         $formType={formType}
         {...props}
         ref={ref}
+        onClick={onClick}
       >
         {children}
       </StyledButton>

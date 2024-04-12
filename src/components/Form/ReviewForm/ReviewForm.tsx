@@ -6,13 +6,32 @@ import Textarea from '../../Textarea';
 import Button from '../../atoms/Button';
 import { StyledAlert, StyledForm } from './styles';
 
-const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) => {
+interface FormData {
+  description: string;
+  rating: number;
+  isDescriptionInvalid: boolean;
+  reviewId: string;
+}
+
+interface ReviewFormProps {
+  formData: FormData;
+  modalType?: 'Add' | 'Update';
+  setFormData: (formData: FormData) => void;
+  leaveReview: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const ReviewForm = ({
+  formData,
+  modalType = 'Add',
+  setFormData,
+  leaveReview
+}: ReviewFormProps) => {
   const { t } = useTranslation();
   const { isTablet } = useDimension();
   const { description, rating, isDescriptionInvalid } = formData;
   const toastId = 'custom-id-toastify';
 
-  const handleDescription = (event) => {
+  const handleDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = event.target.value;
 
     if (inputValue.length >= 400) {
@@ -26,9 +45,10 @@ const ReviewForm = ({ formData, modalType = 'Add', setFormData, leaveReview }) =
   return (
     <StyledForm onSubmit={leaveReview}>
       <Textarea
+        id="ReviewForm-textarea"
         value={description}
         onChange={handleDescription}
-        rowsNumber={isTablet ? '7' : '5'}
+        rowsNumber={isTablet ? 7 : 5}
         placeholder={t('modals.description')}
       />
       {isDescriptionInvalid && <StyledAlert>{t('modals.fillDescription')}</StyledAlert>}

@@ -69,7 +69,7 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }: ReviewProps) =
             <>
               <Button
                 size="small"
-                variant={isTablet ? '' : 'outlined'}
+                variant={isTablet ? 'default' : 'outlined'}
                 onClick={() => updateReviewFn(review._id)}
                 title={t('reviews.updateReview')}
               >
@@ -77,7 +77,7 @@ const Review = ({ review, updateReviewFn, deleteReview, userId }: ReviewProps) =
               </Button>
               <Button
                 size="small"
-                variant={isTablet ? '' : 'primary'}
+                variant={isTablet ? 'default' : 'primary'}
                 onClick={() => deleteReview(review._id)}
                 title={t('reviews.removeReview')}
               >

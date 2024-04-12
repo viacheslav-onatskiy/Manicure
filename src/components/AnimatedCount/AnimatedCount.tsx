@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 
-const AnimatedCount = ({ number, duration }) => {
+interface AnimatedCountProps {
+  number: string;
+  duration: string;
+}
+
+const AnimatedCount: React.FC<AnimatedCountProps> = ({
+  number,
+  duration
+}: AnimatedCountProps) => {
   // number to increment to
   // duration of count in seconds
   // number displayed by component

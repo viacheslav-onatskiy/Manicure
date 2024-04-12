@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { IReview } from '../../redux/actions/review';
 import Button from '../atoms/Button';
 import {
   CarouselArrow,
@@ -8,18 +9,23 @@ import {
   CarouselWrapper
 } from './styles';
 
-const Carousel = ({ items, children }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+interface CarouselProps {
+  items: IReview[];
+  children: ReactNode;
+}
+
+const Carousel = ({ items, children }: CarouselProps) => {
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prevSlide) => (prevSlide === items.length - 1 ? 0 : prevSlide + 1));
   }, [items.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prevSlide) => (prevSlide === 0 ? items.length - 1 : prevSlide - 1));
-  };
+  }, [items.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 

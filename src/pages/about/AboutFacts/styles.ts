@@ -1,15 +1,34 @@
 import styled from 'styled-components';
-import { Heading2, Heading4 } from '../../../components/common/styles.js';
+import { Heading2, Heading4 } from '../../../components/common/styles';
 
 export const AboutFactsWrapper = styled.div``;
 
 export const AboutFactsList = styled.div`
   display: flex;
   gap: 15px;
+  justify-content: center;
 
   @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
     flex-wrap: wrap;
     gap: 15px 0;
+  }
+
+  .about-facts-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    padding: 15px;
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+      padding: 10px;
+      flex: 0 0 50%;
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.screenSizes.tablet}) {
+      padding: 10px;
+      flex: 0 0 100%;
+    }
   }
 `;
 

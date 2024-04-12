@@ -4,6 +4,27 @@ import { useSearchParams } from 'react-router-dom';
 import { useDimension } from '../../../helpers/useDimension';
 import { PaginationButton, PaginationWrapper } from './styles';
 
+interface Page {
+  page: number;
+  value: boolean;
+}
+
+interface PagerState {
+  totalItems: number;
+  currentPage: number;
+  totalPages: number;
+  startPage: number;
+  endPage: number;
+  startIndex: number;
+  endIndex: number;
+  pages: Page[];
+}
+
+interface PaginationProps {
+  totalItems: number;
+  getItems: (page: number, pageSize: number) => void;
+}
+
 interface PaginationProps {
   totalItems: number;
   getItems: (page: number, pageSize: number) => void;
@@ -13,15 +34,14 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
   const { t } = useTranslation();
   const { isTablet } = useDimension();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [pagerState, setPagerState] = useState({}) as any;
-  const currentPage: any = Number(searchParams.get('page')) || 1;
-  const pageSize = Number(searchParams.get('pageSize')) || 10;
-  const { pages, totalPages } = pagerState;
+  const [pagerState, setPagerState] = useState<PagerState | null>(null);
+  const currentPage: number = Number(searchParams.get('page')) || 1;
+  const pageSize: number = Number(searchParams.get('pageSize')) || 10;
 
-  const getPager = () => {
-    const totalPages = Math.ceil(totalItems / pageSize);
+  const getPager = (): PagerState => {
+    const totalPages: number = Math.ceil(totalItems / pageSize);
 
-    let startPage: any, endPage;
+    let startPage: number, endPage: number;
     if (totalPages <= 6) {
       // less than 6 total pages so show all
       startPage = 1;
@@ -40,40 +60,42 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
       }
     }
 
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+    const startIndex: number = (currentPage - 1) * pageSize;
+    const endIndex: number = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
-    const pages = [...Array(endPage + 1 - startPage).keys()].map((i) => {
-      const START_PAGE = 1;
-      const currentPageCondition = currentPage >= 5;
-      const lastPagesCondition = currentPage + 3 >= totalPages;
+    const pages: Page[] = [...Array(endPage + 1 - startPage).keys()]
+      .map((i: number) => {
+        const START_PAGE = 1;
+        const currentPageCondition = currentPage >= 5;
+        const lastPagesCondition = currentPage + 3 >= totalPages;
 
-      if (i === 0) {
-        return { page: START_PAGE, value: true };
-      }
+        if (i === 0) {
+          return { page: START_PAGE, value: true };
+        }
 
-      if (currentPageCondition && i === 1) {
-        return { page: startPage + i, value: false };
-      }
+        if (currentPageCondition && i === 1) {
+          return { page: startPage + i, value: false };
+        }
 
-      if (lastPagesCondition && i >= 4) {
-        return { page: startPage + i, value: true };
-      }
+        if (lastPagesCondition && i >= 4) {
+          return { page: startPage + i, value: true };
+        }
 
-      if (i < 5) {
-        return { page: startPage + i, value: true };
-      }
+        if (i < 5) {
+          return { page: startPage + i, value: true };
+        }
 
-      if (i < 6) {
-        return { page: startPage + i, value: false };
-      }
+        if (i < 6) {
+          return { page: startPage + i, value: false };
+        }
 
-      if (i === 6) {
-        return { page: totalPages, value: true };
-      }
+        if (i === 6) {
+          return { page: totalPages, value: true };
+        }
 
-      return null;
-    });
+        return null;
+      })
+      .filter((page) => page !== null) as Page[];
 
     return {
       totalItems,
@@ -87,17 +109,21 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
     };
   };
 
-  const isActivePage = (page: any) => page.value && currentPage === page.page;
+  const isActivePage = (page: Page): boolean => page.value && currentPage === page.page;
 
   const getInitialPages = () => {
-    setSearchParams({ page: currentPage, pageSize } as any);
+    setSearchParams({ page: currentPage.toString(), pageSize: pageSize.toString() });
     const pager = getPager();
 
     setPagerState(pager);
   };
 
-  const setPage = (page: any) => {
-    setSearchParams({ ...searchParams, page, pageSize } as any);
+  const setPage = (page: number) => {
+    setSearchParams({
+      ...searchParams,
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    });
     const pager = getPager();
 
     if (page < 1 || page > pager.totalItems) {
@@ -109,10 +135,9 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
 
   useEffect(() => {
     getInitialPages();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!pages || pages.length <= 1) {
+  if (!pagerState?.pages || pagerState?.pages.length <= 1) {
     return null;
   }
 
@@ -140,7 +165,7 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
         </>
       )}
 
-      {pagerState?.pages?.map((page: any, i: any) => (
+      {pagerState?.pages?.map((page: Page, i: number) => (
         <PaginationButton
           key={`page-${i}`}
           onClick={() => {
@@ -148,7 +173,7 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
           }}
           className={`${!page.value ? 'disabled' : ''}
           ${isActivePage(page) ? 'active' : ''}`}
-          variant={page.value ? 'outlined' : ''}
+          variant={page.value ? 'outlined' : 'default'}
         >
           {page.value ? page.page : '...'}
         </PaginationButton>
@@ -161,14 +186,14 @@ const Pagination: FC<PaginationProps> = React.memo(({ totalItems, getItems }) =>
             onClick={() => {
               setPage(currentPage + 1);
             }}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === pagerState.totalPages}
           >
             &#11208;
           </PaginationButton>
           <PaginationButton
             variant="outlined"
-            onClick={() => setPage(totalPages)}
-            disabled={currentPage === totalPages}
+            onClick={() => setPage(pagerState.totalPages)}
+            disabled={currentPage === pagerState.totalPages}
           >
             {t('pagination.last')}
           </PaginationButton>

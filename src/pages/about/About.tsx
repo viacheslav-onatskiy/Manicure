@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
-import { Heading2, Heading3, Heading5 } from '../../components/common/styles.js';
+import { Heading2, Heading3, Heading5 } from '../../components/common/styles';
 import { REDIRECTS } from '../../constants.js';
 import useImageLoader from '../../helpers/useImageLoader';
 import { renderIcon } from '../../images/svgIcons.js';

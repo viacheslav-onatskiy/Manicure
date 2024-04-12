@@ -1,6 +1,29 @@
+import { ButtonHTMLAttributes, FormEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
-const commonButtonStyles = css`
+type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonVariant = 'default' | 'primary' | 'outlined';
+type ButtonFormType = 'default' | 'rounded1' | 'rounded2' | 'squared';
+
+export interface StyledButtonProps {
+  $variant?: ButtonVariant;
+  variant?: ButtonVariant;
+  $size?: ButtonSize;
+  size?: ButtonSize;
+  $formType?: ButtonFormType;
+  formType?: ButtonFormType;
+  color?: string;
+  fontSize?: string;
+  ref?: any;
+}
+
+export interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    StyledButtonProps {
+  onClick?: FormEventHandler<HTMLElement> | any;
+}
+
+const commonButtonStyles = css<StyledButtonProps>`
   color: ${({ color, theme }) => color || theme.colors.dark1};
   font-size: ${({ fontSize }) => fontSize || '16px'};
   border: 2px solid transparent;
@@ -39,7 +62,7 @@ const commonButtonStyles = css`
   }
 `;
 
-const primaryButtonStyles = css`
+const primaryButtonStyles = css<StyledButtonProps>`
   background-color: ${({ theme }) => theme.colors.primary2};
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
   color: ${({ theme }) => theme.colors.white};
@@ -59,7 +82,7 @@ const primaryButtonStyles = css`
   }
 `;
 
-const outlinedButtonStyles = css`
+const outlinedButtonStyles = css<StyledButtonProps>`
   outline: 2px solid ${({ theme }) => theme.colors.primary2};
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
 
@@ -78,17 +101,17 @@ const outlinedButtonStyles = css`
   }
 `;
 
-const smallButtonStyles = css`
+const smallButtonStyles = css<StyledButtonProps>`
   font-size: 14px;
   padding: 4px 10px;
 `;
 
-const largeButtonStyles = css`
+const largeButtonStyles = css<StyledButtonProps>`
   font-size: 18px;
   padding: 10px 24px;
 `;
 
-export const StyledButton = styled.button.attrs((props) => ({
+export const StyledButton = styled.button.attrs<StyledButtonProps>((props) => ({
   $variant: props.$variant || 'default',
   $size: props.$size || 'medium',
   $formType: props.$formType || 'default'

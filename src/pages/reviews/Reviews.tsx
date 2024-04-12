@@ -3,18 +3,24 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ReviewForm from '../../components/Form/ReviewForm/ReviewForm.jsx';
+import ReviewForm from '../../components/Form/ReviewForm';
 import Loader from '../../components/Loader';
 import Modal from '../../components/Modal';
 import Review from '../../components/Reviews/Review';
-import Button from '../../components/atoms/Button/index.js';
+import Button from '../../components/atoms/Button';
 import Pagination from '../../components/atoms/Pagination';
-import { Heading2, PageHeading } from '../../components/common/styles.js';
+import { Heading2, PageHeading } from '../../components/common/styles';
 import { useDimension } from '../../helpers/useDimension';
 import { User } from '../../redux/actions/auth.js';
 import { useAuth, useReview } from '../../redux/hooks';
 import { IReview } from '../../redux/reducers/paginationReducer';
 import { ReviewsButtonWrapper, ReviewsContentWrapper, ReviewsWrapper } from './styles';
+
+interface ModalType {
+  isOpen: boolean;
+  type: 'Add' | 'Update';
+  id: string;
+}
 
 const Reviews = () => {
   const [searchParams] = useSearchParams();
@@ -36,7 +42,7 @@ const Reviews = () => {
   const { user, isAuthenticated, token } = useAuth();
   const { isTablet } = useDimension();
 
-  const [modal, setModal] = useState({
+  const [modal, setModal] = useState<ModalType>({
     isOpen: false,
     type: 'Add',
     id: ''
@@ -49,7 +55,7 @@ const Reviews = () => {
     reviewId: ''
   });
 
-  const leaveReview = (e: FormEvent<HTMLInputElement>) => {
+  const leaveReview = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!token || !isAuthenticated) {
@@ -86,7 +92,7 @@ const Reviews = () => {
     setFormData({ ...formData, description: '', rating: 4, isDescriptionInvalid: false });
   };
 
-  const openModal = (type = 'Add', id = 'reviews-modal') => {
+  const openModal = (type: 'Add' | 'Update' = 'Add', id = 'reviews-modal') => {
     if (!isAuthenticated) {
       toast.warning(t('modals.logInToLeaveReview'));
       return;

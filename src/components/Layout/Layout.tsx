@@ -3,9 +3,9 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PAGES } from '../../constants.js';
-import Footer from '../Footer/index.js';
+import Footer from '../Footer';
 import Header from '../Header/index.js';
-import ScrollToTopButton from '../atoms/ScrollToTop/ScrollToTop.js';
+import ScrollToTopButton from '../atoms/ScrollToTop';
 import { MainOutlet } from './styles';
 
 const Layout = () => {
