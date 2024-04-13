@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonVariant = 'default' | 'primary' | 'outlined';
-type ButtonFormType = 'default' | 'rounded1' | 'rounded2' | 'squared';
+type ButtonFormType = 'default' | 'rounded1' | 'rounded2' | 'squared' | 'filled';
 
 export interface StyledButtonProps {
   $variant?: ButtonVariant;

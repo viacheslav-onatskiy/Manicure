@@ -7,14 +7,14 @@ import {
   DropdownList
 } from './styles';
 
-interface Option {
+export interface SelectOption {
   value: string;
   label: string;
 }
 
 interface SelectProps {
-  options?: Option[];
-  onSelect?: (option: Option) => void;
+  options?: SelectOption[];
+  onSelect?: (option: SelectOption) => void;
   initialValue?: string;
   className?: string;
   label?: string;
@@ -31,7 +31,7 @@ const Select = ({
 }: SelectProps) => {
   const { isVisibleHeader } = rest;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Select = ({
     setIsOpen(false);
   }, []);
 
-  const handleSelectOption = (option: Option) => {
+  const handleSelectOption = (option: SelectOption) => {
     setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);

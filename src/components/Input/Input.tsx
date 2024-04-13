@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { renderIcon } from '../../images/svgIcons';
+import { IconType, renderIcon } from '../../images/svgIcons';
 import { InputIcon, InputLabel, InputStyle, InputWrapper } from './styles';
 
 interface InputProps {
@@ -10,7 +10,7 @@ interface InputProps {
   onClick?: () => void;
   onBlur?: () => void;
   onKeyDown?: () => void;
-  iconType?: string;
+  iconType?: IconType;
   label?: string;
   rowsNumber?: number;
   type?: string;

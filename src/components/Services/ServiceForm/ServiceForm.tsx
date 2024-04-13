@@ -13,7 +13,7 @@ import {
 } from '../styles';
 import { ServiceFormItem, ServiceFromWrapper } from './styles';
 
-const ServiceForm = () => {
+const ServiceForm: React.FC = () => {
   const { t } = useTranslation();
 
   const {

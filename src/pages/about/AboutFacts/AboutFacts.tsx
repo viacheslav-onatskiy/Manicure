@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import AnimatedCount from '../../../components/AnimatedCount';
 import { useIsVisible } from '../../../helpers/useIsVisible';
-import { renderIcon } from '../../../images/svgIcons.js';
+import { renderIcon } from '../../../images/svgIcons';
 import { AboutSection } from '../styles';
 import {
   AboutFactsItemDescription,

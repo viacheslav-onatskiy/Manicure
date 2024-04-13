@@ -1,9 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const NavigationHeaderWrapper = styled.nav.attrs((props) => ({
-  $isVisible: props.$isVisible
-}))`
+interface NavigationHeaderWrapperProps {
+  $isVisible: boolean;
+}
+
+export const NavigationHeaderWrapper = styled.nav.attrs<NavigationHeaderWrapperProps>(
+  (props) => ({
+    $isVisible: props.$isVisible
+  })
+)`
   top: ${({ $isVisible }) => ($isVisible ? '0' : '-100px')};
   background: ${({ theme }) => theme.colors.white};
   position: fixed;
@@ -31,7 +37,11 @@ export const NavigationLink = styled(NavLink)`
   }
 `;
 
-export const NavLogoWrapper = styled(NavLink)`
+interface NavLogoWrapperProps {
+  $primary?: boolean;
+}
+
+export const NavLogoWrapper = styled(NavLink)<NavLogoWrapperProps>`
   background: ${(props) => (props.$primary ? '#BF4F74' : 'white')};
   display: flex;
   align-items: center;

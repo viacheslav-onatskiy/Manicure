@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { renderIcon } from '../../images/svgIcons';
+import { IconType, renderIcon } from '../../images/svgIcons';
 import { TextareaIcon, TextareaLabel, TextareaStyle, TextareaWrapper } from './styles';
 
 interface TextareaProps {
@@ -9,7 +9,8 @@ interface TextareaProps {
   onClick?: () => void;
   onBlur?: () => void;
   onKeyDown?: () => void;
-  iconType?: string;
+  name?: string;
+  iconType?: IconType;
   label?: string;
   rowsNumber?: number;
   type?: string;
@@ -31,6 +32,7 @@ export const Textarea = ({
   rowsNumber = 3,
   type = 'text',
   placeholder = '',
+  name = '',
   disabled = false,
   required = false,
   error = false
@@ -43,6 +45,7 @@ export const Textarea = ({
           id={id}
           value={value}
           // type={type}
+          name={name}
           placeholder={placeholder}
           disabled={disabled}
           onChange={onChange}

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { PAGES } from '../../constants.js';
+import { PAGES } from '../../constants';
 import Footer from '../Footer';
-import Header from '../Header/index.js';
+import Header from '../Header/';
 import ScrollToTopButton from '../atoms/ScrollToTop';
 import { MainOutlet } from './styles';
 

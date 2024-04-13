@@ -6,10 +6,11 @@ import nailExtensionImage from '../../images/portfolio/17.JPG';
 import nailArtImage from '../../images/portfolio/26.JPG';
 import manicureImage from '../../images/portfolio/4.jpg';
 import servicesImage from '../../images/services_hand.jpg';
+import { IconType } from '../../images/svgIcons';
 import Button from '../atoms/Button';
 import { Heading2, Heading3, PageHeading } from '../common/styles';
 import CardsList from './CardsList';
-import ServiceForm from './ServiceForm/ServiceForm';
+import ServiceForm from './ServiceForm';
 import {
   PricingImage,
   PricingItemBox,
@@ -25,11 +26,21 @@ import {
   ServiceSectionItem
 } from './styles';
 
-const Services = () => {
+export type ServiceType = {
+  id: string;
+  heading: string;
+  iconName?: IconType;
+  shortDescription: string;
+  description: string;
+  bgColor?: string;
+  imageSrc: string;
+};
+
+const Services: React.FC = () => {
   const { t } = useTranslation();
   const { isTablet } = useDimension();
 
-  const servicesList = [
+  const servicesList: ServiceType[] = [
     {
       id: 'manicure',
       heading: t('services.cards.1.heading'),

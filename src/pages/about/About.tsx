@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import Button from '../../components/atoms/Button/Button';
+import Button from '../../components/atoms/Button';
 import { Heading2, Heading3, Heading5 } from '../../components/common/styles';
-import { REDIRECTS } from '../../constants.js';
+import { REDIRECTS } from '../../constants';
 import useImageLoader from '../../helpers/useImageLoader';
-import { renderIcon } from '../../images/svgIcons.js';
+import { renderIcon } from '../../images/svgIcons';
 import AboutFacts from './AboutFacts';
 import {
   AboutInstaItem,

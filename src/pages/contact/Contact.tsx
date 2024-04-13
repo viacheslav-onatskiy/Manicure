@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import ServiceForm from '../../components/Services/ServiceForm/ServiceForm';
+import ServiceForm from '../../components/Services/ServiceForm';
 import {
   SectionContainer,
   SectionHeading,
@@ -8,7 +8,7 @@ import {
   ServiceSectionItem
 } from '../../components/Services/styles';
 import { PageHeading } from '../../components/common/styles';
-import { REDIRECTS } from '../../constants.js';
+import { REDIRECTS } from '../../constants';
 import { renderIcon } from '../../images/svgIcons';
 import {
   ContactDescription,

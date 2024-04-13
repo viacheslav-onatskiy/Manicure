@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
 import Button from '../../atoms/Button';
 import { NavigationHeaderWrapper, NavigationLink } from '../styles';
+import { ButtonProps } from './../../atoms/Button/styles';
+
+interface MobileNavbarProps {
+  $isVisible?: boolean;
+  className?: string;
+}
 
 const mobileNavButtonStyles = css`
   padding: 10px;
@@ -16,7 +22,7 @@ const mobileNavButtonStyles = css`
 `;
 
 export const MobileNavbar = {
-  Wrapper: styled(NavigationHeaderWrapper)`
+  Wrapper: styled(NavigationHeaderWrapper)<MobileNavbarProps & ButtonProps>`
     z-index: 100;
     top: 0;
     display: flex;
@@ -26,7 +32,7 @@ export const MobileNavbar = {
     padding: 8px;
   `,
 
-  HamburgerButton: styled(Button)`
+  HamburgerButton: styled(Button)<ButtonProps>`
     ${mobileNavButtonStyles}
   `,
 
@@ -134,12 +140,12 @@ export const MobileNavbar = {
     }
   `,
 
-  DotsButton: styled(Button)`
+  DotsButton: styled(Button)<ButtonProps>`
     ${mobileNavButtonStyles}
     padding: 15px;
   `,
 
-  Sidebar: styled.div.attrs((props) => ({
+  Sidebar: styled.div.attrs<MobileNavbarProps>((props) => ({
     $isVisible: props.$isVisible
   }))`
     position: fixed;
@@ -237,7 +243,7 @@ export const MobileNavbar = {
     }
   `,
 
-  ExtraSidebar: styled.div.attrs((props) => ({
+  ExtraSidebar: styled.div.attrs<MobileNavbarProps>((props) => ({
     $isVisible: props.$isVisible
   }))`
     position: fixed;

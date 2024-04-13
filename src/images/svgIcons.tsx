@@ -1,4 +1,39 @@
-export const renderIcon = (type) => {
+export type IconType =
+  | 'contactAddress'
+  | 'contactEmail'
+  | 'contactClock'
+  | 'contactPhone'
+  | 'instagram'
+  | 'quote'
+  | 'message'
+  | 'facebook'
+  | 'scrollToTop'
+  | 'manicure-service'
+  | 'pedicure-service'
+  | 'nail-art-service'
+  | 'nail-extensions-service'
+  | 'skin-care-service'
+  | 'massage-service'
+  | 'home'
+  | 'about'
+  | 'portfolio'
+  | 'reviews'
+  | 'services'
+  | 'contact'
+  | 'update'
+  | 'remove'
+  | 'coffee'
+  | 'health-check'
+  | 'nail'
+  | 'time-experience'
+  | 'services-experience'
+  | 'reset-experience'
+  | 'care-experience'
+  | 'loader'
+  | ''
+  | 'userName';
+
+export const renderIcon = (type: IconType) => {
   switch (type) {
     case 'contactAddress':
       return (

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { PAGES } from '../../constants';
 import { useDimension } from '../../helpers/useDimension';
 import useNavigationLinks from '../../helpers/useNavigationLinks';
+import { User } from '../../redux/actions/auth';
 import { useAuth } from '../../redux/hooks';
 import Select from '../Select/Select';
 import Button from '../atoms/Button';
@@ -17,17 +18,22 @@ import {
   NavigationRightButtons
 } from './styles';
 
-const languages = [
+interface Language {
+  value: string;
+  label: string;
+}
+
+const languages: Language[] = [
   { value: 'en', label: 'English' },
   { value: 'ru', label: 'Russian' }
 ];
 
-const Header = () => {
+const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { isAuthenticated, logoutUser, user } = useAuth();
   const { isTablet } = useDimension();
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(true);
   const { navigationLinks } = useNavigationLinks();
 
   const handleScroll = () => {
@@ -39,7 +45,7 @@ const Header = () => {
     setVisible(isScrolledDown || currentScrollPos < 10);
   };
 
-  let RAF;
+  let RAF: number | null;
 
   const onScroll = () => {
     if (isTablet) {
@@ -92,7 +98,9 @@ const Header = () => {
               ))}
 
             <NavigationRightButtons>
-              {user?.name && <HeaderUserName>{user.name}</HeaderUserName>}
+              {(user as User)?.name && (
+                <HeaderUserName>{(user as User).name}</HeaderUserName>
+              )}
               {!isAuthenticated && (
                 <>
                   <NavigationLink to={PAGES.REGISTER}>

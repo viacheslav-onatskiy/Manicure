@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { renderIcon } from '../../../images/svgIcons';
+import { ServiceType } from '../Services';
 import {
   CardItem,
   CardItemDescription,
@@ -12,7 +13,11 @@ import {
   CardsListWrapper
 } from './styles';
 
-const CardsList = ({ items = [] }) => {
+interface CardsListProps {
+  items: ServiceType[];
+}
+
+const CardsList: React.FC<CardsListProps> = ({ items = [] }) => {
   return (
     <CardsListWrapper className="container">
       {items.map((item, i) => (
@@ -22,13 +27,17 @@ const CardsList = ({ items = [] }) => {
   );
 };
 
-const CardItemComponent = ({ cardItem }) => {
+interface CardItemComponentProps {
+  cardItem: ServiceType;
+}
+
+const CardItemComponent: React.FC<CardItemComponentProps> = ({ cardItem }) => {
   const location = useLocation();
   const { id, iconName, heading, shortDescription } = cardItem;
-  const [anchorTarget, setAnchorTarget] = useState(null);
+  const [anchorTarget, setAnchorTarget] = useState<HTMLElement | null>(null);
 
-  const handleAnchorClick = (id) => {
-    anchorTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const handleAnchorClick = (id: string) => {
+    anchorTarget?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     location.hash = '#' + id;
   };
 
@@ -44,7 +53,7 @@ const CardItemComponent = ({ cardItem }) => {
       >
         <CardItem>
           <CardItemImage className="card__item-image">
-            <CardItemImageIcon>{renderIcon(iconName)}</CardItemImageIcon>
+            <CardItemImageIcon>{renderIcon(iconName || '')}</CardItemImageIcon>
           </CardItemImage>
           <CardItemHeading>{heading}</CardItemHeading>
           <CardItemDescription>{shortDescription}</CardItemDescription>

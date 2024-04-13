@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { PAGES } from '../constants';
+import { IconType } from '../images/svgIcons';
 
 interface NavigationLink {
   linkTo: string;
   text: string;
-  iconName: string;
+  iconName: IconType;
 }
 
 const useNavigationLinks = () => {

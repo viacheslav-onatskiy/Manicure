@@ -3,30 +3,46 @@ import { useTranslation } from 'react-i18next';
 import { PAGES, REDIRECTS } from '../../../constants';
 import useNavigationLinks from '../../../helpers/useNavigationLinks';
 import { renderIcon } from '../../../images/svgIcons';
-import Select from '../../Select/Select';
+import { User } from '../../../redux/actions/auth';
+import { UserActionType } from '../../../redux/reducers/auth';
+import Select, { SelectOption } from '../../Select/Select';
 import Button from '../../atoms/Button';
 import { Heading5 } from '../../common/styles';
 import { HeaderUserName, NavLogo, NavLogoWrapper, NavigationLink } from '../styles';
 import { MobileNavbar } from './styles';
 
-const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible }) => {
+interface MobileHeaderProps {
+  isAuthenticated: boolean | null;
+  user: UserActionType;
+  logoutUser: () => void;
+  languages: SelectOption[];
+  isVisible: boolean;
+}
+
+const MobileHeader: React.FC<MobileHeaderProps> = ({
+  isAuthenticated,
+  user,
+  logoutUser,
+  languages,
+  isVisible
+}) => {
   const { t, i18n } = useTranslation();
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isNavExtraExpanded, setIsNavExtraExpanded] = useState(false);
-  const sidebarRef = useRef(null);
-  const extraSidebarRef = useRef(null);
-  const hamburgerButtonRef = useRef(null);
-  const dotsButtonRef = useRef(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const extraSidebarRef = useRef<HTMLDivElement>(null);
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+  const dotsButtonRef = useRef<HTMLButtonElement>(null);
   const { navigationLinks } = useNavigationLinks();
 
   useEffect(() => {
-    const closeSidebar = (event) => {
-      if (sidebarRef.current && sidebarRef.current.contains(event.target)) {
+    const closeSidebar = (event: MouseEvent) => {
+      if (sidebarRef.current && sidebarRef.current.contains(event.target as Node)) {
         return;
       }
       if (
         hamburgerButtonRef.current &&
-        hamburgerButtonRef.current.contains(event.target)
+        hamburgerButtonRef.current.contains(event.target as Node)
       ) {
         return;
       }
@@ -40,11 +56,14 @@ const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible 
   }, []);
 
   useEffect(() => {
-    const closeExtraSidebar = (event) => {
-      if (extraSidebarRef.current && extraSidebarRef.current.contains(event.target)) {
+    const closeExtraSidebar = (event: MouseEvent) => {
+      if (
+        extraSidebarRef.current &&
+        extraSidebarRef.current.contains(event.target as Node)
+      ) {
         return;
       }
-      if (dotsButtonRef.current && dotsButtonRef.current.contains(event.target)) {
+      if (dotsButtonRef.current && dotsButtonRef.current.contains(event.target as Node)) {
         return;
       }
 
@@ -66,7 +85,7 @@ const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible 
               setIsNavExpanded(!isNavExpanded);
             }}
           >
-            <MobileNavbar.HamburgerIcon className={isNavExpanded && 'active'} />
+            <MobileNavbar.HamburgerIcon className={isNavExpanded ? 'active' : ''} />
           </MobileNavbar.HamburgerButton>
         </div>
         <div>
@@ -82,7 +101,7 @@ const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible 
               setIsNavExtraExpanded(!isNavExtraExpanded);
             }}
           >
-            <MobileNavbar.DotsIcon className={isNavExtraExpanded && 'active'} />
+            <MobileNavbar.DotsIcon className={isNavExtraExpanded ? 'active' : ''} />
           </MobileNavbar.DotsButton>
         </div>
       </MobileNavbar.Wrapper>
@@ -108,7 +127,9 @@ const MobileHeader = ({ isAuthenticated, user, logoutUser, languages, isVisible 
         </MobileNavbar.Items>
         <MobileNavbar.UserWrapper>
           <p className="mobile__user-name">
-            {user?.name && <HeaderUserName>{user.name}</HeaderUserName>}
+            {(user as User)?.name && (
+              <HeaderUserName>{(user as User).name}</HeaderUserName>
+            )}
           </p>
           {!isAuthenticated && (
             <>

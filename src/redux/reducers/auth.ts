@@ -8,9 +8,11 @@ export interface AuthState {
   user: User | null;
 }
 
+export type UserActionType = User | RegisterSuccessPayload | LoginSuccessPayload | null;
+
 interface AuthAction {
   type: AuthActionTypes;
-  payload: User | RegisterSuccessPayload | LoginSuccessPayload | null; // Обновленный тип payload
+  payload: UserActionType;
 }
 
 const initialState: AuthState = {
@@ -34,7 +36,7 @@ const authReducer = (state: AuthState = initialState, action: AuthAction) => {
 
     case AuthActionTypes.REGISTER_SUCCESS:
     case AuthActionTypes.LOGIN_SUCCESS:
-      if (payload && 'token' in payload) { 
+      if (payload && 'token' in payload) {
         localStorage.setItem('token', payload.token);
       }
       return {
