@@ -36,6 +36,7 @@
     // ],
     "react/no-unknown-property": ["error", { "ignore": ["jsx"] }],
     "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
     "no-undef": "off"
   }
 }
