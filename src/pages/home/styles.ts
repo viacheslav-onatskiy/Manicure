@@ -5,7 +5,7 @@ import { Heading2, Heading3 } from '../../components/common/styles';
 export const FirstImageWrapper = styled.div`
   background-image: url(../../images/IMG_7952.jpg);
   background-size: cover;
-  background-position: center;
+  background-position: center -360px;
   background-repeat: no-repeat;
 
   overflow: hidden;
@@ -15,8 +15,8 @@ export const FirstImageWrapper = styled.div`
   width: 100%;
   position: relative;
 
-  @media (min-width: ${({ theme }) => theme.screenSizes.mobile}) {
-    background-attachment: fixed;
+  @media (max-width: ${({ theme }) => theme.screenSizes.laptop}) {
+    background-position: center 0;
   }
 `;
 
