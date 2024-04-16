@@ -34,7 +34,9 @@ const Contact = () => {
             <iframe
               title="google-link-address"
               src={REDIRECTS.GOOGLE_MAP_IFRAME}
+              // eslint-disable-next-line react/no-unknown-property
               max-width="500"
+              // eslint-disable-next-line react/no-unknown-property
               max-height="400"
               // allowFullScreen=""
               loading="lazy"

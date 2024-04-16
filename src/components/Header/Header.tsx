@@ -66,7 +66,6 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prevScrollPos, visible]);
 
   return (

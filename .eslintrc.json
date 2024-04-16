@@ -16,7 +16,7 @@
   "rules": {
     "semi": ["error", "always"],
     // "quotes": ["warn", ""],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "object-to-default-export": "off",
     "import/default": "off",
     "react/react-in-jsx-scope": "off", // suppress errors for missing 'import React' in files
